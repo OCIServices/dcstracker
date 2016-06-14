@@ -1,0 +1,63 @@
+<%= tabitem("devices", @device.id, @device.id, default_device_tab?(@device), @device.active?)%>
+
+	<%= tabs_start("device#{@device.id}") %>
+		<%= tabitem("device#{@device.id}", 0, "Summary", true) %>
+			<%= render partial: 'devices/summary', locals: {device: @device} %>
+		<%= tabitem_end %>
+		
+		<%= tabitem("device#{@device.id}", 1, "Interfaces") %>
+			<%= tabs_start('interfaces')%>
+			<% @device.device_interfaces.each do |device_interface| %>
+				<% @device_interface = device_interface %>
+				<%= render template: 'device_interfaces/show' %>
+			<% end %>
+			<%= tabitem_plus(new_device_device_interface_path(@device), "New Interface")%>
+			<%= tabs_end %>
+		<%= tabitem_end %>
+		
+		<%= tabitem("device#{@device.id}", 2, "Connections") %>
+			<%= tabs_start('connections')%>
+			<% @device.device_connections.each do |device_connection| %>
+				<% @device_connection = device_connection %>
+				<%= render template: 'device_connections/show' %>
+			<% end %>
+			<%= tabitem_plus(new_device_device_connection_path(@device), "New Connection")%>
+			<%= tabs_end %>
+		<%= tabitem_end %>
+		
+		<%= tabitem("device#{@device.id}", 3, "Licenses") %>
+			<%= tabs_start('licenses')%>
+			<% @device.device_licenses.each do |device_license| %>
+				<% @device_license = device_license %>
+				<%= render template: 'device_licenses/show' %>
+			<% end %>
+			<%= tabitem_plus(new_device_device_license_path(@device), "New License")%>
+			<%= tabs_end %>
+		<%= tabitem_end %>
+		
+		<%= tabitem("device#{@device.id}", 4, "Contracts") %>
+			<%= tabs_start('contracts')%>
+			<% @device.contracts.each do |contract| %>
+				<% @contract = contract %>
+				<%= render template: 'contracts/show' %>
+			<% end %>
+			<%= tabitem_plus(new_device_contract_path(@device), "New Contract")%>
+			<%= tabs_end %>
+		<%= tabitem_end %>
+		
+		<%= tabitem("device#{@device.id}", 5, "Addresses") %>
+			<%= tabs_start('addresses')%>
+			<% @device.addresses.each do |address| %>
+				<% @address = address %>
+				<%= render template: 'addresses/show' %>
+			<% end %>
+			<%= tabitem_plus(new_device_address_path(@device), "New Address")%>
+			<%= tabs_end %>
+		<%= tabitem_end %>
+		
+		<%= tabitem_plus(device_device_events_path(@device), "Event Log") %>
+		<%= tabitem_plus(new_device_upgrade_path(@device), "Upgrade") %>
+		<%= tabitem_plus(new_device_ticket_path(@device), "New Ticket") %>
+	<%= tabs_end %>
+
+<%= tabitem_end %>

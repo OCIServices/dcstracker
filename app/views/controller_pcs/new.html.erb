@@ -1,0 +1,54 @@
+<%= form_for [@controller_pc] do |f| %>
+	<div class="Controller NewEditForm">
+	<table>
+		<tr>
+			<th colspan="4" style="text-align:left; ">
+				Enter a New Controller
+			</th>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :serial %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :serial %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :controller_type %>
+			</td>
+			<td class="Info">
+				<%= f.select :controller_type, dropdown_options("ControllerType", @controller_pc.controller_type).html_safe, include_blank: "Select" %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :os_ver %>
+			</td>
+			<td class="Info">
+				<%= f.select :os_ver, dropdown_options("OSVer", @controller_pc.os_ver).html_safe, include_blank: "Select" %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :software_ver %>
+			</td>
+			<td class="Info">
+				<%= f.select :software_ver, dropdown_options("SoftwareVer", @controller_pc.software_ver).html_safe, include_blank: "Select" %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :rimage_ver %>
+			</td>
+			<td class="Info">
+				<%= f.select :rimage_ver, dropdown_options("RimageVer", @controller_pc.rimage_ver).html_safe, include_blank: "Select" %>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3"></td>
+			<td>
+				<%= f.submit "Save" %>
+			</td>
+		</tr>
+	</table>
+	</div>
+<% end %>

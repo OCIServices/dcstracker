@@ -1,0 +1,3 @@
+class RmaEventsController < ApplicationController
+
+end

@@ -1,0 +1,6 @@
+<%= render current_user %>
+<% count = UserNotification.where(user: current_user, read: [nil, false]).count %>
+<% counttag = count > 0 ? content_tag(:div, count, id: 'InboxCount') : '' %>
+<%= link_to image_tag("mail.png")+counttag, user_notifications_path, id: 'InboxIcon' %>
+<%= link_to image_tag("gear.png"), edit_user_registration_path %>
+<%= link_to image_tag("logout.png"), destroy_user_session_path, method: :delete %>

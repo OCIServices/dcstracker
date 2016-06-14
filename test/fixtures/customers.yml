@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  umbrella_id: 
+  name: MyString
+  alias: MyText
+  phone: MyString
+  fax: MyString
+  web: MyString
+  comments: MyText
+  show_comments: false
+  alert: MyText
+  show_alert: false
+  active: false
+
+two:
+  umbrella_id: 
+  name: MyString
+  alias: MyText
+  phone: MyString
+  fax: MyString
+  web: MyString
+  comments: MyText
+  show_comments: false
+  alert: MyText
+  show_alert: false
+  active: false

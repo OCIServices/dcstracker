@@ -1,0 +1,85 @@
+<%= form_for @user do |f| %>
+<div class="User NewEditForm">
+	<table>
+		<tr>
+			<th colspan="4">
+				Edit User <%= @user.name %>
+			</th>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :first_name %>
+			</td>
+			<td class="Info"><%= @user.first_name %></td>
+			<td class="Leftside">
+				<%= f.label :last_name %>
+			</td>
+			<td class="Info"><%= @user.last_name %></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :title %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :title %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :department %>
+			</td>
+			<td class="Info">
+				<%= f.select :department, dropdown_options("UserDept", @user.department).html_safe, include_blank: "Select" %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :office_ext %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :office_ext %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :direct %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :direct %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :mobile %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :mobile %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :home %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :home %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :email %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :email %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Info" colspan="4">
+				<%= f.text_area :comments, placeholder: 'User Comments' %>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3"></td>
+			<td>
+				<%= f.submit "Save" %>
+			</td>
+		</tr>
+	</table>
+</div>
+<% end %>

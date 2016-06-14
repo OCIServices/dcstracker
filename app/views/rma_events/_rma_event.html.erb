@@ -1,0 +1,26 @@
+<tr class="ListRow">
+	<td class="ListField EventTime"><%= format_time(rma_event.created_at) %></td>
+	<td class="ListField EventText"><%= rma_event.event_text.bbcode_to_html.html_safe %></td>
+	<td class="ListField Changes"><%= rma_event.change_text.bbcode_to_html.html_safe %></td>
+	<td class="ListField CreatedBy">
+		<% if rma_event.created_by.nil? %>
+			Support
+		<% else %>
+			<%= render rma_event.created_by %>
+		<% end %>
+	</td>
+	<td class="ListField AssignedTo">
+		<% if rma_event.assigned_to.nil? %>
+			Support
+		<% else %>
+			<%= render rma_event.assigned_to %>
+		<% end %>
+	</td>
+	<td class="ListField TimeSpent"><%= rma_event.time_spent %></td>
+	<td class="ListField File">
+		<% if rma_event.file.present? %>
+			<%= rma_event.file_category.name unless rma_event.file_category.nil? %><br />
+			<%= link_to rma_event.file.name, rma_event.file.url %>
+		<% end %>
+	</td>
+</tr>

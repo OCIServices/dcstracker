@@ -1,0 +1,407 @@
+<%= tabs_start('upgrade') %>
+<%= tabitem("upgrade", @upgrade.id, "Upgrade #{@upgrade.id}", current_page?(controller: 'upgrades', action: 'show')) %>
+
+<div class="Upgrade EventForm">
+	<span><%= link_to @upgrade.watches.exists?(user: current_user) ? image_tag("unwatch.png") : image_tag("watch.png"), watch_upgrade_path %></span>
+	<%= form_for @upgrade, html:{multipart:true} do |f| %>
+	<table>
+		<tr>
+			<td colspan="4">
+				<table>
+					<thead>
+						<tr>
+							<th>Part</th>
+							<th>Original</th>
+							<th>Replacement</th>
+							<th>Condition</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @upgrade.new_robotic = Robotic.new if @upgrade.new_robotic.nil? %>
+						<%= fields_for @upgrade.new_robotic do |r| %>
+						<tr>
+							<td rowspan="2">
+								<%= image_tag("AmigoA.gif") %>
+							</td>
+							<td>
+								<%= @upgrade.old_robotic.robotic_type.name unless @upgrade.old_robotic.nil? or @upgrade.old_robotic.robotic_type.nil? %>
+							</td>
+							<td>
+								<%= r.select :robotic_type, dropdown_options("RoboticType", @upgrade.new_robotic.serial.blank? ? @upgrade.robotic_type : @upgrade.new_robotic.robotic_type).html_safe, include_blank: "Select" %>
+							</td>
+							<td rowspan="2">
+								<%= f.select :robotic_condition, dropdown_options("UpgradeCondition", @upgrade.robotic_condition).html_safe, include_blank: "Select" %>
+							</td>
+						</tr>
+						<tr>
+							<td><%= link_to @upgrade.old_robotic.serial, @upgrade.old_robotic unless @upgrade.old_robotic.nil? %></td>
+							<td>
+								<%= r.text_field :serial, placeholder: "New Serial" %><%= link_to "Link", @upgrade.new_robotic unless @upgrade.new_robotic.id.blank? %>
+							</td>
+						</tr>
+						<% end %>
+						<% @upgrade.new_printer = Printer.new if @upgrade.new_printer.nil? %>
+						<%= fields_for @upgrade.new_printer do |p| %>
+						<tr>
+							<td rowspan="2">
+								<%= image_tag("Printer.gif") %>
+							</td>
+							<td>
+								<%= @upgrade.old_printer.printer_type.name unless @upgrade.old_printer.nil? or @upgrade.old_printer.printer_type.nil? %>
+							</td>
+							<td>
+								<%= p.select :printer_type, dropdown_options("PrinterType", @upgrade.new_printer.serial.blank? ? @upgrade.printer_type : @upgrade.new_printer.printer_type).html_safe, include_blank: "Select" %>
+							</td>
+							<td rowspan="2">
+								<%= f.select :printer_condition, dropdown_options("UpgradeCondition", @upgrade.printer_condition).html_safe, include_blank: "Select" %>
+							</td>
+						</tr>
+						<tr>
+							<td><%= link_to @upgrade.old_printer.serial, @upgrade.old_printer unless @upgrade.old_printer.nil? %></td>
+							<td>
+								<%= p.text_field :serial, placeholder: "New Serial" %><%= link_to "Link", @upgrade.new_printer unless @upgrade.new_printer.id.blank? %>
+							</td>
+						</tr>
+						<% end %>
+						<% @upgrade.new_controller_pc = ControllerPc.new if @upgrade.new_controller_pc.nil? %>
+						<%= fields_for @upgrade.new_controller_pc do |c| %>
+						<tr>
+							<td rowspan="2">
+								<%= image_tag("Controller.gif") %>
+							</td>
+							<td>
+								<%= @upgrade.old_controller_pc.controller_type.name unless @upgrade.old_controller_pc.nil? or @upgrade.old_controller_pc.controller_type.nil? %>
+							</td>
+							<td>
+								<%= c.select :controller_type, dropdown_options("ControllerType", @upgrade.new_controller_pc.serial.blank? ? @upgrade.controller_type : @upgrade.new_controller_pc.controller_type).html_safe, include_blank: "Select" %>
+							</td>
+							<td rowspan="2">
+								<%= f.select :controller_condition, dropdown_options("UpgradeCondition", @upgrade.controller_condition).html_safe, include_blank: "Select" %>
+							</td>
+						</tr>
+						<tr>
+							<td><%= link_to @upgrade.old_controller_pc.serial, @upgrade.old_controller_pc unless @upgrade.old_controller_pc.nil? %></td>
+							<td>
+								<%= c.text_field :serial, placeholder: "New Serial" %><%= link_to "Link", @upgrade.new_controller_pc unless @upgrade.new_controller_pc.id.blank? %>
+							</td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4">
+				<table>
+					<thead>
+						<tr>
+							<th>
+								Shipping Address
+							</th>
+							<th>
+							</th>
+							<th>
+								Carrier
+							</th>
+							<th>
+								Tracking Number
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td rowspan="2">
+								<% unless @upgrade.ship_address.nil? %>
+									<%= @upgrade.ship_address.line_1 %><br />
+									<%= @upgrade.ship_address.line_2 %><br />
+									<%= "#{@upgrade.ship_address.city}, #{@upgrade.ship_address.state} #{@upgrade.ship_address.zip}" %><br />
+									<%= @upgrade.ship_address.country %>
+								<% end %>
+							</td>
+							<td>
+								<%= tracking_link(@upgrade.outbound_carrier, @upgrade.tracking_outbound, 'Outbound:')%>
+							</td>
+							<td>
+								<%= f.select :outbound_carrier, dropdown_options("CarrierType", @upgrade.outbound_carrier).html_safe, include_blank: "Select" %>
+							</td>
+							<td>
+								<%= f.text_field :tracking_outbound %>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<%= tracking_link(@upgrade.inbound_carrier, @upgrade.tracking_inbound, 'Inbound:')%>
+							</td>
+							<td>
+								<%= f.select :inbound_carrier, dropdown_options("CarrierType", @upgrade.inbound_carrier).html_safe, include_blank: "Select" %>
+							</td>
+							<td>
+								<%= f.text_field :tracking_inbound %>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4">
+				<table>
+					<tr>
+						<th colspan="4"></th>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :backup_by, "Backup Performed:" %>
+						</td>
+						<td>
+							<% if @upgrade.backup_by.nil? %>
+								<%= f.check_box :backup_by, {}, current_user.id %>
+							<% else %>
+								<%= render @upgrade.backup_by %>
+							<% end %>
+						</td>
+						<td class="Leftside" style="border-left: 1px solid #95B1E5;">
+							<%= f.label :priority %>
+						</td>
+						<td>
+							<%= f.check_box :priority %>
+						</td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :backup_method, "Backup Method:" %>
+						</td>
+						<td>
+							<%= f.select :backup_method, dropdown_options("BackupMethod", @upgrade.backup_method).html_safe, include_blank: "Select" %>
+						</td>						
+						<td class="Leftside" style="border-left: 1px solid #95B1E5;">
+							<%= f.label :dispatch %>
+						</td>
+						<td>
+							<%= f.select :dispatch, dropdown_options("DispatchType", @upgrade.dispatch).html_safe, include_blank: "Select" %>
+						</td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :built_by, "Build Performed:" %>
+						</td>
+						<td>
+							<% if @upgrade.built_by.nil? %>
+								<%= f.check_box :built_by, {}, current_user.id %>
+							<% else %>
+								<%= render @upgrade.built_by %>
+							<% end %>
+						</td>
+						<td class="Leftside" style="border-left: 1px solid #95B1E5;">
+							<%= f.label :decision_one, "DecisionOne:" %>
+						</td>
+						<td>
+							<%= f.text_field :decision_one, placeholder: "Service Number" %>
+						</td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :software_ver, "Software Version:" %>
+						</td>
+						<td>
+							<%= f.select :software_ver, dropdown_options("SoftwareVer", @upgrade.software_ver).html_safe, include_blank: "Select" %>
+						</td>
+						<td class="Leftside" style="border-left: 1px solid #95B1E5;">
+							<%= f.label :contact %>
+						</td>
+						<td>
+							<%= f.select :contact, contact_options(@customer, @upgrade.contact).html_safe, include_blank: 'Select' %>
+						</td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :labeled_by, "Labeling Performed:" %>
+						</td>
+						<td>
+							<% if @upgrade.labeled_by.nil? %>
+								<%= f.check_box :labeled_by, {}, current_user.id %>
+							<% else %>
+								<%= render @upgrade.labeled_by %>
+							<% end %>
+						</td>
+						<td class="Leftside" style="border-left: 1px solid #95B1E5;">
+							<%= f.text_field :new_contact, value: '', placeholder: 'New Contact Name' %>
+						</td>
+						<td>
+							<%= f.text_field :new_contact_number, value: '', placeholder: 'Contact Number' %>
+						</td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :verified_by, "Verified:" %>
+						</td>
+						<td>
+							<% if @upgrade.verified_by.nil? %>
+								<%= f.check_box :verified_by, {}, current_user.id %>
+							<% else %>
+								<%= render @upgrade.verified_by %>
+							<% end %>
+						</td>
+						<td class="Leftside" style="border-left: 1px solid #95B1E5;">
+							<%= f.label :category %>
+						</td>
+						<td>
+							<%= f.select :category, dropdown_options("UpgradeCategory", @upgrade.category).html_safe, include_blank: "Select" %>
+						</td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :shipped_by, "Shipped:" %>
+						</td>
+						<td>
+							<% if @upgrade.shipped_by.nil? %>
+								<%= f.check_box :shipped_by, {}, current_user.id %>
+							<% else %>
+								<%= render @upgrade.shipped_by %>
+							<% end %>
+						</td>
+						<td colspan="2" style="border-left: 1px solid #95B1E5;"></td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :ship_method, "Shipping Method:" %>
+						</td>
+						<td>
+							<%= f.select :ship_method, dropdown_options("ShipMethod", @upgrade.ship_method).html_safe, include_blank: "Select" %>
+						</td>
+						<td colspan="2" style="border-left: 1px solid #95B1E5;"></td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :return_by, "Old Equip. Returned:" %>
+						</td>
+						<td>
+							<% if @upgrade.return_by.nil? %>
+								<%= f.check_box :return_by, {}, current_user.id %>
+							<% else %>
+								<%= render @upgrade.return_by %>
+							<% end %>
+						</td>
+						<td colspan="2" style="border-left: 1px solid #95B1E5;"></td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<label for="CompletedBy">Completed:</label>
+						</td>
+						<td>
+							<% if @upgrade.completed_by.nil? %>
+								<%= f.check_box :completed_by, {}, current_user.id %>
+							<% else %>
+								<%= render @upgrade.completed_by %>
+							<% end %>
+						</td>
+						<td colspan="2" style="border-left: 1px solid #95B1E5;"></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<th colspan="4"></th>
+		</tr>
+		<tr>
+			<td colspan="4">
+				<%= f.text_area :event_text, value: '', placeholder: "Upgrade Notes", oninvalid: "this.setCustomValidity('Please enter a note to update this upgrade.')", oninput: "this.setCustomValidity('')" %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<%= f.number_field :time_spent, value: '', min: '0', oninput: "this.setCustomValidity('')", oninvalid: "this.setCustomValidity('Please enter time spent in minutes.')" %>
+				<%= f.label :time_spent, 'Minute(s)' %>
+			</td>
+			<td colspan="2">
+				<%= f.label :assigned_to %>
+				<%= f.select :assigned_to, user_options('', @upgrade.assigned_to).html_safe, include_blank: 'Support' %>
+			</td>
+			<td>
+				<%= f.submit "Take", name: "upgradeEvent" %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Attachment:
+			</td>
+			<td colspan="2">
+				<%= f.select :file_category, dropdown_options('FileCategory').html_safe, include_blank: 'Select' %>
+				<%= f.file_field :file %>
+			</td>
+			<td>
+				<%= f.submit "Save", name: "upgradeEvent" %>
+			</td>
+		</tr>
+	</table>
+	<% end %>
+</div>
+
+<% headers = ['Time', 'upgrade Status', 'Note', 'User', 'Assigned', 'Min(s)', 'Attachment'] %>
+
+<div class="Upgrade EventSummary">
+	<div class="List">
+		<span class="Count"></span>
+		<span class="Tablename">Upgrade</span>
+		<div class="ListContents">
+			<table class="ListTable">
+				<thead>
+					<tr>
+						<% headers.each do |h| %>
+						<th class="ListHeader"><%= link_to h, sort: h %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="ListRow">
+						<td class="ListField EventTime"><%= format_time(@upgrade.created_at) %></td>
+						<td class="ListField StatusType"><%= @upgrade.status %></td>
+						<td class="ListField EventText"><%= @upgrade.upgrade_text.bbcode_to_html.html_safe %></td>
+						<td class="ListField CreatedBy">
+							<% if @upgrade.created_by.nil? %>
+								Support
+							<% else %>
+								<%= render @upgrade.created_by %>
+							<% end %>
+						</td>
+						<td class="ListField AssignedTo">
+							<% if @upgrade.assigned_to.nil? %>
+								Support
+							<% else %>
+								<%= render @upgrade.assigned_to %>
+							<% end %>
+						</td>
+						<td class="ListField TimeSpent"><%= @upgrade.upgrade_events.sum(:time_spent) %></td>
+						<td class="ListField File"><%= link_to "test", @upgrade.file.url %></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+<% headers = ['Time', 'Note', 'Changes', 'User', 'Assigned', 'Min(s)', 'Attachment'] %>
+	
+	<div class="List">
+		<span class="Count"><%= @upgrade.upgrade_events.count %></span>
+		<span class="Tablename">Upgrade Events</span>
+		<div class="ListContents">
+			<table class="ListTable">
+				<thead>
+					<tr>
+						<% headers.each do |h| %>
+						<th class="ListHeader"><%= link_to h, sort: h %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<%= render @upgrade.upgrade_events %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<%= tabitem_end %>
+<%= tabs_end %>
+
+<%= render template: 'customers/show' %>

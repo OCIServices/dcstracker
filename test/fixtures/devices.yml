@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cust_number: MyString
+  customer_id: 
+  location: MyString
+  robotic_id: 
+  printer_id: 
+  controller_id: 
+  print_head: false
+  install_at: 2016-03-23 11:23:10
+  comments: MyText
+  24x7: false
+  machine_guid: MyString
+  active: false
+  active_cloud: false
+
+two:
+  cust_number: MyString
+  customer_id: 
+  location: MyString
+  robotic_id: 
+  printer_id: 
+  controller_id: 
+  print_head: false
+  install_at: 2016-03-23 11:23:10
+  comments: MyText
+  24x7: false
+  machine_guid: MyString
+  active: false
+  active_cloud: false

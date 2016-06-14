@@ -1,0 +1,5 @@
+<%= tabitem("licenses", @device_license.id, @device_license.license_type.nil? ? "License #{@device_license.id}" : @device_license.license_type.name, false, @device_license.active?)%>
+			
+	<%= render partial: 'device_licenses/summary', locals: {device_license: @device_license} %>
+	
+<%= tabitem_end %>

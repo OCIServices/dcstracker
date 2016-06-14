@@ -1,0 +1,5 @@
+<%= tabitem("addresses", @address.id, @address.line_1, false, @address.active?)%>
+			
+	<%= render partial: 'addresses/summary', locals: {address: @address} %>
+	
+<%= tabitem_end %>

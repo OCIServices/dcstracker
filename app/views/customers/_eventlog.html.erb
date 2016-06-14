@@ -1,0 +1,39 @@
+<div class="customer EventForm">
+	<span><%= link_to @customer.watches.exists?(user: current_user) ? image_tag("unwatch.png") : image_tag("watch.png"), watch_customer_path(@customer) %></span>
+	<%= form_for [@customer, @customer.customer_events.build] do |f| %>
+	<table>
+		<tr>
+			<td colspan="3">
+				<%= f.text_area :event_text, placeholder: "Customer Notes" %>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"></td>
+			<td>
+				<%= f.submit "Save" %>
+			</td>
+		</tr>
+	</table>
+	<% end %>
+</div>
+<div class="Customer EventSummary">
+	<% headers = ['Time', 'Note', 'User'] %>
+	<div class="List">
+		<span class="Count"><%= @customer.customer_events.count %></span>
+		<span class="Tablename">Customer Events</span>
+		<div class="ListContents">
+			<table class="ListTable">
+				<thead>
+					<tr>
+						<% headers.each do |h| %>
+						<th class="ListHeader"><%= link_to h, sort: h %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<%= render @customer.customer_events %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

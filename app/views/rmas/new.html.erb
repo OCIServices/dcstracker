@@ -1,0 +1,186 @@
+<%= form_for [@ticket, @rma], html:{multipart:true} do |f| %>
+	<div class="NewEditForm RMA">
+	<table>
+		<tr>
+			<td colspan="5">
+				<table>
+					<thead>
+						<tr>
+							<th>
+								Part
+							</th>
+							<th>
+								Verified
+							</th>
+							<th>
+								Original
+							</th>
+							<th>
+								Condition
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td rowspan="2">
+								<%= image_tag("AmigoA.gif") %>
+							</td>
+							<td rowspan="2">
+								<%= f.check_box :old_robotic, {}, @ticket.device.robotic.id %>
+							</td>
+							<td class="Info">
+								<%= @ticket.device.robotic.robotic_type.name %>
+							</td>
+							<td rowspan="2">
+								<%= f.select :robotic_condition, dropdown_options("RMACondition", @rma.robotic_condition).html_safe, include_blank: "Select" %>
+							</td>
+						</tr>
+						<tr>
+							<td class="Info">
+								<%= @ticket.device.robotic.serial %>
+							</td>
+						</tr>
+						<tr>
+							<td rowspan="2">
+								<%= image_tag("Printer.gif") %>
+							</td>
+							<td rowspan="2">
+								<%= f.check_box :old_printer, {}, @ticket.device.printer.id %>
+							</td>
+							<td class="Info">
+								<%= @ticket.device.printer.printer_type.name %>
+							</td>
+							<td rowspan="2">
+								<%= f.select :printer_condition, dropdown_options("RMACondition", @rma.printer_condition).html_safe, include_blank: "Select" %>
+							</td>
+						</tr>
+						<tr>
+							<td class="Info">
+								<%= @ticket.device.printer.serial %>
+							</td>
+						</tr>
+						<tr>
+							<td rowspan="2">
+								<%= image_tag("Controller.gif") %>
+							</td>
+							<td rowspan="2">
+								<%= f.check_box :old_controller_pc, {}, @ticket.device.controller_pc.id %>
+							</td>
+							<td class="Info">
+								<%= @ticket.device.controller_pc.controller_type.name %>
+							</td>
+							<td rowspan="2">
+								<%= f.select :controller_condition, dropdown_options("RMACondition", @rma.controller_condition).html_safe, include_blank: "Select" %>
+							</td>
+						</tr>
+						<tr>
+							<td class="Info">
+								<%= @ticket.device.controller_pc.serial %>
+							</td>
+						</tr>
+						<tr>
+							<td rowspan="2">
+								Other
+							</td>
+							<td rowspan="2"></td>
+							<td>
+								<%= f.select :old_other, dropdown_options("OtherRMAType", @rma.old_other).html_safe, include_blank: "Select" %>
+							</td>
+							<td rowspan="2">
+								<%= f.select :other_condition, dropdown_options("RMACondition", @rma.other_condition).html_safe, include_blank: "Select" %>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<%= f.text_field :other_desc, placeholder: "Other" %>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :dispatch %>
+			</td>
+			<td class="Info">
+				<%= f.select :dispatch, dropdown_options("DispatchType", @rma.dispatch).html_safe, include_blank: "Select" %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :priority %>
+			</td>
+			<td class="Info">
+				<%= f.check_box :priority %>
+			</td>
+			<td rowspan="3">
+				<table>
+					<thead>
+						<tr>
+							<th>
+								Shipping Address
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="Info">
+								<%= f.hidden_field :ship_address, value: @address.id %>
+								<% unless @address.nil? %>
+									<%= @address.line_1 %><br />
+									<%= @address.line_2 %><br />
+									<%= "#{@address.city}, #{@address.state} #{@address.zip}" %><br />
+									<%= @address.country %>
+								<% end %>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :contact %>
+			</td>
+			<td class="Info">
+				<%= f.select :contact, contact_options(@ticket.device.customer, @rma.contact).html_safe, include_blank: 'Select' %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.text_field :new_contact, value: '', placeholder: 'New Contact Name' %>
+			</td>
+			<td>
+				<%= f.text_field :new_contact_number, value: '', placeholder: 'Contact Number' %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<%= f.text_area :rma_text, value: '', placeholder: "RMA Notes", oninvalid: "this.setCustomValidity('Please enter a note to update this RMA.')", oninput: "this.setCustomValidity('')" %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :assigned_to %>
+			</td>
+			<td colspan="3" class="Info">
+				<%= f.select :assigned_to, user_options('', @rma.assigned_to).html_safe, include_blank: 'Support' %>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Attachment:
+			</td>
+			<td colspan="3" class="Info">
+				<%= f.select :file_category, dropdown_options('FileCategory').html_safe, include_blank: 'Select' %>
+				<%= f.file_field :file %>
+			</td>
+			<td class="Leftside">
+				<%= f.submit "Save", name: "RmaEvent" %>
+			</td>
+		</tr>
+	</table>
+</div>
+<% end %>

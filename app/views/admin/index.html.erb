@@ -1,0 +1,104 @@
+<%= tabs_start('admin') %>
+
+<%= tabitem('admin', 0, "Users", params[:dropdown_type].blank?) %>
+	<% headers = ['ID', 'Active', 'Name', 'Department', 'Title', 'Last Updated', 'Updated By'] %>
+	<div class="List">
+		<span class="Count"><%= @users.count %></span>
+		<span class="Tablename">Users</span>
+		<div class="ListContents">
+			<table class="ListTable">
+				<thead>
+					<tr>
+						<% headers.each do |h| %>
+						<th class="ListHeader"><%= link_to h, sort: h %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<% @users.each do |user| %>
+						<%= render partial: 'users/list', object: user, as: 'user' %>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+<%= tabitem_end %>
+
+<%= tabitem('admin', 1, "Rights") %>
+	<% headers = ['LDAP Group Name', 'Last Updated', 'Updated By'] %>
+	<div class="List">
+		<span class="Count"><%= @rights.count %></span>
+		<span class="Tablename">Rights</span>
+		<div class="ListContents">
+			<table class="ListTable">
+				<thead>
+					<tr>
+						<% headers.each do |h| %>
+						<th class="ListHeader"><%= link_to h, sort: h %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<%= render @rights %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+<%= tabitem_end %>
+
+<%= tabitem('admin', 2, "Dropdowns", params[:dropdown_type].present?) %>
+<div class="Half">
+	<% headers = ['Type'] %>
+	<div class="List">
+		<span class="Count"><%= @dropdown_types.count %></span>
+		<span class="Tablename">Dropdown Types</span>
+		<div class="ListContents">
+			<table class="ListTable">
+				<thead>
+					<tr>
+						<% headers.each do |h| %>
+						<th class="ListHeader"><%= link_to h, sort: h %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<% @dropdown_types.each do |t| %>
+						<tr class="ListRow" onmousedown="clickhandler(event, '<%= admin_path(dropdown_type: t) %>');">
+							<td class="ListField">
+								<%= t %>
+							</td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+	<% if @dropdowns.any? %>
+	<div class="Half">
+	<% headers = ['ID', 'Active', 'Current', 'Name', 'Description', 'Last Updated', 'Updated By'] %>
+	<div class="List">
+		<span class="Count"><%= @dropdowns.count %></span>
+		<span class="Tablename"><%= @dropdowns.first.dropdown_type %></span>
+		<div class="ListContents">
+			<table class="ListTable">
+				<thead>
+					<tr>
+						<% headers.each do |h| %>
+						<th class="ListHeader"><%= link_to h, sort: h %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<%= render @dropdowns %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	</div>
+	<% end %>
+<%= tabitem_end %>
+
+<%= tabitem_plus(new_dropdown_path, "New Dropdown") %>
+
+<%= tabs_end %>

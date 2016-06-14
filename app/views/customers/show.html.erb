@@ -1,0 +1,40 @@
+<%= tabs_start('top')%>
+<%= tabitem("top", 0, @customer.name, true, @customer.active?)%>
+
+	<%= tabs_start('customer') %>
+		<%= tabitem('customer', 0, "Summary", current_page?(controller: 'customers', action: 'show')) %>
+			<%= render partial: 'customers/summary', locals: {customer: @customer} %>
+		<%= tabitem_end %>
+		<%= tabitem('customer', 1, "Contacts", current_page?(controller: 'contacts', action: 'show')) %>
+			<%= tabs_start('contacts')%>
+			<% @customer.contacts.each do |contact| %>
+				<% @contact = contact %>
+				<%= render template: 'contacts/show' %>
+			<% end %>
+			<%= tabitem_plus(new_customer_contact_path(@customer), "New Contact")%>
+			<%= tabs_end %>
+		<%= tabitem_end %>
+		<%= tabitem('customer', 2, "Addresses", current_page?(controller: 'addresses', action: 'show')) %>
+			<%= tabs_start('addresses')%>
+			<% @customer.addresses.each do |address| %>
+				<% @address = address %>
+				<%= render template: 'addresses/show' %>
+			<% end %>
+			<%= tabitem_plus(new_customer_address_path(@customer), "New Address")%>
+			<%= tabs_end %>
+		<%= tabitem_end %>
+		<%= tabitem('customer', 3, "Devices", default_device_tab?) %>
+			<%= tabs_start('devices')%>
+			<% @customer.devices.each do |device| %>
+				<% @device = device %>
+				<%= render template: 'devices/show' %>
+			<% end %>
+			<%= tabitem_plus(new_customer_device_path(@customer), "New Device")%>
+		<%= tabitem_end %>
+		<%= tabitem('customer', 4, "Event Log") %>
+			<%= render partial: 'customers/eventlog', locals: {customer: @customer} %>
+		<%= tabitem_end %>
+	<%= tabs_end %>
+
+<%= tabitem_end %>
+<%= tabs_end %>

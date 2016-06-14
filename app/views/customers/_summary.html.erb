@@ -1,0 +1,96 @@
+<div class="Customer Summary">
+	<span><%= link_to image_tag("pencil.png"), '', onclick: "popup(event, '#{edit_customer_path(customer)}')" %></span>
+	<table>
+		<tr>
+			<td class="Leftside">
+				Customer ID:
+			</td>
+			<td><%= customer.id %></td>
+			<td class="Leftside">
+				Umbrella:
+			</td>
+			<td class="Info">[Umbrella]</td>
+			<td class="Leftside">
+				Last Updated:
+			</td>
+			<td><%= format_time(customer.updated_at) %></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Customer Type:
+			</td>
+			<td class="Info"><%= customer.customer_type.name unless customer.customer_type.nil? %></td>
+			<td colspan="2"></td>
+			<td class="Leftside">
+				Updated By:
+			</td>
+			<td>
+				<% if customer.updated_at > customer.created_at %>
+					<% if customer.updated_by.nil? %>
+						Support
+					<% else %>
+						<%= render customer.updated_by %>
+					<% end %>
+				<% else %>
+					<% if customer.created_by.nil? %>
+						Support
+					<% else %>
+						<%= render customer.created_by %>
+					<% end %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="6"></td>
+		</tr>
+		<tr>
+			<td class="Leftside" rowspan="3">
+				Aliases:
+			</td>
+			<td class="Info" rowspan="3"><%= customer.alias %></td>
+			<td class="Leftside">
+				Phone:
+			</td>
+			<td class="Info"><%= customer.phone %></td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Fax:
+			</td>
+			<td class="Info"><%= customer.fax %></td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Web:
+			</td>
+			<td class="Info"><%= customer.web %></td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="6"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Comments:
+			</td>
+			<td class="Info" colspan="5" rowspan="2"><%= customer.comments.bbcode_to_html.html_safe %></td>
+		</tr>
+		<tr>
+			<td class="Leftside">Show Comments: <%= customer.show_comments? %></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="6"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Alert:
+			</td>
+			<td class="Info" colspan="5" rowspan="2"><%= customer.alert %></td>
+		</tr>
+		<tr>
+			<td class="Leftside">Show Alert: <%= customer.show_alert? %></td>
+		</tr>
+	</table>
+</div>

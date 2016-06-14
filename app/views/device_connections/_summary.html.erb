@@ -1,0 +1,131 @@
+<div class="Connection Summary">
+	<span><%= link_to image_tag("pencil.png"), '', onclick: "popup(event, '#{edit_device_connection_path(device_connection)}')" %></span>
+	<table>
+		<tr>
+			<td class="Leftside">
+				Type:
+			</td>
+			<td class="Info"><%= device_connection.connection_type.name unless device_connection.connection_type.nil? %></td>
+			<td class="Leftside">
+				Closest Phone:
+			</td>
+			<td class="Info"><%= device_connection.phone %></td>
+			<td colspan="2"></td>
+			<td class="Leftside">
+				Last Updated:
+			</td>
+			<td><%= format_time(device_connection.updated_at) %></td>
+		</tr>
+		<tr>	
+			<td colspan="6"></td>
+			<td class="Leftside">
+				Updated By:
+			</td>
+			<td>
+				<% if device_connection.updated_at > device_connection.created_at %>
+					<% if device_connection.updated_by.nil? %>
+						Support
+					<% else %>
+						<%= render device_connection.updated_by %>
+					<% end %>
+				<% else %>
+					<% if device_connection.created_by.nil? %>
+						Support
+					<% else %>
+						<%= render device_connection.created_by %>
+					<% end %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="8"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				VPN IP Address:
+			</td>
+			<td class="Info"><%= device_connection.vpn_ip %></td>
+			<td class="Leftside">
+				VPN Domain:
+			</td>
+			<td class="Info"><%= device_connection.vpn_domain %></td>
+			<td colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				VPN Login:
+			</td>
+			<td class="Info"><%= device_connection.vpn_login %></td>
+			<td class="Leftside">
+				VPN Password:
+			</td>
+			<td class="Info"><%= device_connection.vpn_password %></td>		
+			<td colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				VPN Group Name:
+			</td>
+			<td class="Info"><%= device_connection.vpn_group_name %></td>
+			<td class="Leftside">
+				VPN Group Password:
+			</td>
+			<td class="Info"><%= device_connection.vpn_group_password %></td>		
+			<td colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="8"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Assigned IP Address:
+			</td>
+			<td class="Info"><%= device_connection.ip %></td>
+			<td class="Leftside">
+				DHCP:
+			</td>
+			<td class="Info"><%= device_connection.dhcp? %></td>
+			<td class="Leftside">
+				Login Script:
+			</td>
+			<td class="Info"><%= device_connection.script? %></td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Windows Login:
+			</td>
+			<td class="Info"><%= device_connection.login %></td>
+			<td class="Leftside">
+				Windows Password:
+			</td>
+			<td class="Info"><%= device_connection.password %></td>
+			<td class="Leftside">
+				Windows Domain:
+			</td>
+			<td class="Info"><%= device_connection.domain %></td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				PCAnywhere Login:
+			</td>
+			<td class="Info"><%= device_connection.pca_login %></td>
+			<td class="Leftside">
+				PCAnywhere Password:
+			</td>
+			<td class="Info"><%= device_connection.pca_password %></td>
+			<td class="Leftside">
+				PCAnywhere Domain:
+			</td>
+			<td class="Info"><%= device_connection.pca_domain %></td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="8"></td>
+		</tr>
+		<tr>
+			<td class="Info" colspan="8"><%= device_connection.comments.bbcode_to_html.html_safe %></td>
+		</tr>
+	</table>
+</div>

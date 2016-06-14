@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  device_id: 
+  event_text: MyText
+  changes: MyText
+
+two:
+  device_id: 
+  event_text: MyText
+  changes: MyText

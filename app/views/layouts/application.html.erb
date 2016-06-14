@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title><%= full_title(yield(:title)) %></title>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= stylesheet_link_tag    'mobile', media: 'only screen and (max-device-width: 480px)', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
+	<%= csrf_meta_tags %>
+</head>
+<body onresize="resizetabs()" onload="resizetabs()" onclick="resizetabs()">
+	<div id="AppContainer">
+	  <% flash.each do |message_type, message| %>
+	      <div class="alert alert-<%= message_type %>"><%= message.html_safe unless message.blank? or message==true %></div>
+	  <% end %>
+		<div id="AppLeftBar">
+			<div id="AppLogo">
+				<%= link_to image_tag("dcs_logo.gif"), root_path %>
+			</div>
+			<div id="AppSearch">
+				<%= form_tag search_path do |f| %>
+					<%= text_field_tag :q, nil, placeholder: "Search by Device ID, Event ID, or Customer Name" %>
+					<span><%= link_to "Advanced" %></span>
+					<span><%= submit_tag "Search" %></span>
+				<% end %>
+			</div>
+			<div id="AppMenu">
+				<%= render 'layouts/appmenu' if user_signed_in? %>
+			</div>
+			<div id="Online">
+				<% if user_signed_in? %>
+					<span>Online Now:</span>
+					<%= render online_users %>
+				<% end %>
+			</div>
+		</div>
+		<div id="blackout"></div>
+		<div id="PageContainer">
+			<div id="Page">
+			    <%= yield %>
+			</div>
+			<div id="UserPanel">
+				<%= render 'layouts/userpanel' if user_signed_in? %>
+			</div>
+		</div>
+		<div id="AppFooter">
+			<%= render 'layouts/footer' %>
+		</div>
+	</div>
+</body>
+</html>

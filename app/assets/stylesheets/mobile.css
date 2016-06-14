@@ -1,0 +1,45 @@
+@media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
+	#AppLeftBar {
+		display: none;
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		z-index: 15;
+	}
+	
+	body, html, #AppFooter {
+		background: transparent;
+	}
+	
+	#PageContainer {
+		float: none;
+		width: 100%;
+		margin-left: 0px;
+		position: static;
+	}
+	
+	.Half, .EventForm, .EventSummary {
+		width: 98%;
+	}
+	
+	select {
+		max-width: none;
+	}
+	
+	.EventSummary .ListContents {
+		max-height: none;
+	}
+	
+	.EventSummary {
+		padding: 0px;
+	}
+	
+	#AppContainer {
+		min-width: 480px;
+		max-width: none;
+	}
+	
+	#AppFooter {
+		width: auto;
+	}
+}

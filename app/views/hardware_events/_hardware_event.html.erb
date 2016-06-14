@@ -1,0 +1,25 @@
+<% if hardware_event.id.present? %>
+<tr class="ListRow">
+	<td class="ListField DateCreated">
+		<%= format_time(hardware_event.created_at) %>
+	</td>
+	<td class="ListField Note">
+		<%= hardware_event.note.bbcode_to_html.html_safe %>
+	</td>
+	<td class="ListField CreatedBy">
+		<% if hardware_event.updated_at > hardware_event.created_at %>
+			<% if hardware_event.updated_by.nil? %>
+				Support
+			<% else %>
+				<%= render hardware_event.updated_by %>
+			<% end %>
+		<% else %>
+			<% if hardware_event.created_by.nil? %>
+				Support
+			<% else %>
+				<%= render hardware_event.created_by %>
+			<% end %>
+		<% end %>
+	</td>
+</tr>
+<% end %>

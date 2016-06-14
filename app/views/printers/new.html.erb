@@ -1,0 +1,40 @@
+<%= form_for [@printer] do |f| %>
+	<div class="Printer NewEditForm">
+	<table>
+		<tr>
+			<th colspan="4" style="text-align:left; ">
+				Enter a New Printer
+			</th>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :serial %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :serial %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :printer_type %>
+			</td>
+			<td class="Info">
+				<%= f.select :printer_type, dropdown_options("PrinterType", @printer.printer_type).html_safe, include_blank: "Select" %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :printer_flash %>
+			</td>
+			<td class="Info">
+				<%= f.select :printer_flash, dropdown_options("PrinterFlash", @printer.printer_flash).html_safe, include_blank: "Select" %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td colspan="3"></td>
+			<td>
+				<%= f.submit "Save" %>
+			</td>
+		</tr>
+	</table>
+	</div>
+<% end %>

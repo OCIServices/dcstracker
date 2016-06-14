@@ -1,0 +1,17 @@
+<% unless contact_event.nil? or contact_event.id.nil? %>
+<tr class="ListRow">
+	<td class="ListField">
+		<%= format_time(contact_event.created_at) %>
+	</td>
+	<td class="ListField">
+		<%= contact_event.event_text.bbcode_to_html.html_safe %>
+	</td>
+	<td class="ListField">
+		<% if contact_event.created_by.nil? %>
+			Support
+		<% else %>
+			<%= render contact_event.created_by %>
+		<% end %>
+	</td>
+</tr>
+<% end %>

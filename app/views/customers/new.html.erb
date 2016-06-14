@@ -1,0 +1,106 @@
+<%= tabs_start('customer') %>
+<%= tabitem('customer', 0, 'New Customer', true, true)%>
+<%= form_for @customer do |f| %>
+	<div class="Customer NewEditForm">
+	<table>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :name, 'Customer Name:' %>
+			</td>
+			<td>
+				<%= f.text_field :name %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :umbrella %>
+			</td>
+			<td class="Info">
+				<%= f.select :umbrella, umbrella_options(@customer.umbrella).html_safe, include_blank: 'Select' %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :customer_type %>
+			</td>
+			<td class="Info">
+				<%= f.select :customer_type, dropdown_options("CustomerType", @customer.customer_type).html_safe, include_blank: "Select" %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Leftside" rowspan="3">
+				<%= f.label :alias %>
+			</td>
+			<td class="Info" rowspan="3">
+				<%= f.text_area :alias %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :phone %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :phone %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :fax %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :fax %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :web %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :web %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :comments %>
+			</td>
+			<td class="Info" colspan="3" rowspan="2">
+				<%= f.text_area :comments %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :show_comments %>
+				<%= f.check_box :show_comments %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :alert %>
+			</td>
+			<td class="Info" colspan="3" rowspan="2">
+				<%= f.text_area :alert %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :show_alert %>
+				<%= f.check_box :show_alert %>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3"></td>
+			<td>
+				<%= f.submit "Save" %>
+			</td>
+		</tr>
+	</table>
+	</div>
+<% end %>
+<%= tabitem_end %>
+<%= tabs_end %>

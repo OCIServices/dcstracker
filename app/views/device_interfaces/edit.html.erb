@@ -1,0 +1,150 @@
+<%= form_for @device_interface do |f| %>
+	<div class="Interface NewEditForm">	
+	<table>
+		<tr>
+			<th colspan="4">
+				Edit Interface
+			</th>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :interface_type %>
+			</td>
+			<td class="Info">
+				<%= f.select :interface_type, dropdown_options("InterfaceType", @device_interface.interface_type).html_safe, include_blank: "Select" %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :interface_vendor %>
+			</td>
+			<td class="Info">
+				<%= f.select :interface_vendor, dropdown_options("InterfaceVendor", @device_interface.interface_vendor).html_safe, include_blank: "Select" %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :desc %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :desc %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :mac %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :mac %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :ip %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :ip %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :dns_1 %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :dns_1 %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :submask %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :submask %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :dns_2 %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :dns_2 %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :gateway %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :gateway %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :wins %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :wins %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :ae_title %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :ae_title %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :port %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :port %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :qr_model %>
+			</td>
+			<td class="Info">
+				<%= f.select :qr_model, dropdown_options("QRModel", @device_interface.qr_model).html_safe, include_blank: "Select" %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :qr_level %>
+			</td>
+			<td class="Info">
+				<%= f.select :qr_level, dropdown_options("QRLevel", @device_interface.qr_level).html_safe, include_blank: "Select" %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :login %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :login %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :password %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :password %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Info" colspan="4">
+				<%= f.text_area :comments, placeholder: "Interface Comments" %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<%= f.label :active %>
+				<%= f.check_box :active %>
+			</td>
+			<td colspan="2"></td>
+			<td>
+				<%= f.submit "Save" %>
+			</td>
+		</tr>
+	</table>
+	</div>
+<% end %>

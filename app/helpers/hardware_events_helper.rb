@@ -1,0 +1,2 @@
+module HardwareEventsHelper
+end

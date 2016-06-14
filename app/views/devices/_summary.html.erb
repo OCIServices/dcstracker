@@ -1,0 +1,174 @@
+<div class="Device Summary">
+	<span><%= link_to image_tag("pencil.png"), '', onclick: "popup(event, '#{edit_device_path(device)}')" %></span>
+	<span><%= link_to device.watches.exists?(user: current_user) ? image_tag("unwatch.png") : image_tag("watch.png"), watch_device_path(device) %></span>
+	<table>
+		<tr>
+			<td colspan="2">
+				<span class="DeviceNumber1">
+					<% if device.active? %>
+						<%= device.system_id %>
+					<% else %>
+						<s><%= device.system_id %></s>
+					<% end %>
+				</span>
+			</td>
+			<td colspan="4">
+				<%= "TradeIn from old device: #{device.trade_old.id}" unless device.trade_old.nil? %>
+				<%= "TradeIn to new device: #{device.trade_new.id}" unless device.trade_new.nil? %>
+			</td>
+			<td class="Leftside">
+				Last Updated:
+			</td>
+			<td><%= format_time(device.updated_at) %></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Location:
+			</td>
+			<td class="Info"><%= device.location %></td>
+			<td class="Leftside">
+				Device Type:
+			</td>
+			<td class="Info"><%= device.device_type.name unless device.device_type.nil? %></td>
+			<td class="Leftside">
+				Install Date:
+			</td>
+			<td class="Info"><%= format_time(device.install_at) %></td>
+			<td class="Leftside">
+				Updated By:
+			</td>
+			<td>
+				<% if device.updated_at > device.created_at %>
+					<% if device.updated_by.nil? %>
+						Support
+					<% else %>
+						<%= render device.updated_by %>
+					<% end %>
+				<% else %>
+					<% if device.created_by.nil? %>
+						Support
+					<% else %>
+						<%= render device.created_by %>
+					<% end %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Warranty Exp Date:
+			</td>
+			<td class="Info <%= "#{device.warranty_exp? ? 'Green' : 'Red'}" %>">
+				<%= format_time(device.contracts.last.nil? ? Time.parse('1970-01-01 00:00:00 UTC') : device.contracts.last.warranty_exp_at) %>
+			</td>
+			<td class="Leftside">
+				Service Exp Date:
+			</td>
+			<td class="Info <%= "#{device.service_exp? ? 'Green' : 'Red'}" %>">
+				<%= format_time(device.contracts.last.nil? ? Time.parse('1970-01-01 00:00:00 UTC') : device.contracts.last.service_exp_at) %>
+			</td>
+			<td class="Leftside">
+				Install By:
+			</td>
+			<td class="Info"><%= device.install_by.nil? ? "Support" : render(device.install_by) %></td>
+			<td><%= device.print_head? %></td>
+			<td><%= device.twentyfour_seven? %></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="8"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Rimage Version:
+			</td>
+			<td class="Info"><%= device.controller_pc.rimage_ver.name unless device.controller_pc.nil? or device.controller_pc.rimage_ver.nil? %></td>
+			<td colspan="4"></td>
+			<td class="Leftside">
+				Software Version:
+			</td>
+			<td class="Info"><%= device.controller_pc.software_ver.name unless device.controller_pc.nil? or device.controller_pc.software_ver.nil? %></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="8"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Robotic Type:
+			</td>
+			<td class="Info"><%= device.robotic.robotic_type.name unless device.robotic.nil? or device.robotic.robotic_type.nil? %></td>
+			<td class="Leftside">
+				Burner Type:
+			</td>
+			<td class="Info"><%= device.robotic.burner_type.name unless device.robotic.nil? or device.robotic.burner_type.nil? %></td>
+			<td class="Leftside">
+				Printer Type:
+			</td>
+			<td class="Info"><%= device.printer.printer_type.name unless device.printer.nil? or device.printer.printer_type.nil? %></td>
+			<td class="Leftside">
+				Controller Type:
+			</td>
+			<td class="Info"><%= device.controller_pc.controller_type.name unless device.controller_pc.nil? or device.controller_pc.controller_type.nil? %></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Serial:
+			</td>
+			<td class="Info"><%= link_to device.robotic.serial, device.robotic unless device.robotic.nil? %></td>
+			<td class="Leftside">
+				Number of Burners:
+			</td>
+			<td class="Info"><%= device.robotic.num_burners unless device.robotic.nil? %></td>
+			<td class="Leftside">
+				Serial:
+			</td>
+			<td class="Info"><%= link_to device.printer.serial, device.printer unless device.printer.nil? %></td>
+			<td class="Leftside">
+				Serial:
+			</td>
+			<td class="Info"><%= link_to device.controller_pc.serial, device.controller_pc unless device.controller_pc.nil? %></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Firmware:
+			</td>
+			<td class="Info"><%= device.robotic.robotic_flash.name unless device.robotic.nil? or device.robotic.robotic_flash.nil? %></td>
+			<td class="Leftside">
+				Firmware:
+			</td>
+			<td class="Info"><%= device.robotic.burner_flash.name unless device.robotic.nil? or device.robotic.burner_flash.nil? %></td>
+			<td class="Leftside">
+				Firmware:
+			</td>
+			<td class="Info"><%= device.printer.printer_flash.name unless device.printer.nil? or device.printer.printer_flash.nil? %></td>
+			<td class="Leftside"d>
+				OS Version:
+			</td>
+			<td class="Info"><%= device.controller_pc.os_ver.name unless device.controller_pc.nil? or device.controller_pc.os_ver.nil? %></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Cable Type:
+			</td>
+			<td class="Info"><%= device.robotic.cable_type.name unless device.robotic.nil? or device.robotic.cable_type.nil? %></td>
+			<td colspan="5"></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="8"></td>
+		</tr>
+		<tr>
+			<td colspan="5" class="Leftside">
+				Agilisys
+			</td>
+			<td class="Info"><%= device.active_cloud? %></td>
+			<td class="Leftside">
+				Machine GUID:
+			</td>
+			<td class="Info"><%= device.machine_guid %></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="8"></td>
+		</tr>
+		<tr>
+			<td colspan="8" class="Info"><%= device.comments.bbcode_to_html.html_safe %></td>
+		</tr>
+	</table>
+</div>

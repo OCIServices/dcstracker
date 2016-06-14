@@ -1,0 +1,21 @@
+<tr class="ListRow">
+	<td class="ListField EventTime"><%= format_time(upgrade_event.created_at) %></td>
+	<td class="ListField EventText"><%= upgrade_event.event_text.bbcode_to_html.html_safe %></td>
+	<td class="ListField Changes"><%= upgrade_event.change_text.bbcode_to_html.html_safe %></td>
+	<td class="ListField CreatedBy">
+		<% if upgrade_event.created_by.nil? %>
+			Support
+		<% else %>
+			<%= render upgrade_event.created_by %>
+		<% end %>
+	</td>
+	<td class="ListField AssignedTo">
+		<% if upgrade_event.assigned_to.nil? %>
+			Support
+		<% else %>
+			<%= render upgrade_event.assigned_to %>
+		<% end %>
+	</td>
+	<td class="ListField TimeSpent"><%= upgrade_event.time_spent %></td>
+	<td class="ListField File"><%= link_to "test", upgrade_event.file.url %></td>
+</tr>

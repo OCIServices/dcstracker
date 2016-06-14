@@ -1,0 +1,101 @@
+<% if @prevtickets.any? %>
+	<% headers = ['', 'Ticket ID', 'Device ID', 'Customer Name', 'Date Opened', 'Category', 'Assigned To'] %>
+	<div class="List">
+		<span class="Count"><%= @prevtickets.count %></span>
+		<span class="Tablename">Open tickets for Device ID: <%= @device.id %></span>
+		<div class="ListContents">
+			<table class="ListTable">
+				<thead>
+					<tr>
+						<% headers.each do |h| %>
+						<th class="ListHeader"><%= link_to h, sort: h %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<%= render @prevtickets %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+<% end %>
+
+<%= form_for [@device, @ticket], html:{multipart:true} do |f| %>
+	<div class="NewEditForm Ticket">
+	<table>
+		<tr>
+			<th colspan="4" style="text-align:left; ">
+				Create a New Ticket for Device ID: <%= @device.id %>
+			</th>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<span>Evaluation per QSP85.05</span>
+			</td>
+			<td class="Info">
+				<%= f.check_box :mdr %>
+				<%= f.label :mdr, 'Requires Review' %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :priority %>
+			</td>
+			<td>
+				<%= f.check_box :priority %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :contact %>
+			</td>
+			<td colspan="1" class="Info">
+				<%= f.select :contact, contact_options(@ticket.device.customer, @ticket.contact).html_safe, include_blank: 'Select' %>
+			</td>
+			<td>
+				<%= f.text_field :new_contact, value: '', placeholder: 'New Contact Name' %>
+			</td>
+			<td>
+				<%= f.text_field :new_contact_number, value: '', placeholder: 'Contact Number' %>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4">
+				<% if @device.contracts.last.nil? %>
+  					<% ticket_text = "Out of Service - " %>
+    			<% else %>
+      				<% if @device.contracts.last.service_exp_at <= Time.now and @device.contracts.last.warranty_exp_at <= Time.now %>
+      					<% if @device.contracts.last.service_exp_at >= @device.contracts.last.warranty_exp_at %>
+        					<% ticket_text = "Out of Service - Date: #{format_time(@device.contracts.last.service_exp_at)} - " %>
+        				<% else %>
+        					<% ticket_text = "Out of Service - Date: #{format_time(@device.contracts.last.warranty_exp_at)} - " %>
+        				<% end %>
+        			<% else %>
+        				<% ticket_text = '' %>
+        			<% end %>
+        		<% end %>
+				<%= f.text_area :ticket_text, value: ticket_text, placeholder: 'Ticket Notes', oninput: "this.setCustomValidity('')", oninvalid: "this.setCustomValidity('Please enter a note to update this Ticket.')" %>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" class="Leftside">
+				<%= f.label :assigned_to %>
+			</td>
+			<td class="Info">
+				<%= f.select :assigned_to, user_options('', @ticket.assigned_to).html_safe, include_blank: 'Support' %>
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td colspan="2" class="Leftside">
+				Attachment:
+			</td>
+			<td class="Info">
+				<%= f.select :file_category, dropdown_options('FileCategory').html_safe, include_blank: 'Select' %>
+				<%= f.file_field :file %>
+			</td>
+			<td>
+				<%= f.submit "Save", name: "TicketEvent" %>
+			</td>
+		</tr>
+	</table>
+	</div>
+<% end %>

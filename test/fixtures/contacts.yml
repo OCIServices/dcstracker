@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_id: 
+  contact_type_id: 
+  first_name: MyString
+  last_name: MyString
+  title: MyString
+  department: MyString
+  phone: MyString
+  cell: MyString
+  pager: MyString
+  fax: MyString
+  email: MyString
+  comments: MyText
+  active: false
+  created_by_id: 
+  updated_by_id: 
+
+two:
+  customer_id: 
+  contact_type_id: 
+  first_name: MyString
+  last_name: MyString
+  title: MyString
+  department: MyString
+  phone: MyString
+  cell: MyString
+  pager: MyString
+  fax: MyString
+  email: MyString
+  comments: MyText
+  active: false
+  created_by_id: 
+  updated_by_id: 

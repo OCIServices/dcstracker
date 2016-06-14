@@ -1,0 +1,112 @@
+<%= form_for [@device, @build], html:{multipart:true} do |f| %>
+	<div class="NewEditForm Build">
+	<table>
+		<tr>
+			<td colspan="4">
+				<table>
+					<thead>
+						<tr>
+							<th>
+								Part
+							</th>
+							<th>
+								Type
+							</th>
+							<th>
+								Shipping Address
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<%= image_tag("AmigoA.gif") %>
+							</td>
+							<td class="Info">
+								<%= f.select :robotic_type, dropdown_options("RoboticType", @build.robotic_type).html_safe, include_blank: "Select" %>
+							</td>
+							<td rowspan="3" class="Info">
+								<%= f.hidden_field :ship_address, value: @address.id %>
+								<% unless @address.nil? %>
+									<%= @address.line_1 %><br />
+									<%= @address.line_2 %><br />
+									<%= "#{@address.city}, #{@address.state} #{@address.zip}" %><br />
+									<%= @address.country %>
+								<% end %>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<%= image_tag("Printer.gif") %>
+							</td>
+							<td class="Info">
+								<%= f.select :printer_type, dropdown_options("PrinterType", @build.printer_type).html_safe, include_blank: "Select" %>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<%= image_tag("Controller.gif") %>
+							</td>
+							<td class="Info">
+								<%= f.select :controller_type, dropdown_options("ControllerType", @build.controller_type).html_safe, include_blank: "Select" %>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :dispatch %>
+			</td>
+			<td class="Info">
+				<%= f.select :dispatch, dropdown_options("DispatchType", @build.dispatch).html_safe, include_blank: "Select" %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :contact %>
+			</td>
+			<td class="Info">
+				<%= f.select :contact, contact_options(@device.customer, @build.contact).html_safe, include_blank: 'Select' %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.text_field :new_contact, value: '', placeholder: 'New Contact Name' %>
+			</td>
+			<td>
+				<%= f.text_field :new_contact_number, value: '', placeholder: 'Contact Number' %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<%= f.text_area :build_text, value: '', placeholder: "Build Notes", oninvalid: "this.setCustomValidity('Please enter a note to update this RMA.')", oninput: "this.setCustomValidity('')" %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :assigned_to %>
+			</td>
+			<td colspan="4" class="Info">
+				<%= f.select :assigned_to, user_options('', @build.assigned_to).html_safe, include_blank: 'Support' %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Attachment:
+			</td>
+			<td colspan="3" class="Info">
+				<%= f.select :file_category, dropdown_options('FileCategory').html_safe, include_blank: 'Select' %>
+				<%= f.file_field :file %>
+			</td>
+			<td>
+				<%= f.submit "Save", name: "BuildEvent" %>
+			</td>
+		</tr>
+	</table>
+</div>
+<% end %>

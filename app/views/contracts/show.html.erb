@@ -1,0 +1,5 @@
+<%= tabitem("contracts", @contract.id, @contract.invoice.empty? ? "Contract #{@contract.id}" : "Invoice #{@contract.invoice}", false, @contract.active?)%>
+			
+	<%= render partial: 'contracts/summary', locals: {contract: @contract} %>
+	
+<%= tabitem_end %>

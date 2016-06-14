@@ -1,0 +1,20 @@
+<tr class="ListRow" onmousedown="clickhandler(event, '<%= bug_path(bug) %>')" title="<%= bug.issue %>">
+	<td class="ListField ID">
+		<%= bug.id %>
+	</td>
+	<td class="ListField Name">
+		<%= bug.name %>
+	</td>
+	<td class="ListField SoftwareVer">
+		<%= bug.software_ver.name unless bug.software_ver.nil? %>
+	</td>
+	<td class="ListField Service">
+		<%= bug.service.name unless bug.service.nil? %>
+	</td>
+	<td class="ListField DateCreated">
+		<%= format_time(bug.updated_at) %>
+	</td>
+	<td class="ListField BugStatus">
+		<%= bug.status %>
+	</td>
+</tr>

@@ -1,0 +1,5 @@
+<%= tabitem("connections", @device_connection.id, @device_connection.connection_type.nil? ? "Connection #{@device_connection.id}" : @device_connection.connection_type.name, false, @device_connection.active?)%>
+			
+	<%= render partial: 'device_connections/summary', locals: {device_connection: @device_connection} %>
+	
+<%= tabitem_end %>

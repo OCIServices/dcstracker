@@ -1,0 +1,49 @@
+<%= form_for @device_license do |f| %>
+	<div class="License NewEditForm">	
+	<table>
+		<tr>
+			<th colspan="2">
+				Edit License
+			</th>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :license_type %>
+			</td>
+			<td class="Info">
+				<%= f.select :license_type, dropdown_options("LicenseType", @device_license.license_type).html_safe, include_blank: "Select" %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :desc %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :desc %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :value %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :value %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Info" colspan="2">
+				<%= f.text_area :comments, placeholder: "License Comments" %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<%= f.label :active %>
+				<%= f.check_box :active %>
+			</td>
+			<td>
+				<%= f.submit "Save" %>
+			</td>
+		</tr>
+	</table>
+	</div>
+<% end %>

@@ -1,0 +1,115 @@
+<%= form_for @contact do |f| %>
+	<div class="Contact NewEditForm">
+	<table>
+		<tr>
+			<th colspan="4">
+				New Contact
+			</th>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :first_name %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :first_name %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :contact_type %>
+			</td>
+			<td class="Info">
+				<select name="ContactTypeID" id="ContactTypeID"><option value="0">Select</option><option value="3474" title="Cerner">Cern</option><option value="3481" title="CMS Imaging Inc">CMS</option><option value="3479" title="COMRAD">COM</option><option value="3476" title="DR Systems">DR</option><option value="3478" title="Dicom Solutions Partner">DSP</option><option value="3471" title="Emageon">Emag</option><option value="3477" title="Fuji Medical Australia">FMAU</option><option value="3483" title="Fuji Medical Europe">FMEU</option><option value="3480" title="Fuji Medical Portugal">FMPT</option><option value="3465" title="Fuji Medical USA">Fuji</option><option value="3466" title="GE Medical Systems">GE</option><option value="3470" title="HCA">HCA</option><option value="3467" title="Health Inc.">HI</option><option value="3468" title="Hielhan, Inc.">Hiel</option><option value="3473" title="McKesson">McK</option><option value="3482" title="Merge Healthcare">MRG</option><option value="3475" title="PHILIPS">PHL</option><option value="3472" title="Siemens">SEA</option><option value="3469" title="Welmont Health System">WLMT</option></select>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :last_name %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :last_name %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :title %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :title %>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"></td>
+			<td class="Leftside">
+				<%= f.label :department %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :department %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :phone %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :phone %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :cell %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :cell %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :pager %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :pager %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :fax %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :fax %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :email %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :email %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Info" colspan="4">
+				<%= f.text_area :comments, placeholder: "Contact Comments" %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :active %>
+				<%= f.check_box :active %>
+			</td>
+			<td colspan="2"></td>
+			<td>
+				<%= f.submit "Save" %>
+			</td>
+		</tr>
+	</table>
+	</div>
+<% end %>

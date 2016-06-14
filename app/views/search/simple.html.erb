@@ -1,0 +1,141 @@
+<%= tabs_start('search') %>
+<%= tabitem("search", 0, "Search for: #{params[:q]}", true) %>
+
+	<% headers = ['Device ID', 'Location', 'Customer Name'] %>
+	<% if @devices.any? %>
+	<div class="List">
+		<span class="Count"><%= @devices.count %></span>
+		<span class="Tablename">Devices</span>
+		<div class="ListContents">
+			<table class="ListTable">
+				<thead>
+					<tr>
+						<% headers.each do |h| %>
+						<th class="ListHeader"><%= link_to h, sort: h %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<%= render @devices %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<% end %>
+	
+	<% headers = ['Name'] %>
+	<% if @customers.any? %>
+	<div class="List">
+		<span class="Count"><%= @customers.count %></span>
+		<span class="Tablename">Customers</span>
+		<div class="ListContents">
+			<table class="ListTable">
+				<thead>
+					<tr>
+						<% headers.each do |h| %>
+						<th class="ListHeader"><%= link_to h, sort: h %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<%= render @customers %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<% end %>
+
+<div class="EventSummary">
+	<% headers = ['', 'Ticket ID', 'Device ID', 'Customer Name', 'Date Opened', 'Category', 'Assigned To'] %>
+	<% if @tickets.any? %>
+	<div class="List">
+		<span class="Count"><%= @tickets.count %></span>
+		<span class="Tablename">Tickets</span>
+		<div class="ListContents">
+			<table class="ListTable">
+				<thead>
+					<tr>
+						<% headers.each do |h| %>
+						<th class="ListHeader"><%= link_to h, sort: h %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<%= render @tickets %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<% end %>
+	
+	<% headers = ['', 'Upgrade ID', 'Device ID', 'Customer Name', 'Date Opened', 'Status', 'Assigned To'] %>
+	<% if @upgrades.any? %>
+	<div class="List">
+		<span class="Count"><%= @upgrades.count %></span>
+		<span class="Tablename">Upgrades</span>
+		<div class="ListContents">
+			<table class="ListTable">
+				<thead>
+					<tr>
+						<% headers.each do |h| %>
+						<th class="ListHeader"><%= link_to h, sort: h %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<%= render @upgrades %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<% end %>
+</div>
+
+<div class="EventSummary">
+	<% headers = ['', 'RMA ID', 'Device ID', 'Customer Name', 'Date Opened', 'Status', 'Assigned To'] %>
+	<% if @rmas.any? %>
+	<div class="List">
+		<span class="Count"><%= @rmas.count %></span>
+		<span class="Tablename">RMAs</span>
+		<div class="ListContents">
+			<table class="ListTable">
+				<thead>
+					<tr>
+						<% headers.each do |h| %>
+						<th class="ListHeader"><%= link_to h, sort: h %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<%= render @rmas %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<% end %>
+	
+	<% headers = ['', 'Build ID', 'Device ID', 'Customer Name', 'Date Opened', 'Status', 'Assigned To'] %>
+	<% if @builds.any? %>
+	<div class="List">
+		<span class="Count"><%= @builds.count %></span>
+		<span class="Tablename">Builds</span>
+		<div class="ListContents">
+			<table class="ListTable">
+				<thead>
+					<tr>
+						<% headers.each do |h| %>
+						<th class="ListHeader"><%= link_to h, sort: h %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<%= render @builds %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<% end %>
+</div>
+	
+<%= tabitem_end %>
+<%= tabs_end %>

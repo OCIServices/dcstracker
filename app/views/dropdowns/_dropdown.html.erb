@@ -1,0 +1,35 @@
+<tr class="ListRow" onmousedown="popup(event, '<%= edit_dropdown_path(dropdown) %>');">
+	<td class="ListField">
+		<%= dropdown.id %>
+	</td>
+	<td class="ListField">
+		<%= dropdown.active? ? 'Yes' : 'No' %>
+	</td>
+	<td class="ListField">
+		<%= dropdown.current? ? 'Yes' : 'No' %>
+	</td>
+	<td class="ListField">
+		<%= dropdown.name %>
+	</td>
+	<td class="ListField">
+		<%= dropdown.desc %>
+	</td>
+	<td class="ListField">
+		<%= format_time(dropdown.updated_at) %>
+	</td>
+	<td class="ListField">
+		<% if dropdown.updated_at > dropdown.created_at %>
+			<% if dropdown.updated_by.nil? %>
+				Support
+			<% else %>
+				<%= render dropdown.updated_by %>
+			<% end %>
+		<% else %>
+			<% if dropdown.created_by.nil? %>
+				Support
+			<% else %>
+				<%= render dropdown.created_by %>
+			<% end %>
+		<% end %>
+	</td>
+</tr>

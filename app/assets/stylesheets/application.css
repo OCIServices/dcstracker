@@ -1,0 +1,740 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+body, html {
+	height: 100%;
+	margin: 0;
+	background: #FAFAFA;
+	font-family: helvetica;
+	color: #444;
+}
+
+div {
+	box-sizing: border-box;
+}
+
+select {
+	width: 98%;
+	max-width: 200px;
+	min-width: 25px;
+}
+
+textarea {
+	min-width: 100px;
+}
+
+input[type=text], input[type=password], input[type=number], input[type=date] {
+	width: 98%;
+	max-width: 200px;
+	min-width: 25px;
+}
+
+input[type=file] {
+	display: inline-block;
+	color: transparent;
+	width: 80px;
+	overflow: hidden;
+}
+
+td {
+	vertical-align: top;
+}
+
+a, a:visited {
+	text-decoration: none;
+	color: #799c66;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+#AppContainer {
+	width: 100%;
+	height: 100%;
+	min-width: 640px;
+	max-width: 1366px;
+	background: #FFF;
+	margin: auto;
+}
+
+#AppLeftBar {
+	width: 225px;
+	float: left;
+	z-index: 5;
+}
+
+#AppLogo {
+	padding: 10px;
+	background: #FFF;
+}
+
+#AppMenu {
+	width: 100%;
+	background: #def4d2;
+}
+
+#AppMenu .AppMenuItem {
+	width: 100%;
+	margin: auto;
+	padding: 20px;
+	font-weight: bold;
+	text-transform: uppercase;
+	overflow: hidden;
+	white-space: nowrap;
+	position: relative;
+}
+
+#AppMenu .AppMenuItem:hover {
+	background: #b1e595;
+	cursor: pointer;
+}
+
+#AppMenu .AppMenuItem .Count {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	z-index: 6;
+}
+
+#AppMenu .AppMenuItem .Count span {
+	border-radius: 15px;
+	font-size: 14px;
+	padding: 5px;
+	margin-left: 2px;
+	background: #f4d7d2;
+	vertical-align: super;
+	min-width: 15px;
+	height: 15px;
+	display: inline-block;
+	text-align: center;
+}
+
+#AppMenu .AppMenuItem:hover .Count span {
+	background: #e4a094;
+}
+
+#Online {
+	white-space: nowrap;
+	padding: 20px;
+	overflow: hidden;
+}
+
+#Online span {
+	display: block;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+#AppSearch {
+	padding: 10px 10px;
+	font-weight: normal;
+	font-size: 10px;
+	border-top: 1px solid #b1e595;
+	background: #def4d2;
+}
+
+#AppSearch span {
+	width: 49%;
+	display: inline-block;
+}
+
+#AppSearch span:last-child {
+	text-align: right;
+}
+	
+
+#PageContainer {
+	float: right;
+	margin-left: -225px;
+	width: calc(100% - 225px);
+	position: relative;
+}
+
+#Page {
+	margin: 30px 0 0 0;
+}
+
+#AppFooter {
+	background: #FAFAFA;
+	width: 225px;
+	height: 100%;
+	text-align: right;
+	padding: 2px;
+	font-size: 12px;
+	vertical-align: top;
+}
+
+#LoginForm {
+	min-width: 250px;
+	margin: 10px;
+	padding: 5px;
+	background: #f2f5fc;
+	border-radius: 5px;
+}
+
+#LoginForm table {
+	margin: 0px auto;
+	width: 50%;
+}
+
+.Container {
+	clear: both;
+	float: left;
+	width: 100%;
+}
+
+.tabs > li > input[type=radio] {
+	position: absolute;
+	display: none;
+}
+
+.tabs {
+	width: 100%;
+	float: none;
+	list-style: none;
+	position: relative;
+	padding: 0;
+	margin: auto;
+}
+
+.tabs > li{
+	float: left;
+}
+
+.tabs > li > label {
+	display: block;
+	padding: 10px 20px;
+	border-radius: 5px 5px 0 0;
+	color: #C0C0C0;
+	font-size: 14px;
+	font-weight: bold;
+	background: rgba(242, 245, 252, 0.75);
+	cursor: pointer;
+	position: relative;
+	top: 3px;
+	transition: all 0.1s ease-in-out;
+	border: solid #95b1e5;
+	border-width: 1px 1px 0 1px;
+}
+
+.tabs li:first-child > label {
+	margin-left: 10px;
+}
+
+.tabs > li > label:hover {
+	background: rgba(242, 245, 252, 0.9);
+	top: 0;
+}
+
+.tab-content{
+	z-index: 2;
+	display: none;
+	text-align: left;
+	width: 100%;
+	font-size: 12px;
+	background: #d2def4;
+	padding: 5px 0 0 0;
+	color: #444;
+	position: absolute;
+	clear: both;
+	top: 35px;
+	left: 0;
+	box-sizing: border-box;
+	animation-duration: 0.5s;
+	border: solid #95b1e5;
+	border-width: 1px 0 0 0;
+}
+
+#Page > .Container > .tabs > li > .tab-content {
+	border-width: 1px;
+}
+
+.List {
+	width: 100%;
+	margin: 5px 0 10px 0;
+}
+
+.List span {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.List .Tablename {
+	background: #f2f5fc;
+	border-radius: 5px 5px 0 0;
+	padding: 5px 10px;
+}
+
+.List .Count {
+	margin: 0 5px 5px 10px;
+}
+
+.List .ListContents {
+	width: 100%;
+	padding: 5px;
+	background: #f2f5fc;
+	border-radius: 5px 5px 5px 5px;
+}
+
+.ListTable {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.ListHeader {
+	padding: 5px;
+	background: #95b1e5;
+	font-size: 10px;
+	white-space: nowrap;
+}
+
+.ListHeader a, .ListHeader a:hover{
+	color: #000;
+}
+
+.ListHeader.DESC a::before {
+	content: "\2193";
+}
+
+.ListHeader.ASC a::before {
+	content: "\2191";
+}
+
+.ListField {
+	padding: 5px;
+}
+
+.ListRow {
+	background: #FFF;
+}
+
+.ListRow:nth-child(even) {
+	background: #FAFAFA;
+}
+
+.ListRow:hover {
+	background: #EDEDED;
+	cursor: pointer;
+}
+
+.NewEditForm {
+	width: 100%;
+	margin: 0;
+	background: #d2def4;
+	padding: 5px;
+	height: 100%;
+	min-height: 300px;
+}
+
+.NewEditForm table{
+	width: 98%;
+	margin: auto;
+	background: #f2f5fc;
+	padding: 5px;
+	border-radius: 5px;
+	height: 100%;
+}
+
+.NewEditForm > table table {
+	background: #F8F8FA;
+	padding: 0;
+}
+
+.NewEditForm > table td {
+	background: #f2f5fc;
+	padding: 2px;
+}
+
+.NewEditForm > table th {
+	background: #95b1e5;
+	padding: 2px;
+}
+
+.EventForm {
+	width: 44.5%;
+	padding: 5px 0 5px 10px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.RMA.EventForm {
+	width: 54.5%;
+}
+
+.RMA.EventSummary {
+	width: 45%;
+}
+
+.NewAddress.EventForm {
+	width: 29.5%;
+}
+
+.NewAddress.EventSummary {
+	width: 70%;
+}
+
+.ListField.Priority {
+	white-space: nowrap;
+}
+
+.DeviceEventList {
+	width: 98%;
+	margin: auto;
+	padding: 5px;
+	vertical-align: top;
+}
+
+.EventForm a img, .DeviceEventList a img {
+	opacity: 0.5;
+	max-height: 20px;
+	transition: all 0.1s ease-in-out;
+	vertical-align: middle;
+	margin-left: 5px;
+}
+
+.EventForm a img:hover, .DeviceEventList a img:hover {
+	opacity: 1;
+	cursor: pointer;
+}
+
+.EventSummary {
+	width: 55%;
+	padding: 5px 10px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.EventForm table {
+	width: 100%;
+	background: #f2f5fc;
+	border-radius: 5px;
+	clear: both;
+}
+
+.EventForm > form > table table {
+	background: #F8F8FA;
+}
+
+.EventForm > form > table td {
+	background: #f2f5fc;
+	padding: 2px;
+}
+
+.EventForm > form > table th {
+	background: #95b1e5;
+	padding: 2px;
+}
+
+.EventForm span, .DeviceEventList > div > span {
+	float: right;
+}
+
+.EventForm td {
+	vertical-align: top;
+}
+
+.EventForm textarea, .NewEditForm textarea{
+	width: 98%;
+	display: block;
+	height: 100px;
+	box-sizing: border-box;
+	margin: 5px;
+	overflow: auto;
+	resize: none;
+}
+
+input#TimeSpent {
+	width: 45px;
+}
+
+.Half {
+	display: inline-block;
+	width: 49%;
+	padding: 5px 10px;
+	vertical-align: top;
+}
+
+.Half:first-child {
+	padding-right: 0;
+}
+
+.Summary {
+	width: 98%;
+	padding: 5px;
+	margin: 5px auto;
+}
+
+.Summary span {
+	float: right;
+}
+
+.Summary img {
+	margin-left: 5px;
+	max-height: 20px;
+	opacity: 0.5;
+	transition: all 0.1s ease-in-out 0s;
+	vertical-align: middle;
+}
+
+.Summary img:hover {
+	opacity: 1;
+	cursor: pointer;
+}
+
+.Summary table {
+	border-radius: 5px;
+	background: #f2f5fc;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.Summary td {
+	padding: 5px;
+	vertical-align: top;
+}
+
+.Leftside {
+	text-align: right;
+	font-weight: bold;
+}
+
+.Info {
+	background: #FFF;
+	border: 1px solid #EDEDED;
+	text-align: left;
+}
+
+.Info.Red {
+	background: #E4A094;
+}
+
+.Info.Green {
+	background: #DEF4D2;
+}
+
+.Break {
+	padding: 0;
+	height: 5px;
+}
+
+.DeviceNumber0 {
+	font-size: 14px;
+	font-weight: bold;
+	text-decoration: line-through;
+	text-decoration-color: #E4A094;
+	margin-right: 10px;
+}
+
+.DeviceNumber1 {
+	font-size: 14px;
+	font-weight: bold;
+	margin-right: 10px;
+}
+
+.Inactive {
+	font-size: 12px;
+	font-weight: normal !important;
+	text-decoration: line-through;
+	text-decoration-color: #E4A094;
+}
+
+.tabs > li > label.Default.Device {
+	background: rgba(210, 228, 244, 0.75);
+	color: #A0A0A0;
+}
+
+.tabs > li > label.Default.Device:hover {
+	background: rgba(210, 228, 244, 0.9);
+}
+
+.Default.Device + .tab-content {
+	background: #95bee5;
+}
+
+#UserPanel {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	vertical-align: top;
+}
+
+#UserPanel img {
+	opacity: 0.5;
+	max-height: 20px;
+	transition: all 0.1s ease-in-out;
+	vertical-align: middle;
+	margin-left: 5px;
+}
+
+#UserPanel img:hover {
+	opacity: 1;
+}
+
+#InboxIcon {
+	position: relative;
+	display: inline-block;
+	margin: 0 2px;
+}
+
+#InboxIcon #InboxCount {
+	position: absolute;
+	top: -2px;
+	right: -5px;
+	background: #E4A094;
+	margin: 0;
+	font-size: 12px;
+	border-radius: 10px;
+	min-width: 15px;
+	height: 15px;
+	text-align: center;
+	color: #444;
+}
+
+.Priority img {
+	max-height: 30px;
+}
+
+#Popup {
+	background: #D2DEF4;
+	padding: 10px 5px 0;
+	text-align: center;
+	min-height: 450px;
+}
+
+#Popup > form > div {
+	text-align: left;
+}
+
+.adminleft {
+	width: 20%;
+	display: inline-block;
+	margin: 5px;
+}
+
+.adminright {
+	width: 70%;
+	display: inline-block;
+	margin: 5px;
+}
+
+.StatusLED {
+	width: 10px;
+	height: 10px;
+	border-radius: 5px;
+	display: block;
+}
+
+.StatusLED.Green {
+	background: #B1E595;
+}
+
+.StatusLED.Yellow {
+	background: #F4F9AC;
+}
+
+.StatusLED.Red {
+	background: #E4A094;
+}
+
+.StatusLED.Black {
+	background: #444;
+}
+
+.alert {
+	font-size: 12px;
+	margin: 0;
+	width: 100%;
+	padding: 10px 20px;
+	display: block;
+	border-radius: 0 0 5px 5px;
+}
+
+.alert-danger {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442;
+}
+
+.alert-warning, .alert-alert {
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+    color: #8a6d3b;
+}
+
+.alert-info {
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    color: #31708f;
+}
+
+.alert-success, .alert-notice {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+}
+
+.Current {
+	background: #B1E595;
+	width: 100%;
+}
+
+.Deprecated {
+	background: #E4A094;
+	width: 100%;
+}
+
+span[class^="Rating"] {
+	margin-left: 10px;
+}
+
+.Rating1::after {
+	content: "\2605\2606\2606\2606\2606";
+}
+
+.Rating2::after {
+	content: "\2605\2605\2606\2606\2606";
+}
+
+.Rating3::after {
+	content: "\2605\2605\2605\2606\2606";
+}
+
+.Rating4::after {
+	content: "\2605\2605\2605\2605\2606";
+}
+
+.Rating5::after {
+	content: "\2605\2605\2605\2605\2605";
+}
+
+.Warranty > .List > span {
+	float: none;
+}
+
+.Warranty > .List > .Tablename, .Warranty > .List > .ListContents {
+	background: #D2DEF4;
+}
+
+#blackout {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	z-index: 14;
+	background: rgba(0,0,0,0.5);
+	display: none;
+}

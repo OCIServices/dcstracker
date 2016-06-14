@@ -1,0 +1,130 @@
+<div class="Interface Summary">
+	<span><%= link_to image_tag("pencil.png"), '', onclick: "popup(event, '#{edit_device_interface_path(device_interface)}')" %></span>
+	<table>
+		<tr>
+			<td class="Leftside">
+				Type:
+			</td>
+			<td class="Info"><%= device_interface.interface_type.name unless device_interface.interface_type.nil? %></td>
+			<td class="Leftside">
+				Vendor:
+			</td>
+			<td class="Info"><%= device_interface.interface_vendor.name unless device_interface.interface_vendor.nil? %></td>
+			<td colspan="2"></td>
+			<td class="Leftside">
+				Last Updated:
+			</td>
+			<td><%= format_time(device_interface.updated_at) %></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Description:
+			</td>
+			<td class="Info"><%= device_interface.desc %></td>
+			<td class="Leftside">
+				MAC Address:
+			</td>
+			<td class="Info"><%= device_interface.mac %></td>		
+			<td colspan="2"></td>
+			<td class="Leftside">
+				Updated By:
+			</td>
+			<td>
+				<% if device_interface.updated_at > device_interface.created_at %>
+					<% if device_interface.updated_by.nil? %>
+						Support
+					<% else %>
+						<%= render device_interface.updated_by %>
+					<% end %>
+				<% else %>
+					<% if device_interface.created_by.nil? %>
+						Support
+					<% else %>
+						<%= render device_interface.created_by %>
+					<% end %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="8"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				IP Address:
+			</td>
+			<td class="Info"><%= device_interface.ip %></td>
+			<td class="Leftside">
+				DNS 1:
+			</td>
+			<td class="Info"><%= device_interface.dns_1 %></td>
+			<td colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Subnet Mask:
+			</td>
+			<td class="Info"><%= device_interface.submask %></td>
+			<td class="Leftside">
+				DNS 2:
+			</td>
+			<td class="Info"><%= device_interface.dns_2 %></td>		
+			<td colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Gateway:
+			</td>
+			<td class="Info"><%= device_interface.gateway %></td>
+			<td class="Leftside">
+				WINS:
+			</td>
+			<td class="Info"><%= device_interface.wins %></td>		
+			<td colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="8"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				AE Title:
+			</td>
+			<td class="Info"><%= device_interface.ae_title %></td>
+			<td class="Leftside">
+				Port:
+			</td>
+			<td class="Info"><%= device_interface.port %></td>		
+			<td colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				QR Model:
+			</td>
+			<td class="Info"><%= device_interface.qr_model.name unless device_interface.qr_model.nil? %></td>
+			<td class="Leftside">
+				QRLevel:
+			</td>
+			<td class="Info"><%= device_interface.qr_level.name unless device_interface.qr_level.nil? %></td>		
+			<td colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="8"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Login:
+			</td>
+			<td class="Info"><%= device_interface.login %></td>
+			<td class="Leftside">
+				Password:
+			</td>
+			<td class="Info"><%= device_interface.password %></td>		
+			<td colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="8"></td>
+		</tr>
+		<tr>
+			<td class="Info" colspan="8"><%= device_interface.comments.bbcode_to_html.html_safe %></td>
+		</tr>
+	</table>
+</div>

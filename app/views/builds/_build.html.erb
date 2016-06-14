@@ -1,0 +1,30 @@
+<tr class="ListRow" onmousedown="clickhandler(event, '<%= build_path(build) %>');" title="<%= build.build_text %>">
+	<td class="ListField Priority">
+		<%= image_tag("priority.png", size: "25") if build.priority %>
+		<%= image_tag("hourglass.png", size: "25") if build.updated_at <= 4.hours.ago %>
+	</td>
+	<td class="ListField ID">
+		<%= build.id %>
+	</td>
+	<td class="ListField DeviceID">
+		<%= build.device.id unless build.device.nil? %>
+	</td>
+	<td class="ListField CustomerName">
+		<% unless build.device.nil? %>
+		<%= build.device.customer.name unless build.device.customer.nil? %>
+		<% end %>
+	</td>
+	<td class="ListField DateCreated">
+		<%= format_time(build.created_at) %>
+	</td>
+	<td class="ListField buildStatus">
+		<%= build.status %>
+	</td>
+	<td class="ListField AssignedTo">
+		<% if build.assigned_to.nil? or build.assigned_to_id == 0 %>
+			Support
+		<% else %>
+			<%= render build.assigned_to %>
+		<% end %>
+	</td>
+</tr>

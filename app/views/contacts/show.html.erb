@@ -1,0 +1,21 @@
+<%= tabitem("contacts", @contact.id, @contact.first_name, false, @contact.active?)%>
+
+	<%= tabs_start("contact#{@contact.id}") %>
+		<%= tabitem("contact#{@contact.id}", 0, "Summary", true) %>
+			<%= render partial: 'contacts/summary', locals: {contact: @contact} %>
+		<%= tabitem_end %>
+		<%= tabitem("contact#{@contact.id}", 1, "Addresses") %>
+			<%= tabs_start('addresses')%>
+			<% @contact.addresses.each do |address| %>
+				<% @address = address %>
+				<%= render template: 'addresses/show' %>
+			<% end %>
+			<%= tabitem_plus(new_contact_address_path(@contact), "New Address")%>
+			<%= tabs_end %>
+		<%= tabitem_end %>
+		<%= tabitem("contact#{@contact.id}", 2, "Event Log") %>
+			<%= render partial: 'contacts/eventlog' %>
+		<%= tabitem_end %>
+	<%= tabs_end %>
+
+<%= tabitem_end %>

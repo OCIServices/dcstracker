@@ -1,0 +1,27 @@
+<div class="Container">
+	<style>
+	[id^=<%= setname %>]:checked + label {
+		background: #D2DEF4;
+		color: #444;
+		top: 0;
+		z-index: 3;
+	}
+	
+	[id^=<%= setname %>]:checked + label.Default.Device {
+		background: #95bee5;
+		color: #444;
+	}
+	
+	[id^=<%= setname %>]:checked + label:hover {
+		background: #D2DEF4;
+	}
+	
+	[id^=<%= setname %>]:checked + label.Default.Device:hover {
+		background: #95bee5;
+	}
+	
+	[id^=<%= setname %>]:checked ~ [id^=<%= setname %>-content] {
+		display: block;
+	}
+	</style>
+	<ul class="tabs">

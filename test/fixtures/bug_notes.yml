@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bug_id: 
+  device_id: 
+  note: MyText
+  created_by_id: 
+  updated_by_id: 
+
+two:
+  bug_id: 
+  device_id: 
+  note: MyText
+  created_by_id: 
+  updated_by_id: 

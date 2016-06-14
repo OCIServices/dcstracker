@@ -1,0 +1,3 @@
+class WatchesController < ApplicationController
+
+end

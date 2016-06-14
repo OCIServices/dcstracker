@@ -1,0 +1,35 @@
+<tr class="ListRow" onmousedown="clickhandler(event, '<%= user_path(user) %>');">
+	<td class="ListField">
+		<%= user.id %>
+	</td>
+	<td class="ListField">
+		<%= user.active? ? 'Yes' : 'No' %>
+	</td>
+	<td class="ListField">
+		<%= user.name %>
+	</td>
+	<td class="ListField">
+		<%= user.department.name unless user.department.nil? %>
+	</td>
+	<td class="ListField">
+		<%= user.title %>
+	</td>
+	<td class="ListField">
+		<%= format_time(user.updated_at) %>
+	</td>
+	<td class="ListField">
+		<% if user.updated_at > user.created_at %>
+			<% if user.updated_by.nil? %>
+				Support
+			<% else %>
+				<%= render user.updated_by %>
+			<% end %>
+		<% else %>
+			<% if user.created_by.nil? %>
+				Support
+			<% else %>
+				<%= render user.created_by %>
+			<% end %>
+		<% end %>
+	</td>
+</tr>

@@ -1,0 +1,47 @@
+<tr class="ListRow" onmousedown="popup(event, '<%= edit_inventory_path(inventory) %>')">
+	<td class="ListField Status">
+	<span class="StatusLED <%= inventory.led %>"></span>
+	</td>
+	<td class="ListField PartNumber">
+		<%= inventory.part_number %>
+	</td>
+	<td class="ListField RackNumber">
+		<%= inventory.rack_number %>
+	</td>
+	<td class="ListField Desc">
+		<%= inventory.description %>
+	</td>
+	<td class="ListField InventoryLevel">
+		<%= inventory.inventory_level %>
+	</td>
+	<td class="ListField ReOrderLevel">
+		<%= inventory.reorder_level %>
+	</td>
+	<td class="ListField Warehouse">
+		<%= inventory.warehouse %>
+	</td>
+	<td class="ListField RepairDepot">
+		<%= inventory.repair_depot %>
+	</td>
+	<td class="ListField Total">
+		<%= inventory.repair_depot + inventory.warehouse %>
+	</td>
+	<td class="ListField LastModified">
+		<%= format_time(inventory.updated_at) %>
+	</td>
+	<td class="ListField LastModifiedBy">
+		<% if inventory.updated_at > inventory.created_at %>
+			<% if inventory.updated_by.nil? %>
+				Support
+			<% else %>
+				<%= render inventory.updated_by %>
+			<% end %>
+		<% else %>
+			<% if inventory.created_by.nil? %>
+				Support
+			<% else %>
+				<%= render inventory.created_by %>
+			<% end %>
+		<% end %>
+	</td>
+</tr>

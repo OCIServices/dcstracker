@@ -1,0 +1,46 @@
+<%= form_for @dropdown do |f| %>
+<div class="Dropdown NewEditForm">
+	<table>
+		<tr>
+			<th colspan="2">
+				Edit Dropdown Entry
+			</th>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :dropdown_type %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :dropdown_type %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :name %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :name %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :desc, "Description" %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :desc %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<%= f.label :active %>
+				<%= f.check_box :active %>
+				<%= f.label :current %>
+				<%= f.check_box :current %>
+			</td>
+			<td>
+				<%= f.submit "Save" %>
+			</td>
+		</tr>
+	</table>
+</div>
+<% end %>

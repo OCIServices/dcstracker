@@ -1,0 +1,100 @@
+<%= tabs_start('user') %>
+<%= tabitem('user', 0, @user.name, true) %>
+<div class="User Summary">
+	<span><%= link_to image_tag("pencil.png"), '', onclick: "popup(event, '#{edit_user_path(@user)}')" %></span>
+	<table>
+		<tr>
+			<td class="Leftside">
+				First Name:
+			</td>
+			<td class="Info"><%= @user.first_name %></td>
+			<td class="Leftside">
+				Title:
+			</td>
+			<td class="Info"><%= @user.title %></td>
+			<td class="Leftside">
+				Last Updated:
+			</td>
+			<td><%= format_time(@user.updated_at) %></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Last Name:
+			</td>
+			<td class="Info"><%= @user.last_name %></td>
+			<td class="Leftside">
+				Department:
+			</td>
+			<td class="Info"><%= @user.department.name unless @user.department.nil? %></td>
+			<td class="Leftside">
+				Updated By:
+			</td>
+			<td>
+				<% if @user.updated_at > @user.created_at %>
+					<% if @user.updated_by.nil? %>
+						Support
+					<% else %>
+						<%= render @user.updated_by %>
+					<% end %>
+				<% else %>
+					<% if @user.created_by.nil? %>
+						Support
+					<% else %>
+						<%= render @user.created_by %>
+					<% end %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Last Active:
+			</td>
+			<td><%= format_time(@user.updated_at) %></td>
+			<td class="Leftside">
+				LDAP User Groups:
+			</td>
+			<td class="Info"></td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="6"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Office Ext:
+			</td>
+			<td class="Info"><%= @user.office_ext %></td>
+			<td class="Leftside">
+				Direct Phone:
+			</td>
+			<td class="Info"><%= @user.direct %></td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Mobile:
+			</td>
+			<td class="Info"><%= @user.mobile %></td>
+			<td class="Leftside">
+				Home:
+			</td>
+			<td class="Info"><%= @user.home %></td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Email:
+			</td>
+			<td class="Info"><%= @user.email %></td>
+			<td colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="6"></td>
+		</tr>
+		<tr>
+			<td class="Info" colspan="6"><%= @user.comments %></td>
+		</tr>
+	</table>
+</div>
+<%= tabitem_end %>
+<%= tabs_end %>

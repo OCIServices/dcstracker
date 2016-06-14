@@ -1,0 +1,69 @@
+<div class="Contract Summary">
+	<span><%= link_to image_tag("pencil.png"), '', onclick: "popup(event, '#{edit_contract_path(contract)}')" %></span>
+	<table>
+		<tr>
+			<td class="Leftside">
+				Type:
+			</td>
+			<td><%= contract.contract_type.name unless contract.contract_type.nil? %></td>
+			<td colspan="2"></td>
+			<td class="Leftside">
+				Last Updated:
+			</td>
+			<td><%= format_time(contract.updated_at) %></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Contract Holder:
+			</td>
+			<td class="Info"><%= contract.contract_holder.name unless contract.contract_holder.nil? %></td>
+			<td colspan="2"></td>
+			<td class="Leftside">
+				Updated By:
+			</td>
+			<td>
+				<% if contract.updated_at > contract.created_at %>
+					<% if contract.updated_by.nil? %>
+						Support
+					<% else %>
+						<%= render contract.updated_by %>
+					<% end %>
+				<% else %>
+					<% if contract.created_by.nil? %>
+						Support
+					<% else %>
+						<%= render contract.created_by %>
+					<% end %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Invoice:
+			</td>
+			<td class="Info"><%= contract.invoice %></td>
+			<td class="Leftside">
+				Customer PO:
+			</td>
+			<td class="Info"><%= contract.customer_po %></td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Service Exp Date:
+			</td>
+			<td class="Info"><%= format_time(contract.service_exp_at) %></td>
+			<td class="Leftside">
+				WarrantyExpDate:
+			</td>
+			<td class="Info"><%= format_time(contract.warranty_exp_at) %></td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="6"></td>
+		</tr>
+		<tr>
+			<td class="Info" colspan="6"><%= contract.comments.bbcode_to_html.html_safe %></td>
+		</tr>
+	</table>
+</div>

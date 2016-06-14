@@ -1,0 +1,5 @@
+<%= tabitem("interfaces", @device_interface.id, @device_interface.ip.empty? ? "Interface #{@device_interface.id}" : @device_interface.ip, false, @device_interface.active?)%>
+			
+	<%= render partial: 'device_interfaces/summary', locals: {device_interface: @device_interface} %>
+	
+<%= tabitem_end %>

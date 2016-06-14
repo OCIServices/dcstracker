@@ -1,0 +1,21 @@
+<tr class="ListRow">
+	<td class="ListField EventTime"><%= ticket_event.created_at.strftime("%m/%d/%y %I:%M %p") %></td>
+	<td class="ListField StatusType"><%= ticket_event.status.nil? ? 'Open Issue' : ticket_event.status.name %></td>
+	<td class="ListField EventText"><%= ticket_event.event_text.bbcode_to_html.html_safe %></td>
+	<td class="ListField CreatedBy">
+		<% if ticket_event.created_by.nil? %>
+			Support
+		<% else %>
+			<%= render ticket_event.created_by %>
+		<% end %>
+	</td>
+	<td class="ListField AssignedTo">
+		<% if ticket_event.assigned_to.nil? %>
+			Support
+		<% else %>
+			<%= render ticket_event.assigned_to %>
+		<% end %>
+	</td>
+	<td class="ListField TimeSpent"><%= ticket_event.time_spent %></td>
+	<td class="ListField File"><%= link_to "test", ticket_event.file.url %></td>
+</tr>

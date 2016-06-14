@@ -1,0 +1,30 @@
+<tr class="ListRow" onmousedown="clickhandler(event, '<%= upgrade_path(upgrade) %>');" title="<%= upgrade.upgrade_text %>">
+	<td class="ListField Priority">
+		<%= image_tag("priority.png", size: "25") if upgrade.priority %>
+		<%= image_tag("hourglass.png", size: "25") if upgrade.updated_at <= 4.hours.ago %>
+	</td>
+	<td class="ListField ID">
+		<%= upgrade.id %>
+	</td>
+	<td class="ListField DeviceID">
+		<%= upgrade.device.id unless upgrade.device.nil? %>
+	</td>
+	<td class="ListField CustomerName">
+		<% unless upgrade.device.nil? %>
+		<%= upgrade.device.customer.name unless upgrade.device.customer.nil? %>
+		<% end %>
+	</td>
+	<td class="ListField DateCreated">
+		<%= format_time(upgrade.created_at) %>
+	</td>
+	<td class="ListField upgradeStatus">
+		<%= upgrade.status %>
+	</td>
+	<td class="ListField AssignedTo">
+		<% if upgrade.assigned_to.nil? or upgrade.assigned_to_id == 0 %>
+			Support
+		<% else %>
+			<%= render upgrade.assigned_to %>
+		<% end %>
+	</td>
+</tr>

@@ -1,0 +1,28 @@
+<% if address.id.present? %>
+	<tr class="ListRow" onmousedown="clickhandler(event, '<%= addresssearch_link(address.id) %>')" title="<%= address.comments %>">
+		<td class="ListField">
+			<%= address.address_type.name unless address.address_type.nil? %>
+		</td>
+		<td class="ListField">
+			<%= address.line_1 %>
+		</td>
+		<td class="ListField">
+			<%= address.line_2 %>
+		</td>
+		<td class="ListField">
+			<%= address.city %>
+		</td>
+		<td class="ListField">
+			<%= address.state %>
+		</td>
+		<td class="ListField">
+			<%= address.zip %>
+		</td>
+		<td class="ListField">
+			<%= address.country %>
+		</td>
+		<td class="ListField">
+			<%= format_time(address.updated_at) %>
+		</td>
+	</tr>
+<% end %>

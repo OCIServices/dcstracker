@@ -1,0 +1,27 @@
+<%= search_form_for @search, url:{action:'devicesearch'} do |f| %>
+	<%= f.text_field :search %>
+	<%= f.submit 'Search' %>
+<% end %>
+
+<% if @devices.any? %>
+	<% headers = ['Device ID', 'Location', 'Customer Name'] %>
+	<div class="List">
+		<span class="Count"><%= @devices.count %></span>
+		<span class="Tablename">Devices Found</span>
+		<div class="ListContents">
+			<%= "Searching Devices for: '#{params[:q][:search]}'" unless params[:q].blank? or params[:q][:search].blank? %>
+			<table class="ListTable">
+				<thead>
+					<tr>
+						<% headers.each do |h| %>
+						<th class="ListHeader"><%= link_to h, sort: h %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<%= render @devices %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+<% end %>

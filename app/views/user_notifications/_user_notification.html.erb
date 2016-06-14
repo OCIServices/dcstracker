@@ -1,0 +1,18 @@
+<tr class="ListRow" onmousedown="clickhandler(event, '<%= user_notification_path(user_notification) %>');" title="<%= user_notification.note %>">
+	<td class="ListField Priority">
+		<%= image_tag("priority.png", size: "25") if user_notification.priority %>
+		<%= image_tag("hourglass.png", size: "25") if user_notification.updated_at <= 4.hours.ago %>
+		<%= image_tag("mail.png", size: "25") unless user_notification.read? %>
+		<%= image_tag("expand_plus.gif", size: "25") if user_notification.link.present? %>
+	</td>
+	<td class="ListField DateCreated">
+		<%= format_time(user_notification.created_at) %>
+	</td>
+	<td class="ListField CreatedBy">
+		<% if user_notification.created_by.nil? or user_notification.created_by_id == 0 %>
+			Support
+		<% else %>
+			<%= render user_notification.created_by %>
+		<% end %>
+	</td>
+</tr>

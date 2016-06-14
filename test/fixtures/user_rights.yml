@@ -1,0 +1,61 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  group: MyString
+  view_bug: false
+  edit_bug: false
+  view_repair: false
+  update_repair: false
+  view_inventory: false
+  update_inventory: false
+  view_trub: false
+  new_update_tr: false
+  new_ub: false
+  update_ub: false
+  move_ticket: false
+  new_cust_device: false
+  edit_cust_device: false
+  view_cust_device: false
+  new_edit_cil: false
+  view_cil: false
+  new_edit_ca: false
+  view_ca: false
+  new_edit_contract: false
+  view_contract: false
+  view_attach: false
+  vendor_only: false
+  view_user: false
+  edit_user: false
+  admin: false
+  created_by_id: 
+  updated_by_id: 
+
+two:
+  group: MyString
+  view_bug: false
+  edit_bug: false
+  view_repair: false
+  update_repair: false
+  view_inventory: false
+  update_inventory: false
+  view_trub: false
+  new_update_tr: false
+  new_ub: false
+  update_ub: false
+  move_ticket: false
+  new_cust_device: false
+  edit_cust_device: false
+  view_cust_device: false
+  new_edit_cil: false
+  view_cil: false
+  new_edit_ca: false
+  view_ca: false
+  new_edit_contract: false
+  view_contract: false
+  view_attach: false
+  vendor_only: false
+  view_user: false
+  edit_user: false
+  admin: false
+  created_by_id: 
+  updated_by_id: 

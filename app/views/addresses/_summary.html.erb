@@ -1,0 +1,75 @@
+<div class="Address Summary">
+	<span><%= link_to image_tag("pencil.png"), '', onclick: "popup(event, '#{edit_address_path(address)}')" %></span>
+	<table>
+		<tr>
+			<td class="Leftside">
+				Type:
+			</td>
+			<td class="Info"><%= address.address_type.name unless address.address_type.nil? %></td>
+			<td colspan="4"></td>
+			<td class="Leftside">
+				Last Updated:
+			</td>
+			<td><%= format_time(address.updated_at) %></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Address 1:
+			</td>
+			<td class="Info" colspan="5"><%= address.line_1 %></td>
+			<td class="Leftside">
+				Updated By:
+			</td>
+			<td>
+				<% if address.updated_at > address.created_at %>
+					<% if address.updated_by.nil? %>
+						Support
+					<% else %>
+						<%= render address.updated_by %>
+					<% end %>
+				<% else %>
+					<% if address.created_by.nil? %>
+						Support
+					<% else %>
+						<%= render address.created_by %>
+					<% end %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Address 2:
+			</td>
+			<td class="Info" colspan="5"><%= address.line_2 %></td>			
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				City:
+			</td>
+			<td class="Info"><%= address.city %></td>
+			<td class="Leftside">
+				State:
+			</td>
+			<td class="Info"><%= address.state %></td>
+			<td class="Leftside">
+				Zip:
+			</td>
+			<td class="Info"><% address.zip %></td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Country:
+			</td>
+			<td class="Info"><%= address.country %></td>			
+			<td colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="8"></td>
+		</tr>
+		<tr>
+			<td class="Info" colspan="8"><%= address.comments.bbcode_to_html.html_safe %></td>
+		</tr>
+	</table>
+</div>

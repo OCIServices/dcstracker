@@ -1,0 +1,344 @@
+                           Prefix Verb   URI Pattern                                                          Controller#Action
+                      admin_index GET    /admin/index(.:format)                                               admin#index
+                           search POST   /search(.:format)                                                    search#simple
+                             root GET    /                                                                    tickets#index
+         cancel_user_registration GET    /users/cancel(.:format)                                              devise/registrations#cancel
+                user_registration POST   /users(.:format)                                                     devise/registrations#create
+            new_user_registration GET    /users/sign_up(.:format)                                             devise/registrations#new
+           edit_user_registration GET    /users/edit(.:format)                                                devise/registrations#edit
+                                  PATCH  /users(.:format)                                                     devise/registrations#update
+                                  PUT    /users(.:format)                                                     devise/registrations#update
+                                  DELETE /users(.:format)                                                     devise/registrations#destroy
+                 new_user_session GET    /users/sign_in(.:format)                                             devise/sessions#new
+                     user_session POST   /users/sign_in(.:format)                                             devise/sessions#create
+             destroy_user_session DELETE /users/sign_out(.:format)                                            devise/sessions#destroy
+                        edit_user GET    /users/:id/edit(.:format)                                            users#edit
+                             user GET    /users/:id(.:format)                                                 users#show
+                                  PATCH  /users/:id(.:format)                                                 users#update
+                                  PUT    /users/:id(.:format)                                                 users#update
+                      user_rights GET    /user_rights(.:format)                                               user_rights#index
+                                  POST   /user_rights(.:format)                                               user_rights#create
+                   new_user_right GET    /user_rights/new(.:format)                                           user_rights#new
+                  edit_user_right GET    /user_rights/:id/edit(.:format)                                      user_rights#edit
+                       user_right GET    /user_rights/:id(.:format)                                           user_rights#show
+                                  PATCH  /user_rights/:id(.:format)                                           user_rights#update
+                                  PUT    /user_rights/:id(.:format)                                           user_rights#update
+                                  DELETE /user_rights/:id(.:format)                                           user_rights#destroy
+          printer_hardware_events GET    /printers/:printer_id/hardware_events(.:format)                      hardware_events#index
+                                  POST   /printers/:printer_id/hardware_events(.:format)                      hardware_events#create
+       new_printer_hardware_event GET    /printers/:printer_id/hardware_events/new(.:format)                  hardware_events#new
+      edit_printer_hardware_event GET    /printers/:printer_id/hardware_events/:id/edit(.:format)             hardware_events#edit
+           printer_hardware_event GET    /printers/:printer_id/hardware_events/:id(.:format)                  hardware_events#show
+                                  PATCH  /printers/:printer_id/hardware_events/:id(.:format)                  hardware_events#update
+                                  PUT    /printers/:printer_id/hardware_events/:id(.:format)                  hardware_events#update
+                                  DELETE /printers/:printer_id/hardware_events/:id(.:format)                  hardware_events#destroy
+                    watch_printer GET    /printers/:id/watch(.:format)                                        printers#watch
+                         printers GET    /printers(.:format)                                                  printers#index
+                                  POST   /printers(.:format)                                                  printers#create
+                      new_printer GET    /printers/new(.:format)                                              printers#new
+                     edit_printer GET    /printers/:id/edit(.:format)                                         printers#edit
+                          printer GET    /printers/:id(.:format)                                              printers#show
+                                  PATCH  /printers/:id(.:format)                                              printers#update
+                                  PUT    /printers/:id(.:format)                                              printers#update
+                                  DELETE /printers/:id(.:format)                                              printers#destroy
+          robotic_hardware_events GET    /robotics/:robotic_id/hardware_events(.:format)                      hardware_events#index
+                                  POST   /robotics/:robotic_id/hardware_events(.:format)                      hardware_events#create
+       new_robotic_hardware_event GET    /robotics/:robotic_id/hardware_events/new(.:format)                  hardware_events#new
+      edit_robotic_hardware_event GET    /robotics/:robotic_id/hardware_events/:id/edit(.:format)             hardware_events#edit
+           robotic_hardware_event GET    /robotics/:robotic_id/hardware_events/:id(.:format)                  hardware_events#show
+                                  PATCH  /robotics/:robotic_id/hardware_events/:id(.:format)                  hardware_events#update
+                                  PUT    /robotics/:robotic_id/hardware_events/:id(.:format)                  hardware_events#update
+                                  DELETE /robotics/:robotic_id/hardware_events/:id(.:format)                  hardware_events#destroy
+                    watch_robotic GET    /robotics/:id/watch(.:format)                                        robotics#watch
+                         robotics GET    /robotics(.:format)                                                  robotics#index
+                                  POST   /robotics(.:format)                                                  robotics#create
+                      new_robotic GET    /robotics/new(.:format)                                              robotics#new
+                     edit_robotic GET    /robotics/:id/edit(.:format)                                         robotics#edit
+                          robotic GET    /robotics/:id(.:format)                                              robotics#show
+                                  PATCH  /robotics/:id(.:format)                                              robotics#update
+                                  PUT    /robotics/:id(.:format)                                              robotics#update
+                                  DELETE /robotics/:id(.:format)                                              robotics#destroy
+    controller_pc_hardware_events GET    /controller_pcs/:controller_pc_id/hardware_events(.:format)          hardware_events#index
+                                  POST   /controller_pcs/:controller_pc_id/hardware_events(.:format)          hardware_events#create
+ new_controller_pc_hardware_event GET    /controller_pcs/:controller_pc_id/hardware_events/new(.:format)      hardware_events#new
+edit_controller_pc_hardware_event GET    /controller_pcs/:controller_pc_id/hardware_events/:id/edit(.:format) hardware_events#edit
+     controller_pc_hardware_event GET    /controller_pcs/:controller_pc_id/hardware_events/:id(.:format)      hardware_events#show
+                                  PATCH  /controller_pcs/:controller_pc_id/hardware_events/:id(.:format)      hardware_events#update
+                                  PUT    /controller_pcs/:controller_pc_id/hardware_events/:id(.:format)      hardware_events#update
+                                  DELETE /controller_pcs/:controller_pc_id/hardware_events/:id(.:format)      hardware_events#destroy
+              watch_controller_pc GET    /controller_pcs/:id/watch(.:format)                                  controller_pcs#watch
+                   controller_pcs GET    /controller_pcs(.:format)                                            controller_pcs#index
+                                  POST   /controller_pcs(.:format)                                            controller_pcs#create
+                new_controller_pc GET    /controller_pcs/new(.:format)                                        controller_pcs#new
+               edit_controller_pc GET    /controller_pcs/:id/edit(.:format)                                   controller_pcs#edit
+                    controller_pc GET    /controller_pcs/:id(.:format)                                        controller_pcs#show
+                                  PATCH  /controller_pcs/:id(.:format)                                        controller_pcs#update
+                                  PUT    /controller_pcs/:id(.:format)                                        controller_pcs#update
+                                  DELETE /controller_pcs/:id(.:format)                                        controller_pcs#destroy
+                   hardware_index GET    /hardware(.:format)                                                  hardware#index
+                                  POST   /hardware(.:format)                                                  hardware#create
+                     new_hardware GET    /hardware/new(.:format)                                              hardware#new
+                    edit_hardware GET    /hardware/:id/edit(.:format)                                         hardware#edit
+                         hardware GET    /hardware/:id(.:format)                                              hardware#show
+                                  PATCH  /hardware/:id(.:format)                                              hardware#update
+                                  PUT    /hardware/:id(.:format)                                              hardware#update
+                                  DELETE /hardware/:id(.:format)                                              hardware#destroy
+           device_device_licenses POST   /devices/:device_id/device_licenses(.:format)                        device_licenses#create
+        new_device_device_license GET    /devices/:device_id/device_licenses/new(.:format)                    device_licenses#new
+             device_device_events GET    /devices/:device_id/device_events(.:format)                          device_events#index
+                                  POST   /devices/:device_id/device_events(.:format)                          device_events#create
+          new_device_device_event GET    /devices/:device_id/device_events/new(.:format)                      device_events#new
+         edit_device_device_event GET    /devices/:device_id/device_events/:id/edit(.:format)                 device_events#edit
+              device_device_event GET    /devices/:device_id/device_events/:id(.:format)                      device_events#show
+                                  PATCH  /devices/:device_id/device_events/:id(.:format)                      device_events#update
+                                  PUT    /devices/:device_id/device_events/:id(.:format)                      device_events#update
+                                  DELETE /devices/:device_id/device_events/:id(.:format)                      device_events#destroy
+         device_device_interfaces POST   /devices/:device_id/device_interfaces(.:format)                      device_interfaces#create
+      new_device_device_interface GET    /devices/:device_id/device_interfaces/new(.:format)                  device_interfaces#new
+        device_device_connections POST   /devices/:device_id/device_connections(.:format)                     device_connections#create
+     new_device_device_connection GET    /devices/:device_id/device_connections/new(.:format)                 device_connections#new
+                 device_contracts POST   /devices/:device_id/contracts(.:format)                              contracts#create
+              new_device_contract GET    /devices/:device_id/contracts/new(.:format)                          contracts#new
+                 device_addresses POST   /devices/:device_id/addresses(.:format)                              addresses#create
+               new_device_address GET    /devices/:device_id/addresses/new(.:format)                          addresses#new
+                   device_tickets POST   /devices/:device_id/tickets(.:format)                                tickets#create
+                new_device_ticket GET    /devices/:device_id/tickets/new(.:format)                            tickets#new
+    addresssearch_device_upgrades GET    /devices/:device_id/upgrades/addresssearch(.:format)                 upgrades#addresssearch
+                  device_upgrades POST   /devices/:device_id/upgrades(.:format)                               upgrades#create
+               new_device_upgrade GET    /devices/:device_id/upgrades/new(.:format)                           upgrades#new
+      addresssearch_device_builds GET    /devices/:device_id/builds/addresssearch(.:format)                   builds#addresssearch
+                    device_builds POST   /devices/:device_id/builds(.:format)                                 builds#create
+                 new_device_build GET    /devices/:device_id/builds/new(.:format)                             builds#new
+                     watch_device GET    /devices/:id/watch(.:format)                                         devices#watch
+                  eventlog_device GET    /devices/:id/eventlog(.:format)                                      devices#eventlog
+                          devices GET    /devices(.:format)                                                   devices#index
+                                  POST   /devices(.:format)                                                   devices#create
+                       new_device GET    /devices/new(.:format)                                               devices#new
+                      edit_device GET    /devices/:id/edit(.:format)                                          devices#edit
+                           device GET    /devices/:id(.:format)                                               devices#show
+                                  PATCH  /devices/:id(.:format)                                               devices#update
+                                  PUT    /devices/:id(.:format)                                               devices#update
+                                  DELETE /devices/:id(.:format)                                               devices#destroy
+                        umbrellas GET    /umbrellas(.:format)                                                 umbrellas#index
+                                  POST   /umbrellas(.:format)                                                 umbrellas#create
+                     new_umbrella GET    /umbrellas/new(.:format)                                             umbrellas#new
+                    edit_umbrella GET    /umbrellas/:id/edit(.:format)                                        umbrellas#edit
+                         umbrella GET    /umbrellas/:id(.:format)                                             umbrellas#show
+                                  PATCH  /umbrellas/:id(.:format)                                             umbrellas#update
+                                  PUT    /umbrellas/:id(.:format)                                             umbrellas#update
+                                  DELETE /umbrellas/:id(.:format)                                             umbrellas#destroy
+         customer_customer_events GET    /customers/:customer_id/customer_events(.:format)                    customer_events#index
+                                  POST   /customers/:customer_id/customer_events(.:format)                    customer_events#create
+      new_customer_customer_event GET    /customers/:customer_id/customer_events/new(.:format)                customer_events#new
+     edit_customer_customer_event GET    /customers/:customer_id/customer_events/:id/edit(.:format)           customer_events#edit
+          customer_customer_event GET    /customers/:customer_id/customer_events/:id(.:format)                customer_events#show
+                                  PATCH  /customers/:customer_id/customer_events/:id(.:format)                customer_events#update
+                                  PUT    /customers/:customer_id/customer_events/:id(.:format)                customer_events#update
+                                  DELETE /customers/:customer_id/customer_events/:id(.:format)                customer_events#destroy
+                customer_contacts POST   /customers/:customer_id/contacts(.:format)                           contacts#create
+             new_customer_contact GET    /customers/:customer_id/contacts/new(.:format)                       contacts#new
+                 customer_devices POST   /customers/:customer_id/devices(.:format)                            devices#create
+              new_customer_device GET    /customers/:customer_id/devices/new(.:format)                        devices#new
+               customer_addresses POST   /customers/:customer_id/addresses(.:format)                          addresses#create
+             new_customer_address GET    /customers/:customer_id/addresses/new(.:format)                      addresses#new
+                   watch_customer GET    /customers/:id/watch(.:format)                                       customers#watch
+                        customers GET    /customers(.:format)                                                 customers#index
+                                  POST   /customers(.:format)                                                 customers#create
+                     new_customer GET    /customers/new(.:format)                                             customers#new
+                    edit_customer GET    /customers/:id/edit(.:format)                                        customers#edit
+                         customer GET    /customers/:id(.:format)                                             customers#show
+                                  PATCH  /customers/:id(.:format)                                             customers#update
+                                  PUT    /customers/:id(.:format)                                             customers#update
+                                  DELETE /customers/:id(.:format)                                             customers#destroy
+           contact_contact_events GET    /contacts/:contact_id/contact_events(.:format)                       contact_events#index
+                                  POST   /contacts/:contact_id/contact_events(.:format)                       contact_events#create
+        new_contact_contact_event GET    /contacts/:contact_id/contact_events/new(.:format)                   contact_events#new
+       edit_contact_contact_event GET    /contacts/:contact_id/contact_events/:id/edit(.:format)              contact_events#edit
+            contact_contact_event GET    /contacts/:contact_id/contact_events/:id(.:format)                   contact_events#show
+                                  PATCH  /contacts/:contact_id/contact_events/:id(.:format)                   contact_events#update
+                                  PUT    /contacts/:contact_id/contact_events/:id(.:format)                   contact_events#update
+                                  DELETE /contacts/:contact_id/contact_events/:id(.:format)                   contact_events#destroy
+                contact_addresses POST   /contacts/:contact_id/addresses(.:format)                            addresses#create
+              new_contact_address GET    /contacts/:contact_id/addresses/new(.:format)                        addresses#new
+                    watch_contact GET    /contacts/:id/watch(.:format)                                        contacts#watch
+                         contacts GET    /contacts(.:format)                                                  contacts#index
+                                  POST   /contacts(.:format)                                                  contacts#create
+                      new_contact GET    /contacts/new(.:format)                                              contacts#new
+                     edit_contact GET    /contacts/:id/edit(.:format)                                         contacts#edit
+                          contact GET    /contacts/:id(.:format)                                              contacts#show
+                                  PATCH  /contacts/:id(.:format)                                              contacts#update
+                                  PUT    /contacts/:id(.:format)                                              contacts#update
+                                  DELETE /contacts/:id(.:format)                                              contacts#destroy
+                   rma_rma_events GET    /rmas/:rma_id/rma_events(.:format)                                   rma_events#index
+                                  POST   /rmas/:rma_id/rma_events(.:format)                                   rma_events#create
+                new_rma_rma_event GET    /rmas/:rma_id/rma_events/new(.:format)                               rma_events#new
+               edit_rma_rma_event GET    /rmas/:rma_id/rma_events/:id/edit(.:format)                          rma_events#edit
+                    rma_rma_event GET    /rmas/:rma_id/rma_events/:id(.:format)                               rma_events#show
+                                  PATCH  /rmas/:rma_id/rma_events/:id(.:format)                               rma_events#update
+                                  PUT    /rmas/:rma_id/rma_events/:id(.:format)                               rma_events#update
+                                  DELETE /rmas/:rma_id/rma_events/:id(.:format)                               rma_events#destroy
+                        watch_rma GET    /rmas/:id/watch(.:format)                                            rmas#watch
+                        print_rma GET    /rmas/:id/print(.:format)                                            rmas#print
+                             rmas GET    /rmas(.:format)                                                      rmas#index
+                                  POST   /rmas(.:format)                                                      rmas#create
+                          new_rma GET    /rmas/new(.:format)                                                  rmas#new
+                         edit_rma GET    /rmas/:id/edit(.:format)                                             rmas#edit
+                              rma GET    /rmas/:id(.:format)                                                  rmas#show
+                                  PATCH  /rmas/:id(.:format)                                                  rmas#update
+                                  PUT    /rmas/:id(.:format)                                                  rmas#update
+                                  DELETE /rmas/:id(.:format)                                                  rmas#destroy
+             ticket_ticket_events GET    /tickets/:ticket_id/ticket_events(.:format)                          ticket_events#index
+                                  POST   /tickets/:ticket_id/ticket_events(.:format)                          ticket_events#create
+          new_ticket_ticket_event GET    /tickets/:ticket_id/ticket_events/new(.:format)                      ticket_events#new
+         edit_ticket_ticket_event GET    /tickets/:ticket_id/ticket_events/:id/edit(.:format)                 ticket_events#edit
+              ticket_ticket_event GET    /tickets/:ticket_id/ticket_events/:id(.:format)                      ticket_events#show
+                                  PATCH  /tickets/:ticket_id/ticket_events/:id(.:format)                      ticket_events#update
+                                  PUT    /tickets/:ticket_id/ticket_events/:id(.:format)                      ticket_events#update
+                                  DELETE /tickets/:ticket_id/ticket_events/:id(.:format)                      ticket_events#destroy
+        addresssearch_ticket_rmas GET    /tickets/:ticket_id/rmas/addresssearch(.:format)                     rmas#addresssearch
+                      ticket_rmas POST   /tickets/:ticket_id/rmas(.:format)                                   rmas#create
+                   new_ticket_rma GET    /tickets/:ticket_id/rmas/new(.:format)                               rmas#new
+                      move_ticket GET    /tickets/:id/move(.:format)                                          tickets#move
+                     watch_ticket GET    /tickets/:id/watch(.:format)                                         tickets#watch
+             devicesearch_tickets GET    /tickets/devicesearch(.:format)                                      tickets#devicesearch
+                          tickets GET    /tickets(.:format)                                                   tickets#index
+                                  POST   /tickets(.:format)                                                   tickets#create
+                       new_ticket GET    /tickets/new(.:format)                                               tickets#new
+                      edit_ticket GET    /tickets/:id/edit(.:format)                                          tickets#edit
+                           ticket GET    /tickets/:id(.:format)                                               tickets#show
+                                  PATCH  /tickets/:id(.:format)                                               tickets#update
+                                  PUT    /tickets/:id(.:format)                                               tickets#update
+                                  DELETE /tickets/:id(.:format)                                               tickets#destroy
+           upgrade_upgrade_events GET    /upgrades/:upgrade_id/upgrade_events(.:format)                       upgrade_events#index
+                                  POST   /upgrades/:upgrade_id/upgrade_events(.:format)                       upgrade_events#create
+        new_upgrade_upgrade_event GET    /upgrades/:upgrade_id/upgrade_events/new(.:format)                   upgrade_events#new
+       edit_upgrade_upgrade_event GET    /upgrades/:upgrade_id/upgrade_events/:id/edit(.:format)              upgrade_events#edit
+            upgrade_upgrade_event GET    /upgrades/:upgrade_id/upgrade_events/:id(.:format)                   upgrade_events#show
+                                  PATCH  /upgrades/:upgrade_id/upgrade_events/:id(.:format)                   upgrade_events#update
+                                  PUT    /upgrades/:upgrade_id/upgrade_events/:id(.:format)                   upgrade_events#update
+                                  DELETE /upgrades/:upgrade_id/upgrade_events/:id(.:format)                   upgrade_events#destroy
+                    watch_upgrade GET    /upgrades/:id/watch(.:format)                                        upgrades#watch
+                    print_upgrade GET    /upgrades/:id/print(.:format)                                        upgrades#print
+                         upgrades GET    /upgrades(.:format)                                                  upgrades#index
+                                  POST   /upgrades(.:format)                                                  upgrades#create
+                      new_upgrade GET    /upgrades/new(.:format)                                              upgrades#new
+                     edit_upgrade GET    /upgrades/:id/edit(.:format)                                         upgrades#edit
+                          upgrade GET    /upgrades/:id(.:format)                                              upgrades#show
+                                  PATCH  /upgrades/:id(.:format)                                              upgrades#update
+                                  PUT    /upgrades/:id(.:format)                                              upgrades#update
+                                  DELETE /upgrades/:id(.:format)                                              upgrades#destroy
+               build_build_events GET    /builds/:build_id/build_events(.:format)                             build_events#index
+                                  POST   /builds/:build_id/build_events(.:format)                             build_events#create
+            new_build_build_event GET    /builds/:build_id/build_events/new(.:format)                         build_events#new
+           edit_build_build_event GET    /builds/:build_id/build_events/:id/edit(.:format)                    build_events#edit
+                build_build_event GET    /builds/:build_id/build_events/:id(.:format)                         build_events#show
+                                  PATCH  /builds/:build_id/build_events/:id(.:format)                         build_events#update
+                                  PUT    /builds/:build_id/build_events/:id(.:format)                         build_events#update
+                                  DELETE /builds/:build_id/build_events/:id(.:format)                         build_events#destroy
+                      watch_build GET    /builds/:id/watch(.:format)                                          builds#watch
+                      print_build GET    /builds/:id/print(.:format)                                          builds#print
+                           builds GET    /builds(.:format)                                                    builds#index
+                                  POST   /builds(.:format)                                                    builds#create
+                        new_build GET    /builds/new(.:format)                                                builds#new
+                       edit_build GET    /builds/:id/edit(.:format)                                           builds#edit
+                            build GET    /builds/:id(.:format)                                                builds#show
+                                  PATCH  /builds/:id(.:format)                                                builds#update
+                                  PUT    /builds/:id(.:format)                                                builds#update
+                                  DELETE /builds/:id(.:format)                                                builds#destroy
+                    bug_bug_notes GET    /bugs/:bug_id/bug_notes(.:format)                                    bug_notes#index
+                                  POST   /bugs/:bug_id/bug_notes(.:format)                                    bug_notes#create
+                 new_bug_bug_note GET    /bugs/:bug_id/bug_notes/new(.:format)                                bug_notes#new
+                edit_bug_bug_note GET    /bugs/:bug_id/bug_notes/:id/edit(.:format)                           bug_notes#edit
+                     bug_bug_note GET    /bugs/:bug_id/bug_notes/:id(.:format)                                bug_notes#show
+                                  PATCH  /bugs/:bug_id/bug_notes/:id(.:format)                                bug_notes#update
+                                  PUT    /bugs/:bug_id/bug_notes/:id(.:format)                                bug_notes#update
+                                  DELETE /bugs/:bug_id/bug_notes/:id(.:format)                                bug_notes#destroy
+                        watch_bug GET    /bugs/:id/watch(.:format)                                            bugs#watch
+                             bugs GET    /bugs(.:format)                                                      bugs#index
+                                  POST   /bugs(.:format)                                                      bugs#create
+                          new_bug GET    /bugs/new(.:format)                                                  bugs#new
+                         edit_bug GET    /bugs/:id/edit(.:format)                                             bugs#edit
+                              bug GET    /bugs/:id(.:format)                                                  bugs#show
+                                  PATCH  /bugs/:id(.:format)                                                  bugs#update
+                                  PUT    /bugs/:id(.:format)                                                  bugs#update
+                                  DELETE /bugs/:id(.:format)                                                  bugs#destroy
+                        addresses GET    /addresses(.:format)                                                 addresses#index
+                                  POST   /addresses(.:format)                                                 addresses#create
+                      new_address GET    /addresses/new(.:format)                                             addresses#new
+                     edit_address GET    /addresses/:id/edit(.:format)                                        addresses#edit
+                          address GET    /addresses/:id(.:format)                                             addresses#show
+                                  PATCH  /addresses/:id(.:format)                                             addresses#update
+                                  PUT    /addresses/:id(.:format)                                             addresses#update
+                                  DELETE /addresses/:id(.:format)                                             addresses#destroy
+                        dropdowns GET    /dropdowns(.:format)                                                 dropdowns#index
+                                  POST   /dropdowns(.:format)                                                 dropdowns#create
+                     new_dropdown GET    /dropdowns/new(.:format)                                             dropdowns#new
+                    edit_dropdown GET    /dropdowns/:id/edit(.:format)                                        dropdowns#edit
+                         dropdown GET    /dropdowns/:id(.:format)                                             dropdowns#show
+                                  PATCH  /dropdowns/:id(.:format)                                             dropdowns#update
+                                  PUT    /dropdowns/:id(.:format)                                             dropdowns#update
+                                  DELETE /dropdowns/:id(.:format)                                             dropdowns#destroy
+                          watches GET    /watches(.:format)                                                   watches#index
+                                  POST   /watches(.:format)                                                   watches#create
+                        new_watch GET    /watches/new(.:format)                                               watches#new
+                       edit_watch GET    /watches/:id/edit(.:format)                                          watches#edit
+                            watch GET    /watches/:id(.:format)                                               watches#show
+                                  PATCH  /watches/:id(.:format)                                               watches#update
+                                  PUT    /watches/:id(.:format)                                               watches#update
+                                  DELETE /watches/:id(.:format)                                               watches#destroy
+               user_notifications GET    /user_notifications(.:format)                                        user_notifications#index
+                                  POST   /user_notifications(.:format)                                        user_notifications#create
+            new_user_notification GET    /user_notifications/new(.:format)                                    user_notifications#new
+           edit_user_notification GET    /user_notifications/:id/edit(.:format)                               user_notifications#edit
+                user_notification GET    /user_notifications/:id(.:format)                                    user_notifications#show
+                                  PATCH  /user_notifications/:id(.:format)                                    user_notifications#update
+                                  PUT    /user_notifications/:id(.:format)                                    user_notifications#update
+                                  DELETE /user_notifications/:id(.:format)                                    user_notifications#destroy
+                    version_notes GET    /version_notes(.:format)                                             version_notes#index
+                                  POST   /version_notes(.:format)                                             version_notes#create
+                 new_version_note GET    /version_notes/new(.:format)                                         version_notes#new
+                edit_version_note GET    /version_notes/:id/edit(.:format)                                    version_notes#edit
+                     version_note GET    /version_notes/:id(.:format)                                         version_notes#show
+                                  PATCH  /version_notes/:id(.:format)                                         version_notes#update
+                                  PUT    /version_notes/:id(.:format)                                         version_notes#update
+                                  DELETE /version_notes/:id(.:format)                                         version_notes#destroy
+                      inventories GET    /inventories(.:format)                                               inventories#index
+                                  POST   /inventories(.:format)                                               inventories#create
+                    new_inventory GET    /inventories/new(.:format)                                           inventories#new
+                   edit_inventory GET    /inventories/:id/edit(.:format)                                      inventories#edit
+                        inventory GET    /inventories/:id(.:format)                                           inventories#show
+                                  PATCH  /inventories/:id(.:format)                                           inventories#update
+                                  PUT    /inventories/:id(.:format)                                           inventories#update
+                                  DELETE /inventories/:id(.:format)                                           inventories#destroy
+                  device_licenses GET    /device_licenses(.:format)                                           device_licenses#index
+                                  POST   /device_licenses(.:format)                                           device_licenses#create
+               new_device_license GET    /device_licenses/new(.:format)                                       device_licenses#new
+              edit_device_license GET    /device_licenses/:id/edit(.:format)                                  device_licenses#edit
+                   device_license GET    /device_licenses/:id(.:format)                                       device_licenses#show
+                                  PATCH  /device_licenses/:id(.:format)                                       device_licenses#update
+                                  PUT    /device_licenses/:id(.:format)                                       device_licenses#update
+                                  DELETE /device_licenses/:id(.:format)                                       device_licenses#destroy
+                device_interfaces GET    /device_interfaces(.:format)                                         device_interfaces#index
+                                  POST   /device_interfaces(.:format)                                         device_interfaces#create
+             new_device_interface GET    /device_interfaces/new(.:format)                                     device_interfaces#new
+            edit_device_interface GET    /device_interfaces/:id/edit(.:format)                                device_interfaces#edit
+                 device_interface GET    /device_interfaces/:id(.:format)                                     device_interfaces#show
+                                  PATCH  /device_interfaces/:id(.:format)                                     device_interfaces#update
+                                  PUT    /device_interfaces/:id(.:format)                                     device_interfaces#update
+                                  DELETE /device_interfaces/:id(.:format)                                     device_interfaces#destroy
+               device_connections GET    /device_connections(.:format)                                        device_connections#index
+                                  POST   /device_connections(.:format)                                        device_connections#create
+            new_device_connection GET    /device_connections/new(.:format)                                    device_connections#new
+           edit_device_connection GET    /device_connections/:id/edit(.:format)                               device_connections#edit
+                device_connection GET    /device_connections/:id(.:format)                                    device_connections#show
+                                  PATCH  /device_connections/:id(.:format)                                    device_connections#update
+                                  PUT    /device_connections/:id(.:format)                                    device_connections#update
+                                  DELETE /device_connections/:id(.:format)                                    device_connections#destroy
+                        contracts GET    /contracts(.:format)                                                 contracts#index
+                                  POST   /contracts(.:format)                                                 contracts#create
+                     new_contract GET    /contracts/new(.:format)                                             contracts#new
+                    edit_contract GET    /contracts/:id/edit(.:format)                                        contracts#edit
+                         contract GET    /contracts/:id(.:format)                                             contracts#show
+                                  PATCH  /contracts/:id(.:format)                                             contracts#update
+                                  PUT    /contracts/:id(.:format)                                             contracts#update
+                                  DELETE /contracts/:id(.:format)                                             contracts#destroy

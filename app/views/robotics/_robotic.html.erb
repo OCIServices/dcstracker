@@ -1,0 +1,35 @@
+<tr class="ListRow" onmousedown="clickhandler(event, '<%= robotic_path(robotic) %>')">
+	<td class="ListField Serial">
+		<%= robotic.serial %>
+	</td>
+	<td class="ListField HardwareType">
+		Robotic
+	</td>
+	<td class="ListField Model">
+		<%= robotic.robotic_type.name unless robotic.robotic_type.nil? %>
+	</td>
+	<td class="ListField Location">
+		<%= robotic.device_id.blank? ? "Not On Site" : "On Site" %>
+	</td>
+	<td class="ListField DateCreated">
+		<%= format_time(robotic.created_at) %>
+	</td>
+	<td class="ListField DateModified">
+		<%= format_time(robotic.updated_at) %>
+	</td>
+	<td class="ListField ModifiedBy">
+		<% if robotic.updated_at > robotic.created_at %>
+			<% if robotic.updated_by.nil? %>
+				Support
+			<% else %>
+				<%= render robotic.updated_by %>
+			<% end %>
+		<% else %>
+			<% if robotic.created_by.nil? %>
+				Support
+			<% else %>
+				<%= render robotic.created_by %>
+			<% end %>
+		<% end %>
+	</td>
+</tr>

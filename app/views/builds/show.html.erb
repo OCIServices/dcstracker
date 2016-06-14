@@ -1,0 +1,384 @@
+<%= tabs_start("build") %>
+<%= tabitem("build", @build.id, "Build #{@build.id}", current_page?(controller: 'builds', action: 'show')) %>
+
+<div class="build EventForm">
+	<span><%= link_to @build.watches.exists?(user: current_user) ? image_tag("unwatch.png") : image_tag("watch.png"), watch_build_path %></span>
+	<%= form_for @build, html:{multipart:true} do |f| %>
+	<table>
+		<tr>
+			<td colspan="4">
+				<table>
+					<thead>
+						<tr>
+							<th>Part</th>
+							<th>Type</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @build.robotic = Robotic.new if @build.robotic.nil? %>
+						<%= fields_for @build.robotic do |r| %>
+						<tr>
+							<td rowspan="2">
+								<%= image_tag("AmigoA.gif") %>
+							</td>
+							<td>
+								<%= r.select :robotic_type, dropdown_options("RoboticType", @build.robotic.serial.blank? ? @build.robotic_type : @build.robotic.robotic_type).html_safe, include_blank: "Select" %>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<%= r.text_field :serial, placeholder: "New Serial" %><%= link_to "Link", @build.robotic unless @build.robotic.id.blank? %>
+							</td>
+						</tr>
+						<% end %>
+						<% @build.printer = Printer.new if @build.printer.nil? %>
+						<%= fields_for @build.printer do |p| %>
+						<tr>
+							<td rowspan="2">
+								<%= image_tag("Printer.gif") %>
+							</td>
+							<td>
+								<%= p.select :printer_type, dropdown_options("PrinterType", @build.printer.serial.blank? ? @build.printer_type : @build.printer.printer_type).html_safe, include_blank: "Select" %>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<%= p.text_field :serial, placeholder: "New Serial" %><%= link_to "Link", @build.printer unless @build.printer.id.blank? %>
+							</td>
+						</tr>
+						<% end %>
+						<% @build.controller_pc = ControllerPc.new if @build.controller_pc.nil? %>
+						<%= fields_for @build.controller_pc do |c| %>
+						<tr>
+							<td rowspan="2">
+								<%= image_tag("Controller.gif") %>
+							</td>
+							<td>
+								<%= c.select :controller_type, dropdown_options("ControllerType", @build.controller_pc.serial.blank? ? @build.controller_type : @build.controller_pc.controller_type).html_safe, include_blank: "Select" %>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<%= c.text_field :serial, placeholder: "New Serial" %><%= link_to "Link", @build.controller_pc unless @build.controller_pc.id.blank? %>
+							</td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4">
+				<table>
+					<thead>
+						<tr>
+							<th>
+								Shipping Address
+							</th>
+							<th>
+							</th>
+							<th>
+								Carrier
+							</th>
+							<th>
+								Tracking Number
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td rowspan="2">
+								<% unless @build.ship_address.nil? %>
+									<%= @build.ship_address.line_1 %><br />
+									<%= @build.ship_address.line_2 %><br />
+									<%= "#{@build.ship_address.city}, #{@build.ship_address.state} #{@build.ship_address.zip}" %><br />
+									<%= @build.ship_address.country %>
+								<% end %>
+							</td>
+							<td>
+								<%= tracking_link(@build.outbound_carrier, @build.tracking_outbound, 'Outbound:')%>
+							</td>
+							<td>
+								<%= f.select :outbound_carrier, dropdown_options("CarrierType", @build.outbound_carrier).html_safe, include_blank: "Select" %>
+							</td>
+							<td>
+								<%= f.text_field :tracking_outbound %>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<%= tracking_link(@build.inbound_carrier, @build.tracking_inbound, 'Inbound:')%>
+							</td>
+							<td>
+								<%= f.select :inbound_carrier, dropdown_options("CarrierType", @build.inbound_carrier).html_safe, include_blank: "Select" %>
+							</td>
+							<td>
+								<%= f.text_field :tracking_inbound %>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4">
+				<table>
+					<tr>
+						<th colspan="4"></th>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :backup_by, "Backup Performed:" %>
+						</td>
+						<td>
+							<% if @build.backup_by.nil? %>
+								<%= f.check_box :backup_by, {}, current_user.id %>
+							<% else %>
+								<%= render @build.backup_by %>
+							<% end %>
+						</td>
+						<td class="Leftside" style="border-left: 1px solid #95B1E5;">
+							<%= f.label :priority %>
+						</td>
+						<td>
+							<%= f.check_box :priority %>
+						</td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :backup_method, "Backup Method:" %>
+						</td>
+						<td>
+							<%= f.select :backup_method, dropdown_options("BackupMethod", @build.backup_method).html_safe, include_blank: "Select" %>
+						</td>						
+						<td class="Leftside" style="border-left: 1px solid #95B1E5;">
+							<%= f.label :dispatch %>
+						</td>
+						<td>
+							<%= f.select :dispatch, dropdown_options("DispatchType", @build.dispatch).html_safe, include_blank: "Select" %>
+						</td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :built_by, "Build Performed:" %>
+						</td>
+						<td>
+							<% if @build.built_by.nil? %>
+								<%= f.check_box :built_by, {}, current_user.id %>
+							<% else %>
+								<%= render @build.built_by %>
+							<% end %>
+						</td>
+						<td class="Leftside" style="border-left: 1px solid #95B1E5;">
+							<%= f.label :decision_one, "DecisionOne:" %>
+						</td>
+						<td>
+							<%= f.text_field :decision_one, placeholder: "Service Number" %>
+						</td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :software_ver, "Software Version:" %>
+						</td>
+						<td>
+							<%= f.select :software_ver, dropdown_options("SoftwareVer", @build.software_ver).html_safe, include_blank: "Select" %>
+						</td>
+						<td class="Leftside" style="border-left: 1px solid #95B1E5;">
+							<%= f.label :contact %>
+						</td>
+						<td>
+							<%= f.select :contact, contact_options(@customer, @build.contact).html_safe, include_blank: 'Select' %>
+						</td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :labeled_by, "Labeling Performed:" %>
+						</td>
+						<td>
+							<% if @build.labeled_by.nil? %>
+								<%= f.check_box :labeled_by, {}, current_user.id %>
+							<% else %>
+								<%= render @build.labeled_by %>
+							<% end %>
+						</td>
+						<td class="Leftside" style="border-left: 1px solid #95B1E5;">
+							<%= f.text_field :new_contact, value: '', placeholder: 'New Contact Name' %>
+						</td>
+						<td>
+							<%= f.text_field :new_contact_number, value: '', placeholder: 'Contact Number' %>
+						</td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :verified_by, "Verified:" %>
+						</td>
+						<td>
+							<% if @build.verified_by.nil? %>
+								<%= f.check_box :verified_by, {}, current_user.id %>
+							<% else %>
+								<%= render @build.verified_by %>
+							<% end %>
+						</td>
+						<td class="Leftside" style="border-left: 1px solid #95B1E5;">
+							<%= f.label :category %>
+						</td>
+						<td>
+							<%= f.select :category, dropdown_options("BuildCategory", @build.category).html_safe, include_blank: "Select" %>
+						</td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :shipped_by, "Shipped:" %>
+						</td>
+						<td>
+							<% if @build.shipped_by.nil? %>
+								<%= f.check_box :shipped_by, {}, current_user.id %>
+							<% else %>
+								<%= render @build.shipped_by %>
+							<% end %>
+						</td>
+						<td colspan="2" style="border-left: 1px solid #95B1E5;"></td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :ship_method, "Shipping Method:" %>
+						</td>
+						<td>
+							<%= f.select :ship_method, dropdown_options("ShipMethod", @build.ship_method).html_safe, include_blank: "Select" %>
+						</td>
+						<td colspan="2" style="border-left: 1px solid #95B1E5;"></td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :return_by, "Old Equip. Returned:" %>
+						</td>
+						<td>
+							<% if @build.return_by.nil? %>
+								<%= f.check_box :return_by, {}, current_user.id %>
+							<% else %>
+								<%= render @build.return_by %>
+							<% end %>
+						</td>
+						<td colspan="2" style="border-left: 1px solid #95B1E5;"></td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<label for="CompletedBy">Completed:</label>
+						</td>
+						<td>
+							<% if @build.completed_by.nil? %>
+								<%= f.check_box :completed_by, {}, current_user.id %>
+							<% else %>
+								<%= render @build.completed_by %>
+							<% end %>
+						</td>
+						<td colspan="2" style="border-left: 1px solid #95B1E5;"></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<th colspan="4"></th>
+		</tr>
+		<tr>
+			<td colspan="4">
+				<%= f.text_area :event_text, value: '', placeholder: "Build Notes", oninvalid: "this.setCustomValidity('Please enter a note to update this build.')", oninput: "this.setCustomValidity('')" %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<%= f.number_field :time_spent, value: '', min: '0', oninput: "this.setCustomValidity('')", oninvalid: "this.setCustomValidity('Please enter time spent in minutes.')" %>
+				<%= f.label :time_spent, 'Minute(s)' %>
+			</td>
+			<td colspan="2">
+				<%= f.label :assigned_to %>
+				<%= f.select :assigned_to, user_options('', @build.assigned_to).html_safe, include_blank: 'Support' %>
+			</td>
+			<td>
+				<%= f.submit "Take", name: "BuildEvent" %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Attachment:
+			</td>
+			<td colspan="2">
+				<%= f.select :file_category, dropdown_options('FileCategory').html_safe, include_blank: 'Select' %>
+				<%= f.file_field :file %>
+			</td>
+			<td>
+				<%= f.submit "Save", name: "BuildEvent" %>
+			</td>
+		</tr>
+	</table>
+	<% end %>
+</div>
+
+<% headers = ['Time', 'Build Status', 'Note', 'User', 'Assigned', 'Min(s)', 'Attachment'] %>
+
+<div class="Build EventSummary">
+	<div class="List">
+		<span class="Count"></span>
+		<span class="Tablename">Build</span>
+		<div class="ListContents">
+			<table class="ListTable">
+				<thead>
+					<tr>
+						<% headers.each do |h| %>
+						<th class="ListHeader"><%= link_to h, sort: h %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="ListRow">
+						<td class="ListField EventTime"><%= format_time(@build.created_at) %></td>
+						<td class="ListField StatusType"><%= @build.status %></td>
+						<td class="ListField EventText"><%= @build.build_text.bbcode_to_html.html_safe %></td>
+						<td class="ListField CreatedBy">
+							<% if @build.created_by.nil? %>
+								Support
+							<% else %>
+								<%= render @build.created_by %>
+							<% end %>
+						</td>
+						<td class="ListField AssignedTo">
+							<% if @build.assigned_to.nil? %>
+								Support
+							<% else %>
+								<%= render @build.assigned_to %>
+							<% end %>
+						</td>
+						<td class="ListField TimeSpent"><%= @build.build_events.sum(:time_spent) %></td>
+						<td class="ListField File"><%= link_to "test", @build.file.url %></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+<% headers = ['Time', 'Note', 'Changes', 'User', 'Assigned', 'Min(s)', 'Attachment'] %>
+	
+	<div class="List">
+		<span class="Count"><%= @build.build_events.count %></span>
+		<span class="Tablename">Build Events</span>
+		<div class="ListContents">
+			<table class="ListTable">
+				<thead>
+					<tr>
+						<% headers.each do |h| %>
+						<th class="ListHeader"><%= link_to h, sort: h %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<%= render @build.build_events %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<%= tabitem_end %>
+<%= tabs_end %>
+
+<%= render template: 'customers/show' %>

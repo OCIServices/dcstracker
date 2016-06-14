@@ -1,0 +1,30 @@
+<tr class="ListRow" onmousedown="clickhandler(event, '<%= rma_path(rma) %>');" title="<%= rma.rma_text %>">
+	<td class="ListField Priority">
+		<%= image_tag("priority.png", size: "25") if rma.priority %>
+		<%= image_tag("hourglass.png", size: "25") if rma.updated_at <= 4.hours.ago %>
+	</td>
+	<td class="ListField ID">
+		<%= rma.id %>
+	</td>
+	<td class="ListField DeviceID">
+		<%= rma.ticket.device.id unless rma.ticket.nil? or rma.ticket.device.nil? %>
+	</td>
+	<td class="ListField CustomerName">
+		<% unless rma.ticket.nil? or rma.ticket.device.nil? %>
+		<%= rma.ticket.device.customer.name unless rma.ticket.device.customer.nil? %>
+		<% end %>
+	</td>
+	<td class="ListField DateCreated">
+		<%= format_time(rma.created_at) %>
+	</td>
+	<td class="ListField RMAStatus">
+		<%= rma.status %>
+	</td>
+	<td class="ListField AssignedTo">
+		<% if rma.assigned_to.nil? or rma.assigned_to_id == 0 %>
+			Support
+		<% else %>
+			<%= render rma.assigned_to %>
+		<% end %>
+	</td>
+</tr>

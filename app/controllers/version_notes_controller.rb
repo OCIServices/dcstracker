@@ -1,0 +1,3 @@
+class VersionNotesController < ApplicationController
+
+end

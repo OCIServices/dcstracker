@@ -1,0 +1,50 @@
+<%= form_for [@customer, @device], html:{multipart:true} do |f| %>
+	<div class="Device NewEditForm">
+	<table>
+		<tr>
+			<th colspan="4">
+				Create a New Device
+			</th>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :contact_type, 'VAR/OEM Partner:' %>
+			</td>
+			<td class="Info">
+				<%= f.select :contact_type, dropdown_options("ContactType").html_safe, include_blank: "Select" %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :location %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :location %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :device_type %>
+			</td>
+			<td class="Info">
+				<%= f.select :device_type, dropdown_options("DeviceType", @device.device_type).html_safe, include_blank: "Select" %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="4"></td>
+		</tr>
+		<tr>
+			<td colspan="4" class="Info">
+				<%= f.text_area :comments, value: '', placeholder: "Device Notes" %>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3"></td>
+			<td>
+				<%= hidden_field_tag :category, params[:category] %>
+				<%= hidden_field_tag :device_id, params[:device_id] unless params[:device_id].nil? %>
+				<%= f.submit "Save" %>
+			</td>
+		</tr>
+	</table>
+	</div>
+<% end %>

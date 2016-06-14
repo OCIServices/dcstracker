@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  attached_to_id: 
+  attached_to_type: Attached to
+  line_1: MyString
+  line_2: MyString
+  city: MyString
+  state: MyString
+  zip: MyString
+  country: MyString
+  comments: MyText
+  active: false
+  created_by_id: 
+  updated_by_id: 
+
+two:
+  attached_to_id: 
+  attached_to_type: Attached to
+  line_1: MyString
+  line_2: MyString
+  city: MyString
+  state: MyString
+  zip: MyString
+  country: MyString
+  comments: MyText
+  active: false
+  created_by_id: 
+  updated_by_id: 

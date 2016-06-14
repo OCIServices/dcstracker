@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  version: MyString
+  note: MyText
+  created_by_id: 
+  updated_by_id: 
+
+two:
+  version: MyString
+  note: MyText
+  created_by_id: 
+  updated_by_id: 

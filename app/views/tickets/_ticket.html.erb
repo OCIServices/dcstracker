@@ -1,0 +1,30 @@
+<tr class="ListRow" onmousedown="<%= "#{current_page?(controller: 'tickets', action: 'new') ? 'redirect' : 'clickhandler'}(event, '#{ticket_path(ticket)}');" %>" title="<%= ticket.ticket_text %>">
+	<td class="ListField">
+		<%= image_tag("priority.png", size: "25") if ticket.priority %>
+		<%= image_tag("hourglass.png", size: "25") if ticket.updated_at <= 4.hours.ago %>
+	</td>
+	<td class="ListField">
+		<%= ticket.id %>
+	</td>
+	<td class="ListField">
+		<%= ticket.device.id unless ticket.device.nil? %>
+	</td>
+	<td class="ListField">
+		<% unless ticket.device.nil? %>
+		<%= ticket.device.customer.name unless ticket.device.customer.nil? %>
+		<% end %>
+	</td>
+	<td class="ListField">
+		<%= format_time(ticket.created_at) %>
+	</td>
+	<td class="ListField">
+		<%= ticket.category.name unless ticket.category.nil? %>
+	</td>
+	<td class="ListField">
+		<% if ticket.assigned_to_id == 0 or ticket.assigned_to.nil? %>
+			Support
+		<% else %>
+			<%= render ticket.assigned_to %>
+		<% end %>
+	</td>
+</tr>

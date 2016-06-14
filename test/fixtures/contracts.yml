@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  device_id: 
+  contract_holder_id: 
+  contract_type_id: 
+  invoice: MyString
+  service_exp_at: 2016-04-05 15:37:11
+  warranty_exp_at: 2016-04-05 15:37:11
+  customer_po: MyString
+  comments: MyText
+  created_by_id: 
+  updated_by_id: 
+
+two:
+  device_id: 
+  contract_holder_id: 
+  contract_type_id: 
+  invoice: MyString
+  service_exp_at: 2016-04-05 15:37:11
+  warranty_exp_at: 2016-04-05 15:37:11
+  customer_po: MyString
+  comments: MyText
+  created_by_id: 
+  updated_by_id: 

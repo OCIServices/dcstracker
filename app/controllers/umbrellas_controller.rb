@@ -1,0 +1,3 @@
+class UmbrellasController < ApplicationController
+
+end

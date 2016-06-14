@@ -1,0 +1,20 @@
+<% if bug_note.id.present? %>
+	<tr class="ListRow">
+		<td class="ListField DateCreated">
+			<%= format_time(bug_note.created_at) %>
+		</td>
+		<td class="ListField Note">
+			<%= bug_note.note.bbcode_to_html.html_safe unless bug_note.note.blank? %>
+		</td>
+		<td class="ListField DeviceID">
+			<%= link_to bug_note.device.id, device_path(bug_note.device) unless bug_note.device.nil? %>
+		</td>
+		<td class="ListField CreatedBy">
+			<% if bug_note.created_by.nil? %>
+				Support
+			<% else %>
+				<%= render bug_note.created_by %>
+			<% end %>
+		</td>
+	</tr>
+<% end %>

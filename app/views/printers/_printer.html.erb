@@ -1,0 +1,35 @@
+<tr class="ListRow" onmousedown="clickhandler(event, '<%= printer_path(printer) %>')">
+	<td class="ListField Serial">
+		<%= printer.serial %>
+	</td>
+	<td class="ListField HardwareType">
+		Printer
+	</td>
+	<td class="ListField Model">
+		<%= printer.printer_type.name unless printer.printer_type.nil? %>
+	</td>
+	<td class="ListField Location">
+		<%= printer.device_id.blank? ? "Not On Site" : "On Site" %>
+	</td>
+	<td class="ListField DateCreated">
+		<%= format_time(printer.created_at) %>
+	</td>
+	<td class="ListField DateModified">
+		<%= format_time(printer.updated_at) %>
+	</td>
+	<td class="ListField ModifiedBy">
+		<% if printer.updated_at > printer.created_at %>
+			<% if printer.updated_by.nil? %>
+				Support
+			<% else %>
+				<%= render printer.updated_by %>
+			<% end %>
+		<% else %>
+			<% if printer.created_by.nil? %>
+				Support
+			<% else %>
+				<%= render printer.created_by %>
+			<% end %>
+		<% end %>
+	</td>
+</tr>

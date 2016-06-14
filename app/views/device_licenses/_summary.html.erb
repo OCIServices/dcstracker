@@ -1,0 +1,57 @@
+<div class="License Summary">
+	<span><%= link_to image_tag("pencil.png"), '', onclick: "popup(event, '#{edit_device_license_path(device_license)}')" %></span>
+	<table>
+		<tr>
+			<td class="Leftside">
+				Type:
+			</td>
+			<td><%= device_license.license_type.name unless device_license.license_type.nil? %></td>
+			<td colspan="2"></td>
+			<td class="Leftside">
+				Last Updated:
+			</td>
+			<td><%= format_time(device_license.updated_at) %></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Description:
+			</td>
+			<td class="Info"><%= device_license.desc %></td>
+			<td colspan="2"></td>
+			<td class="Leftside">
+				Updated By:
+			</td>
+			<td>
+				<% if device_license.updated_at > device_license.created_at %>
+					<% if device_license.updated_by.nil? %>
+						Support
+					<% else %>
+						<%= render device_license.updated_by %>
+					<% end %>
+				<% else %>
+					<% if device_license.created_by.nil? %>
+						Support
+					<% else %>
+						<%= render device_license.created_by %>
+					<% end %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="6"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Value:
+			</td>
+			<td class="Info" colspan="3"><%= device_license.value %></td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="6"></td>
+		</tr>
+		<tr>
+			<td class="Info" colspan="6"><%= device_license.comments.bbcode_to_html.html_safe %></td>
+		</tr>
+	</table>
+</div>

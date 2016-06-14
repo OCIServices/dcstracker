@@ -1,0 +1,17 @@
+<% unless customer_event.nil? or customer_event.id.nil? %>
+<tr class="ListRow">
+	<td class="ListField">
+		<%= format_time(customer_event.created_at) %>
+	</td>
+	<td class="ListField">
+		<%= customer_event.event_text.bbcode_to_html.html_safe %>
+	</td>
+	<td class="ListField">
+		<% if customer_event.created_by.nil? %>
+			Support
+		<% else %>
+			<%= render customer_event.created_by %>
+		<% end %>
+	</td>
+</tr>
+<% end %>

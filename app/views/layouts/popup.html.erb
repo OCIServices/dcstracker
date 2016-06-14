@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title><%= full_title(yield(:title)) %></title>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= stylesheet_link_tag    'mobile', media: 'only screen and (max-device-width: 480px)', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+	<div id="PopupContainer">
+		<% flash.each do |message_type, message| %>
+	      <div class="alert alert-<%= message_type %>"><%= message.html_safe %></div>
+	  	<% end %>
+		<div id="Popup">
+			<%= yield %>
+		</div>
+	</div>
+</body>
+</html>

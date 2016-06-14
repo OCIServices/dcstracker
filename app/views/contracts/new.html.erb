@@ -1,0 +1,64 @@
+<%= form_for [@device, @contract] do |f| %>
+	<div class="Contract NewEditForm">	
+	<table>
+		<tr>
+			<th colspan="4">
+				New Contract for Device <%= @device.id %>
+			</th>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :contract_type %>
+			</td>
+			<td class="Info">
+				<%= f.select :contract_type, dropdown_options("ContractType", @contract.contract_type).html_safe, include_blank: "Select" %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :contract_holder %>
+			</td>
+			<td class="Info">
+				<%= f.select :contract_holder, dropdown_options("ContractHolder", @contract.contract_holder).html_safe, include_blank: "Select" %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :invoice %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :invoice %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :customer_po %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :customer_po %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :service_exp_at %>
+			</td>
+			<td class="Info">
+				<%= f.date_select(:service_exp_at, :order => [:month, :day, :year], use_short_month: true) %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :warranty_exp_at %>
+			</td>
+			<td class="Info">
+				<%= f.date_select(:warranty_exp_at, :order => [:month, :day, :year], use_short_month: true) %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Info" colspan="4">
+				<%= f.text_area :comments, placeholder: "Contract Comments" %>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3"></td>
+			<td>
+				<%= f.submit "Save" %>
+			</td>
+		</tr>
+	</table>
+	</div>
+<% end %>

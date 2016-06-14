@@ -1,0 +1,35 @@
+<%= tabs_start("login") %>
+<%= tabitem("login", 0, "User Login", true) %>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+	<div id="LoginForm">
+		Please Login using your Windows credentials.
+		<table>
+			<tr>
+				<td class="Leftside">
+					<%= f.label :username %>
+				</td>
+				<td>
+					<%= f.text_field :username, autofocus: true %> @datcard.com
+				</td>
+			</tr>
+			<tr>
+				<td class="Leftside">
+					<%= f.label :password %>
+				</td>
+				<td>
+					<%= f.password_field :password, autocomplete: "off" %>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<%= f.submit "Log in" %>
+				</td>
+			</tr>
+		</table>
+	</div>
+<% end %>
+
+<%= tabitem_end %>
+<%= tabs_end %>

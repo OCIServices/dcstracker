@@ -1,0 +1,99 @@
+<div class="Contact Summary">
+	<span><%= link_to image_tag("pencil.png"), '', onclick: "popup(event, '#{edit_contact_path(contact)}')" %></span>
+	<table>
+		<tr>
+			<td class="Leftside">
+				FirstName:
+			</td>
+			<td class="Info"><%= contact.first_name %></td>
+			<td class="Leftside">
+				Contact Type:
+			</td>
+			<td class="Info"><%= contact.contact_type.name unless contact.contact_type.nil? %></td>
+			<td class="Leftside">
+				Last Updated:
+			</td>
+			<td><%= format_time(contact.updated_at) %></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Last Name:
+			</td>
+			<td class="Info"><%= contact.last_name %></td>
+			<td class="Leftside">
+				Title:
+			</td>
+			<td class="Info"><%= contact.title %></td>
+			<td class="Leftside">
+				Updated By:
+			</td>
+			<td>
+				<% if contact.updated_at > contact.created_at %>
+					<% if contact.updated_by.nil? %>
+						Support
+					<% else %>
+						<%= render contact.updated_by %>
+					<% end %>
+				<% else %>
+					<% if contact.created_by.nil? %>
+						Support
+					<% else %>
+						<%= render contact.created_by %>
+					<% end %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"></td>
+			<td class="Leftside">
+				Department:
+			</td>
+			<td class="Info"><%= contact.department %></td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="6"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Phone:
+			</td>
+			<td class="Info"><%= contact.phone %></td>
+			<td colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Cell:
+			</td>
+			<td class="Info"><%= contact.cell %></td>
+			<td colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Pager:
+			</td>
+			<td class="Info"><%= contact.pager %></td>
+			<td colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Fax:
+			</td>
+			<td class="Info"><%= contact.fax %></td>
+			<td colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Email:
+			</td>
+			<td class="Info"><%= contact.email %></td>
+			<td colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="6"></td>
+		</tr>
+		<tr>
+			<td class="Info" colspan="6"><%= contact.comments.bbcode_to_html.html_safe unless contact.comments.nil? %></td>
+		</tr>
+	</table>
+</div>

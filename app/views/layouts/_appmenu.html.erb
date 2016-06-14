@@ -1,0 +1,8 @@
+<%= render partial: 'layouts/appmenuitem', locals: {name: "Ticket Queue", link: tickets_path, display1: "inline-block", count1: open_ticket_count, display2: "inline-block", count2: my_ticket_count} %>
+<%= render partial: 'layouts/appmenuitem', locals: {name: "RMA Queue", link: rmas_path, display1: "inline-block", count1: open_rma_count, display2: "inline-block", count2: my_rma_count} %>
+<%= render partial: 'layouts/appmenuitem', locals: {name: "Upgrade Queue", link: upgrades_path, display1: "inline-block", count1: open_upgrade_count, display2: "inline-block", count2: my_upgrade_count} %>
+<%= render partial: 'layouts/appmenuitem', locals: {name: "Build Queue", link: builds_path, display1: "inline-block", count1: open_build_count, display2: "inline-block", count2: my_build_count} %>
+<%= render partial: 'layouts/appmenuitem', locals: {name: "Bug Reports", link: bugs_path, display1: "none", count1: "", display2: "none", count2: ""} %>
+<%= render partial: 'layouts/appmenuitem', locals: {name: "Inventory", link: inventories_path, display1: "none", count1: "", display2: "none", count2: ""} %>
+<%= render partial: 'layouts/appmenuitem', locals: {name: "New Customer", link: new_customer_path, display1: "none", count1: "", display2: "none", count2: ""} %>
+<%= render partial: 'layouts/appmenuitem', locals: {name: "Admin", link: admin_path, display1: "none", count1: "", display2: "none", count2: ""} %>

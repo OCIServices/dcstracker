@@ -1,0 +1,74 @@
+<%= form_for @device do |f| %>
+	<div class="Device NewEditForm">
+	<table>
+		<tr>
+			<th colspan="4">
+				Edit Device
+			</th>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :location %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :location %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :device_type %>
+			</td>
+			<td class="Info">
+				<%= f.select :device_type, dropdown_options("DeviceType", @device.device_type).html_safe, include_blank: "Select" %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :install_by %>
+			</td>
+			<td class="Info">
+				<%= f.select :install_by, user_options('', @device.install_by).html_safe, include_blank: 'Support' %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :install_at %>
+			</td>
+			<td class="Info">
+				<%= f.date_select(:install_at, :order => [:month, :day, :year], use_short_month: true) %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :active_cloud, "Agilisys" %>
+			</td>
+			<td class="Info">
+				<%= f.check_box :active_cloud %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :machine_guid %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :machine_guid %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="4"></td>
+		</tr>
+		<tr>
+			<td colspan="4" class="Info">
+				<%= f.text_area :comments, placeholder: "Device Comments" %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :active %>
+				<%= f.check_box :active %>
+			</td>
+			<td colspan="2"></td>
+			<td>
+				<%= f.submit "Save" %>
+			</td>
+		</tr>
+	</table>
+	</div>
+<% end %>

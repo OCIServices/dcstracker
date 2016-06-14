@@ -1,0 +1,419 @@
+<%= tabitem("ticket", @rma.id, "RMA #{@rma.id}", (current_page?(controller: 'rmas', action: 'show') and @rma.id == params[:id].to_i)) %>
+
+<div class="RMA EventForm">
+	<span><%= link_to @rma.watches.exists?(user: current_user) ? image_tag("unwatch.png") : image_tag("watch.png"), watch_rma_path(@rma) %></span>
+	<span><%= link_to image_tag("print.png"), print_rma_path(@rma, format: :pdf), target: '_blank' %></span>
+	<%= form_for @rma, html:{multipart:true} do |f| %>
+	<table>
+		<tr>
+			<td colspan="4">
+				<table>
+					<thead>
+						<tr>
+							<th>Part</th>
+							<th>Original</th>
+							<th>Replacement</th>
+							<th>Condition</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @rma.new_robotic = Robotic.new if @rma.new_robotic.nil? %>
+						<%= fields_for @rma.new_robotic do |r| %>
+						<tr>
+							<td rowspan="2">
+								<%= image_tag("AmigoA.gif") %>
+							</td>
+							<td>
+								<%= @rma.old_robotic.robotic_type.name unless @rma.old_robotic.nil? or @rma.old_robotic.robotic_type.nil? %>
+							</td>
+							<td>
+								<%= r.select :robotic_type, dropdown_options("RoboticType", @rma.new_robotic.robotic_type).html_safe, include_blank: "Select" %>
+							</td>
+							<td rowspan="2">
+								<%= f.select :robotic_condition, dropdown_options("RMACondition", @rma.robotic_condition).html_safe, include_blank: "Select" %>
+							</td>
+						</tr>
+						<tr>
+							<td><%= link_to @rma.old_robotic.serial, @rma.old_robotic unless @rma.old_robotic.nil? %></td>
+							<td>
+								<%= r.text_field :serial, placeholder: "New Serial" %><%= link_to "Link", @rma.new_robotic unless @rma.new_robotic.id.blank? %>
+							</td>
+						</tr>
+						<% end %>
+						<% @rma.new_printer = Printer.new if @rma.new_printer.nil? %>
+						<%= fields_for @rma.new_printer do |p| %>
+						<tr>
+							<td rowspan="2">
+								<%= image_tag("Printer.gif") %>
+							</td>
+							<td>
+								<%= @rma.old_printer.printer_type.name unless @rma.old_printer.nil? or @rma.old_printer.printer_type.nil? %>
+							</td>
+							<td>
+								<%= p.select :printer_type, dropdown_options("PrinterType", @rma.new_printer.printer_type).html_safe, include_blank: "Select" %>
+							</td>
+							<td rowspan="2">
+								<%= f.select :printer_condition, dropdown_options("RMACondition", @rma.printer_condition).html_safe, include_blank: "Select" %>
+							</td>
+						</tr>
+						<tr>
+							<td><%= link_to @rma.old_printer.serial, @rma.old_printer unless @rma.old_printer.nil? %></td>
+							<td>
+								<%= p.text_field :serial, placeholder: "New Serial" %><%= link_to "Link", @rma.new_printer unless @rma.new_printer.id.blank? %>
+							</td>
+						</tr>
+						<% end %>
+						<% @rma.new_controller_pc = ControllerPc.new if @rma.new_controller_pc.nil? %>
+						<%= fields_for @rma.new_controller_pc do |c| %>
+						<tr>
+							<td rowspan="2">
+								<%= image_tag("Controller.gif") %>
+							</td>
+							<td>
+								<%= @rma.old_controller_pc.controller_type.name unless @rma.old_controller_pc.nil? or @rma.old_controller_pc.controller_type.nil? %>
+							</td>
+							<td>
+								<%= c.select :controller_type, dropdown_options("ControllerType", @rma.new_controller_pc.controller_type).html_safe, include_blank: "Select" %>
+							</td>
+							<td rowspan="2">
+								<%= f.select :controller_condition, dropdown_options("RMACondition", @rma.controller_condition).html_safe, include_blank: "Select" %>
+							</td>
+						</tr>
+						<tr>
+							<td><%= link_to @rma.old_controller_pc.serial, @rma.old_controller_pc unless @rma.old_controller_pc.nil? %></td>
+							<td>
+								<%= c.text_field :serial, placeholder: "New Serial" %><%= link_to "Link", @rma.new_controller_pc unless @rma.new_controller_pc.id.blank? %>
+							</td>
+						</tr>
+						<% end %>
+						<tr>
+							<td rowspan="2">
+								Other
+							</td>
+							<td>
+								<%= @rma.old_other.name unless @rma.old_other.nil? %>
+							</td>
+							<td>
+								<%= f.select :new_other, dropdown_options("OtherRMAType", @rma.new_other).html_safe, include_blank: "Select" %>
+							</td>
+							<td rowspan="2">
+								<%= f.select :other_condition, dropdown_options("RMACondition", @rma.other_condition).html_safe, include_blank: "Select" %>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<%= f.text_field :other_desc, placeholder: "New Serial" %>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4">
+				<table>
+					<thead>
+						<tr>
+							<th>
+								Shipping Address
+							</th>
+							<th>
+							</th>
+							<th>
+								Carrier
+							</th>
+							<th>
+								Tracking Number
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td rowspan="2">
+								<% unless @rma.ship_address.nil? %>
+									<%= @rma.ship_address.line_1 %><br />
+									<%= @rma.ship_address.line_2 %><br />
+									<%= "#{@rma.ship_address.city}, #{@rma.ship_address.state} #{@rma.ship_address.zip}" %><br />
+									<%= @rma.ship_address.country %>
+								<% end %>
+							</td>
+							<td>
+								<%= tracking_link(@rma.outbound_carrier, @rma.tracking_outbound, 'Outbound:')%>
+							</td>
+							<td>
+								<%= f.select :outbound_carrier, dropdown_options("CarrierType", @rma.outbound_carrier).html_safe, include_blank: "Select" %>
+							</td>
+							<td>
+								<%= f.text_field :tracking_outbound %>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<%= tracking_link(@rma.inbound_carrier, @rma.tracking_inbound, 'Inbound:')%>
+							</td>
+							<td>
+								<%= f.select :inbound_carrier, dropdown_options("CarrierType", @rma.inbound_carrier).html_safe, include_blank: "Select" %>
+							</td>
+							<td>
+								<%= f.text_field :tracking_inbound %>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4">
+				<table>
+					<tr>
+						<th colspan="4"></th>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :backup_by, "Backup Performed:" %>
+						</td>
+						<td>
+							<% if @rma.backup_by.nil? %>
+								<%= f.check_box :backup_by, {}, current_user.id %>
+							<% else %>
+								<%= render @rma.backup_by %>
+							<% end %>
+						</td>
+						<td class="Leftside" style="border-left: 1px solid #95B1E5;">
+							<%= f.label :priority %>
+						</td>
+						<td>
+							<%= f.check_box :priority %>
+						</td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :backup_method, "Backup Method:" %>
+						</td>
+						<td>
+							<%= f.select :backup_method, dropdown_options("BackupMethod", @rma.backup_method).html_safe, include_blank: "Select" %>
+						</td>						
+						<td class="Leftside" style="border-left: 1px solid #95B1E5;">
+							<%= f.label :dispatch %>
+						</td>
+						<td>
+							<%= f.select :dispatch, dropdown_options("DispatchType", @rma.dispatch).html_safe, include_blank: "Select" %>
+						</td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :built_by, "Build Performed:" %>
+						</td>
+						<td>
+							<% if @rma.built_by.nil? %>
+								<%= f.check_box :built_by, {}, current_user.id %>
+							<% else %>
+								<%= render @rma.built_by %>
+							<% end %>
+						</td>
+						<td class="Leftside" style="border-left: 1px solid #95B1E5;">
+							<%= f.label :decision_one, "DecisionOne:" %>
+						</td>
+						<td>
+							<%= f.text_field :decision_one, placeholder: "Service Number" %>
+						</td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :software_ver, "Software Version:" %>
+						</td>
+						<td>
+							<%= f.select :software_ver, dropdown_options("SoftwareVer", @rma.software_ver).html_safe, include_blank: "Select" %>
+						</td>
+						<td class="Leftside" style="border-left: 1px solid #95B1E5;">
+							<%= f.label :contact %>
+						</td>
+						<td>
+							<%= f.select :contact, contact_options(@rma.ticket.device.customer, @rma.contact).html_safe, include_blank: 'Select' %>
+						</td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :labeled_by, "Labeling Performed:" %>
+						</td>
+						<td>
+							<% if @rma.labeled_by.nil? %>
+								<%= f.check_box :labeled_by, {}, current_user.id %>
+							<% else %>
+								<%= render @rma.labeled_by %>
+							<% end %>
+						</td>
+						<td class="Leftside" style="border-left: 1px solid #95B1E5;">
+							<%= f.text_field :new_contact, value: '', placeholder: 'New Contact Name' %>
+						</td>
+						<td>
+							<%= f.text_field :new_contact_number, value: '', placeholder: 'Contact Number' %>
+						</td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :verified_by, "Verified:" %>
+						</td>
+						<td>
+							<% if @rma.verified_by.nil? %>
+								<%= f.check_box :verified_by, {}, current_user.id %>
+							<% else %>
+								<%= render @rma.verified_by %>
+							<% end %>
+						</td>
+						<td colspan="2" style="border-left: 1px solid #95B1E5;"></td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :shipped_by, "Shipped:" %>
+						</td>
+						<td>
+							<% if @rma.shipped_by.nil? %>
+								<%= f.check_box :shipped_by, {}, current_user.id %>
+							<% else %>
+								<%= render @rma.shipped_by %>
+							<% end %>
+						</td>
+						<td colspan="2" style="border-left: 1px solid #95B1E5;"></td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :ship_method, "Shipping Method:" %>
+						</td>
+						<td>
+							<%= f.select :ship_method, dropdown_options("ShipMethod", @rma.ship_method).html_safe, include_blank: "Select" %>
+						</td>
+						<td colspan="2" style="border-left: 1px solid #95B1E5;"></td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<%= f.label :return_by, "Old Equip. Returned:" %>
+						</td>
+						<td>
+							<% if @rma.return_by.nil? %>
+								<%= f.check_box :return_by, {}, current_user.id %>
+							<% else %>
+								<%= render @rma.return_by %>
+							<% end %>
+						</td>
+						<td colspan="2" style="border-left: 1px solid #95B1E5;"></td>
+					</tr>
+					<tr>
+						<td class="Leftside">
+							<label for="CompletedBy">Completed:</label>
+						</td>
+						<td>
+							<% if @rma.completed_by.nil? %>
+								<%= f.check_box :completed_by, {}, current_user.id %>
+							<% else %>
+								<%= render @rma.completed_by %>
+							<% end %>
+						</td>
+						<td colspan="2" style="border-left: 1px solid #95B1E5;"></td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<th colspan="4"></th>
+		</tr>
+		<tr>
+			<td colspan="4">
+				<%= f.text_area :event_text, value: '', placeholder: "RMA Notes", oninvalid: "this.setCustomValidity('Please enter a note to update this RMA.')", oninput: "this.setCustomValidity('')" %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<%= f.number_field :time_spent, value: '', min: '0' %>
+				<%= f.label :time_spent, 'Minute(s)' %>
+			</td>
+			<td colspan="2">
+				<%= f.label :assigned_to %>
+				<%= f.select :assigned_to, user_options('', @rma.assigned_to).html_safe, include_blank: 'Support' %>
+			</td>
+			<td>
+				<%= f.submit "Take", name: "RmaEvent" %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				Attachment:
+			</td>
+			<td colspan="2">
+				<%= f.select :file_category, dropdown_options('FileCategory').html_safe, include_blank: 'Select' %>
+				<%= f.file_field :file %>
+			</td>
+			<td>
+				<%= f.submit "Save", name: "RmaEvent" %>
+			</td>
+		</tr>
+	</table>
+	<% end %>
+</div>
+
+<% headers = ['Time', 'RMA Status', 'Note', 'User', 'Assigned', 'Min(s)', 'Attachment'] %>
+
+<div class="RMA EventSummary">
+	<div class="List">
+		<span class="Count"></span>
+		<span class="Tablename">RMA</span>
+		<div class="ListContents">
+			<table class="ListTable">
+				<thead>
+					<tr>
+						<% headers.each do |h| %>
+						<th class="ListHeader"><%= link_to h, sort: h %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="ListRow">
+						<td class="ListField EventTime"><%= format_time(@rma.created_at) %></td>
+						<td class="ListField StatusType"><%= @rma.status %></td>
+						<td class="ListField EventText"><%= @rma.rma_text.bbcode_to_html.html_safe %></td>
+						<td class="ListField CreatedBy">
+							<% if @rma.created_by.nil? %>
+								Support
+							<% else %>
+								<%= render @rma.created_by %>
+							<% end %>
+						</td>
+						<td class="ListField AssignedTo">
+							<% if @rma.assigned_to.nil? %>
+								Support
+							<% else %>
+								<%= render @rma.assigned_to %>
+							<% end %>
+						</td>
+						<td class="ListField TimeSpent"><%= @rma.rma_events.sum(:time_spent) %></td>
+						<td class="ListField File"><%= link_to "test", @rma.file.url %></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+<% headers = ['Time', 'Note', 'Changes', 'User', 'Assigned', 'Min(s)', 'Attachment'] %>
+	
+	<div class="List">
+		<span class="Count"><%= @rma.rma_events.count %></span>
+		<span class="Tablename">RMA Events</span>
+		<div class="ListContents">
+			<table class="ListTable">
+				<thead>
+					<tr>
+						<% headers.each do |h| %>
+						<th class="ListHeader"><%= link_to h, sort: h %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<%= render @rma.rma_events %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<%= tabitem_end %>

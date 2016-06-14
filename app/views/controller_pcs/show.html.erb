@@ -1,0 +1,123 @@
+<%= tabs_start('inventory') %>
+<%= tabitem('inventory', 0, "Controller Serial: #{@controller_pc.serial}", true) %>
+
+
+<div class="Inventory EventForm">
+	<span>
+		<%= link_to @controller_pc.watches.exists?(user: current_user) ? image_tag("unwatch.png") : image_tag("watch.png"), watch_controller_pc_path(@controller_pc) %>
+	</span>
+	<%= form_for [@controller_pc, @hardware_event] do |f| %>
+		<table>
+			<tr>
+				<td class="Leftside">
+					Serial:
+				</td>
+				<td class="Info">
+					<%= @controller_pc.serial %>
+				</td>
+				<td class="Leftside">
+					Type:
+				</td>
+				<td class="Info">
+					Controller
+				</td>
+			</tr>
+			<tr>
+				<td class="Leftside">
+					Location:
+				</td>
+				<td class="Info">
+				</td>
+				<td class="Leftside">
+					Model:
+				</td>
+				<td class="Info">
+					<%= @controller_pc.controller_type.name unless @controller_pc.controller_type.nil? %>
+				</td>
+			</tr>
+			<%= fields_for @controller_pc do |c| %>
+			<tr>
+				<td class="Leftside">
+					<%= c.label :os_ver %>
+				</td>
+				<td class="Info">
+					<%= c.select :os_ver, dropdown_options("OSVer", @controller_pc.os_ver).html_safe, include_blank: "Select" %>
+				</td>
+				<td colspan="2"></td>
+			</tr>
+			<tr>
+				<td class="Leftside">
+					<%= c.label :software_ver %>
+				</td>
+				<td class="Info">
+					<%= c.select :software_ver, dropdown_options("SoftwareVer", @controller_pc.software_ver).html_safe, include_blank: "Select" %>
+				</td>
+				<td class="Leftside">
+					<%= c.label :rimage_ver %>
+				</td>
+				<td class="Info">
+					<%= c.select :rimage_ver, dropdown_options("RimageVer", @controller_pc.rimage_ver).html_safe, include_blank: "Select" %>
+				</td>
+			</tr>
+			<% end %>
+			<tr>
+				<td colspan="4">
+					<%= f.text_area :note, placeholder: "Inventory Note" %>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td colspan="2"></td>
+				<td class="Leftside">
+					<%= f.submit "Save" %>
+				</td>
+			</tr>
+		</table>
+	<% end %>
+</div>
+	
+<% headers = ['Time', 'Note', 'User'] %>
+<div class="Inventory EventSummary">
+	<div class="List">
+		<span class="Count"><%= @hardware_events.count %></span>
+		<span class="Tablename">Inventory Notes</span>
+		<div class="ListContents">
+			<table class="ListTable">
+				<thead>
+					<tr>
+						<% headers.each do |h| %>
+						<th class="ListHeader"><%= link_to h, sort: h %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<%= render @hardware_events %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+	
+<% headers = ['', 'RMA ID', 'Device ID', 'Customer Name', 'Date Opened', 'Status', 'Assigned To'] %>
+
+	<div class="List">
+		<span class="Count"><%= @rmas.count %></span>
+		<span class="Tablename">RMAs</span>
+		<div class="ListContents">
+			<table class="ListTable">
+				<thead>
+					<tr>
+						<% headers.each do |h| %>
+						<th class="ListHeader"><%= link_to h, sort: h %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<%= render @rmas %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<%= tabitem_end %>
+<%= tabs_end %>

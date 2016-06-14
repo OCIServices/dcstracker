@@ -1,0 +1,3 @@
+class UpgradeEventsController < ApplicationController
+
+end

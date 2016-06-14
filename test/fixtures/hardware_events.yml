@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hardware_id: 
+  hardware_type: Hardware
+  recieved_at: 2016-03-24 10:47:55
+  from_customer_id: 
+  to_customer_id: 
+  rma_id: 
+  reason: MyText
+  summary: MyText
+  user_id: 
+  completed_at: 2016-03-24 10:47:55
+  created_by_id: 
+  updated_by_id: 
+
+two:
+  hardware_id: 
+  hardware_type: Hardware
+  recieved_at: 2016-03-24 10:47:55
+  from_customer_id: 
+  to_customer_id: 
+  rma_id: 
+  reason: MyText
+  summary: MyText
+  user_id: 
+  completed_at: 2016-03-24 10:47:55
+  created_by_id: 
+  updated_by_id: 

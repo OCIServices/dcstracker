@@ -1,0 +1,87 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  device_id: 
+  upgrade_text: MyText
+  old_robotic_id: 
+  new_robotic_id: 
+  old_printer_id: 
+  new_printer_id: 
+  old_controller_id: 
+  new_controller_id: 
+  robotic_condition_id: 
+  printer_condition_id: 
+  controller_condition_id: 
+  category_id: 
+  dispatch_id: 
+  priority: false
+  contact_id: 
+  ship_address_id: 
+  tracking_outbound: MyString
+  tracking_inbound: MyString
+  assigned_to_id: 
+  outbound_carrier_id: 
+  inbound_carrier_id: 
+  decision_one: MyString
+  backup_by_id: 
+  backup_at: 2016-03-24 12:12:58
+  built_by_id: 
+  built_at: 2016-03-24 12:12:58
+  labeled_by_id: 
+  labeled_at: 2016-03-24 12:12:58
+  verified_by_id: 
+  verified_at: 2016-03-24 12:12:58
+  shipped_by_id: 
+  shipped_at: 2016-03-24 12:12:58
+  return_by_id: 
+  return_at: 2016-03-24 12:12:58
+  completed_by_id: 
+  completed_at: 2016-03-24 12:12:58
+  backup_method_id: 
+  software_ver_id: 
+  ship_method_id: 
+  created_by_id: 
+  updated_by_id: 
+
+two:
+  device_id: 
+  upgrade_text: MyText
+  old_robotic_id: 
+  new_robotic_id: 
+  old_printer_id: 
+  new_printer_id: 
+  old_controller_id: 
+  new_controller_id: 
+  robotic_condition_id: 
+  printer_condition_id: 
+  controller_condition_id: 
+  category_id: 
+  dispatch_id: 
+  priority: false
+  contact_id: 
+  ship_address_id: 
+  tracking_outbound: MyString
+  tracking_inbound: MyString
+  assigned_to_id: 
+  outbound_carrier_id: 
+  inbound_carrier_id: 
+  decision_one: MyString
+  backup_by_id: 
+  backup_at: 2016-03-24 12:12:58
+  built_by_id: 
+  built_at: 2016-03-24 12:12:58
+  labeled_by_id: 
+  labeled_at: 2016-03-24 12:12:58
+  verified_by_id: 
+  verified_at: 2016-03-24 12:12:58
+  shipped_by_id: 
+  shipped_at: 2016-03-24 12:12:58
+  return_by_id: 
+  return_at: 2016-03-24 12:12:58
+  completed_by_id: 
+  completed_at: 2016-03-24 12:12:58
+  backup_method_id: 
+  software_ver_id: 
+  ship_method_id: 
+  created_by_id: 
+  updated_by_id: 

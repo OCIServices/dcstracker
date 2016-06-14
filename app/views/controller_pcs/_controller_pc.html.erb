@@ -1,0 +1,35 @@
+<tr class="ListRow" onmousedown="clickhandler(event, '<%= controller_pc_path(controller_pc) %>')">
+	<td class="ListField Serial">
+		<%= controller_pc.serial %>
+	</td>
+	<td class="ListField HardwareType">
+		Controller
+	</td>
+	<td class="ListField Model">
+		<%= controller_pc.controller_type.name unless controller_pc.controller_type.nil? %>
+	</td>
+	<td class="ListField Location">
+		<%= controller_pc.device_id.blank? ? "Not On Site" : "On Site" %>
+	</td>
+	<td class="ListField DateCreated">
+		<%= format_time(controller_pc.created_at) %>
+	</td>
+	<td class="ListField DateModified">
+		<%= format_time(controller_pc.updated_at) %>
+	</td>
+	<td class="ListField ModifiedBy">
+		<% if controller_pc.updated_at > controller_pc.created_at %>
+			<% if controller_pc.updated_by.nil? %>
+				Support
+			<% else %>
+				<%= render controller_pc.updated_by %>
+			<% end %>
+		<% else %>
+			<% if controller_pc.created_by.nil? %>
+				Support
+			<% else %>
+				<%= render controller_pc.created_by %>
+			<% end %>
+		<% end %>
+	</td>
+</tr>

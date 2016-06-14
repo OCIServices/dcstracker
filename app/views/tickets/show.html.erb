@@ -1,0 +1,162 @@
+<%= tabs_start('ticket') %>
+<%= tabitem("ticket", 0, "Ticket #{@ticket.id}", current_page?(controller: 'tickets', action: 'show')) %>
+
+<div class="Ticket EventForm">
+	<span><%= link_to @ticket.watches.exists?(user: current_user) ? image_tag("unwatch.png") : image_tag("watch.png"), watch_ticket_path %></span>
+	<span><%= link_to image_tag("move.png"), move_ticket_path, target: '_blank' %></span>
+	<%= form_for @ticket, html:{multipart:true} do |f| %>
+		<table>
+			<tbody>
+				<tr>
+					<td class="Leftside" colspan="2">
+						<span>Evaluation per QSP85.05</span>
+					</td>
+					<td colspan="2">
+						<%= f.check_box :mdr %>
+						<%= f.label :mdr, 'Requires Review' %>
+					</td>
+				</tr>
+				<tr>
+					<td class="Leftside">
+						<%= f.label :status %>
+					</td>
+					<td>
+						<%= f.select :status, dropdown_options('TicketStatusType', @ticket.status).html_safe, include_blank: 'Open Issue' %>
+					</td>
+					<td class="Leftside">
+						<%= f.label :priority %>
+					</td>
+					<td>
+						<%= f.check_box :priority %>
+					</td>
+				</tr>
+				<tr>
+					<td class="Leftside">
+						<%= f.label :category %>
+					</td>
+					<td>
+						<%= f.select :category, dropdown_options('TicketCategory', @ticket.category).html_safe, include_blank: 'Select' %>
+					</td>
+					<td colspan="2"></td>
+				</tr>
+				<tr>
+					<td class="Leftside">
+						<%= f.label :contact %>
+					</td>
+					<td>
+						<%= f.select :contact, contact_options(@ticket.device.customer, @ticket.contact).html_safe, include_blank: 'Select' %>
+					</td>
+					<td>
+						<%= f.text_field :new_contact, value: '', placeholder: 'New Contact Name' %>
+					</td>
+					<td>
+						<%= f.text_field :new_contact_number, value: '', placeholder: 'Contact Number' %>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4">
+						<%= f.text_area :event_text, value: '', placeholder: 'Ticket Notes', oninput: "this.setCustomValidity('')", oninvalid: "this.setCustomValidity('Please enter a note to update this Ticket.')" %>
+					</td>
+				</tr>
+				<tr>
+					<td class="Leftside">
+						<%= f.number_field :time_spent, value: '', min: '0', oninput: "this.setCustomValidity('')", oninvalid: "this.setCustomValidity('Please enter time spent in minutes.')" %>
+						<%= f.label :time_spent, 'Minute(s)' %>
+					</td>
+					<td class="Leftside">
+						<%= f.label :assigned_to %>
+					</td>
+					<td>
+						<%= f.select :assigned_to, user_options('', @ticket.assigned_to).html_safe, include_blank: 'Support' %>
+					</td>
+					<td class="Leftside">
+						<%= f.submit "Take", name: "TicketEvent" %>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="Leftside">Attachment:</td>
+					<td>
+						<%= f.select :file_category, dropdown_options('FileCategory').html_safe, include_blank: 'Select' %>
+						<%= f.file_field :file %>
+					</td>
+					<td class="Leftside">
+						<%= f.submit "Save", name: "TicketEvent" %>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	<% end %>
+</div>
+
+<% headers = ['Time', 'Ticket Status', 'Note', 'User', 'Assigned', 'Min(s)', 'Attachment'] %>
+
+<div class="Ticket EventSummary">
+	<div class="List">
+		<span class="Count"></span>
+		<span class="Tablename">Ticket</span>
+		<div class="ListContents">
+			<table class="ListTable">
+				<thead>
+					<tr>
+						<% headers.each do |h| %>
+						<th class="ListHeader"><%= link_to h, sort: h %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="ListRow">
+						<td class="ListField EventTime"><%= format_time(@ticket.created_at) %></td>
+						<td class="ListField StatusType"><%= @ticket.status.nil? ? 'Open Issue' : @ticket.status.name %></td>
+						<td class="ListField EventText"><%= @ticket.ticket_text.bbcode_to_html.html_safe %></td>
+						<td class="ListField CreatedBy">
+							<% if @ticket.created_by.nil? %>
+								Support
+							<% else %>
+								<%= render @ticket.created_by %>
+							<% end %>
+						</td>
+						<td class="ListField AssignedTo">
+							<% if @ticket.assigned_to.nil? %>
+								Support
+							<% else %>
+								<%= render @ticket.assigned_to %>
+							<% end %>
+						</td>
+						<td class="ListField TimeSpent"><%= @ticket.ticket_events.sum(:time_spent) %></td>
+						<td class="ListField File"><%= link_to "test", @ticket.file.url %></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+	<div class="List">
+		<span class="Count"><%= @ticket.ticket_events.count %></span>
+		<span class="Tablename">Ticket Events</span>
+		<div class="ListContents">
+			<table class="ListTable">
+				<thead>
+					<tr>
+						<% headers.each do |h| %>
+						<th class="ListHeader"><%= link_to h, sort: h %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<%= render @ticket.ticket_events %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<%= tabitem_end %>
+<% @ticket.rmas.each do |rma| %>
+	<% @rma = rma %>
+	<%= render template: 'rmas/show' %>
+<% end %>
+<%= tabitem_plus(new_ticket_rma_path(@ticket), "New RMA") %>
+<%= tabs_end %>
+
+<%= render template: 'customers/show' %>

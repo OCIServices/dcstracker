@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  device_id: 
+  ticket_text: MyText
+  status_id: 
+  assigned_to_id: 
+  priority: false
+  category_id: 
+  mdr_id: 
+  authorized: false
+  contact_id: 
+  created_by_id: 
+  updated_by_id: 
+
+two:
+  device_id: 
+  ticket_text: MyText
+  status_id: 
+  assigned_to_id: 
+  priority: false
+  category_id: 
+  mdr_id: 
+  authorized: false
+  contact_id: 
+  created_by_id: 
+  updated_by_id: 

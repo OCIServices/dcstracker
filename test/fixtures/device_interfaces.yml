@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  device_id: 
+  interface_type_id: 
+  interface_vendor_id: 
+  desc: MyString
+  ip: MyString
+  ae_title: MyString
+  port: MyString
+  gateway: MyString
+  submask: MyString
+  dns_1: MyString
+  dns_2: MyString
+  mac: MyString
+  wins: MyString
+  ras_ip_1: MyString
+  ras_ip_2: MyString
+  login: MyString
+  password: MyString
+  qr_model_id: 
+  qr_level_id: 
+  comments: MyText
+  active: false
+  created_by_id: 
+  updated_by_id: 
+
+two:
+  device_id: 
+  interface_type_id: 
+  interface_vendor_id: 
+  desc: MyString
+  ip: MyString
+  ae_title: MyString
+  port: MyString
+  gateway: MyString
+  submask: MyString
+  dns_1: MyString
+  dns_2: MyString
+  mac: MyString
+  wins: MyString
+  ras_ip_1: MyString
+  ras_ip_2: MyString
+  login: MyString
+  password: MyString
+  qr_model_id: 
+  qr_level_id: 
+  comments: MyText
+  active: false
+  created_by_id: 
+  updated_by_id: 

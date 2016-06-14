@@ -1,0 +1,151 @@
+<%= form_for [@device, @device_connection] do |f| %>
+	<div class="Connection NewEditForm">
+	<table>
+		<tr>
+			<th colspan="6">
+				New Connection for Device <%= @device.id %>
+			</th>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :connection_type %>
+			</td>
+			<td class="Info">
+				<%= f.select :connection_type, dropdown_options("ConnectionType", @device_connection.connection_type).html_safe, include_blank: "Select" %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :phone %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :phone %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="6"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :vpn_ip %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :vpn_ip %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :vpn_domain %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :vpn_domain %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :vpn_login %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :vpn_login %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :vpn_password %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :vpn_password %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :vpn_group_name %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :vpn_group_name %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :vpn_group_password %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :vpn_group_password %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="6"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :ip, "Assigned IP Address"%>
+			</td>
+			<td class="Info">
+				<%= f.text_field :ip %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :dhcp %>
+			</td>
+			<td class="Info">
+				<%= f.check_box :dhcp %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :script %>
+			</td>
+			<td class="Info">
+				<%= f.check_box :script %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :login, "Windows Login" %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :login %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :password, "Windows Password" %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :password %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :domain, "Windows Domain" %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :domain %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :pca_login, "PCAnywhere Login:" %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :pca_login %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :pca_password, "PCAnywhere Password:" %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :pca_password %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :pca_domain, "PCAnywhere Domain:" %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :pca_domain %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="6"></td>
+		</tr>
+		<tr>
+			<td class="Info" colspan="6">
+				<%= f.text_area :comments, placeholder: "Connection Comments" %>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="5"></td>
+			<td>
+				<%= f.submit "Save" %>
+			</td>
+		</tr>
+	</table>
+	</div>
+<% end %>

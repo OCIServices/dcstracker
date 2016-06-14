@@ -1,0 +1,92 @@
+<div class="NewAddress EventForm">
+	<br />
+	<%= form_for @new_address do |f| %>
+		<table>
+			<tr>
+				<th colspan="3">
+					New Address
+				</th>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<%= f.text_field :line_1, placeholder: "Line 1" %>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<%= f.text_field :line_2, placeholder: "Line 2" %>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<%= f.text_field :city, placeholder: "City" %>
+				</td>
+				<td>
+					<%= f.text_field :state, placeholder: "State" %>
+				</td>
+				<td>
+					<%= f.text_field :zip, placeholder: "Zip" %>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<%= f.text_field :country, placeholder: "Country" %>
+				</td>
+				<td></td>
+				<td>
+					<%= f.hidden_field :new_address, value: "RMA" %>
+					<%= f.hidden_field :device_id, value: @device.id %>
+					<%= f.hidden_field :ticket_id, value: params[:ticket_id] %>
+					<%= f.hidden_field :comments, value: 'Created for New RMA' %>
+					<% dropdown = Dropdown.where(name: "DeviceShipping", dropdown_type: "AddressType").first %>
+					<%= f.hidden_field :address_type, value: dropdown.id %>
+					<%= f.submit "Save" %>
+				</td>
+			</tr>
+		</table>
+	<% end %>
+</div>
+<div class="NewAddress EventSummary">
+<% headers = ['Address Type', 'Line 1', 'Line 2', 'City', 'State', 'Zip', 'Country', 'Last Updated'] %>
+<% if @device_addresses.any? %>
+	<div class="List">
+		<span class="Count"><%= @device_addresses.count %></span>
+		<span class="Tablename">Device Addresses</span>
+		<div class="ListContents">
+			<table class="ListTable">
+				<thead>
+					<tr>
+						<% headers.each do |h| %>
+						<th class="ListHeader"><%= link_to h, sort: h %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<%= render @device_addresses %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+<% end %>
+
+<% if @cust_addresses.any? %>
+	<div class="List">
+		<span class="Count"><%= @cust_addresses.count %></span>
+		<span class="Tablename">Customer Addresses</span>
+		<div class="ListContents">
+			<table class="ListTable">
+				<thead>
+					<tr>
+						<% headers.each do |h| %>
+						<th class="ListHeader"><%= link_to h, sort: h %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<%= render @cust_addresses %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+<% end %>
+</div>

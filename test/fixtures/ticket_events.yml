@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ticket_id: 
+  status_id: 
+  assigned_to_id: 
+  event_text: MyText
+  time_spent: 1
+  created_by_id: 
+  updated_by_id: 
+
+two:
+  ticket_id: 
+  status_id: 
+  assigned_to_id: 
+  event_text: MyText
+  time_spent: 1
+  created_by_id: 
+  updated_by_id: 

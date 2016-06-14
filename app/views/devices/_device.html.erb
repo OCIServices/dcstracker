@@ -1,0 +1,11 @@
+<tr class="ListRow" onmousedown="clickhandler(event, '<%= device_link(device.id) %>')">
+	<td class="ListField ID">
+		<%= device.id %>
+	</td>
+	<td class="ListField Location">
+		<%= device.location %>
+	</td>
+	<td class="ListField Name">
+		<%= device.customer.name %>
+	</td>
+</tr>

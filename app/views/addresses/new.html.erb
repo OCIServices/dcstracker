@@ -1,0 +1,79 @@
+<%= form_for [@attached_to, @address] do |f| %>
+	<div class="Address NewEditForm">
+	<table>
+		<tr>
+			<th colspan="6" style="text-align:left; ">
+				Enter a New Address
+			</th>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :address_type %>
+			</td>
+			<td class="Info">
+				<%= f.select :address_type, dropdown_options("AddressType", @address.address_type).html_safe, include_blank: "Select" %>
+			</td>
+			<td colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :line_1 %>
+			</td>
+			<td class="Info" colspan="5">
+				<%= f.text_field :line_1 %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :line_2 %>
+			</td>
+			<td class="Info" colspan="5">
+				<%= f.text_field :line_2 %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :city %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :city %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :state %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :state %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :zip %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :zip %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :country %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :country %>
+			</td>			
+			<td colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="6"></td>
+		</tr>
+		<tr>
+			<td class="Info" colspan="6">
+				<%= f.text_area :comments, placeholder: "Address Comments" %>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="5"></td>
+			<td>
+				<%= f.submit "Save" %>
+			</td>
+		</tr>
+	</table>
+	</div>
+<% end %>

@@ -1,0 +1,66 @@
+<%= form_for [@inventory] do |f| %>
+	<div class="Inventory NewEditForm">
+	<table>
+		<tr>
+			<th colspan="4" style="text-align:left; ">
+				Edit Part # <%= @inventory.part_number %>
+			</th>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :rack_number %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :rack_number %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :description %>
+			</td>
+			<td class="Info" colspan="3">
+				<%= f.text_field :description %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :inventory_level %>
+			</td>
+			<td class="Info">
+				<%= f.number_field :inventory_level %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :reorder_level %>
+			</td>
+			<td class="Info">
+				<%= f.number_field :reorder_level %>
+			</td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :warehouse %>
+			</td>
+			<td class="Info">
+				<%= f.number_field :warehouse %>
+			</td>
+			<td class="Leftside">
+				<%= f.label :repair_depot %>
+			</td>
+			<td class="Info">
+				<%= f.number_field :repair_depot %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<%= f.label :active %>
+				<%= f.check_box :active %>
+			</td>
+			<td colspan="2"></td>
+			<td>
+				<%= f.submit "Save" %>
+			</td>
+		</tr>
+	</table>
+	</div>
+<% end %>

@@ -1,0 +1,86 @@
+<%= form_for @bug do |f| %>
+	<div class="Bug NewEditForm">
+	<table>
+		<tr>
+			<th colspan="4">
+				Report a New Bug
+			</th>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :software_ver %>
+			</td>
+			<td class="Info">
+				<%= f.select :software_ver, dropdown_options("SoftwareVer", @bug.software_ver).html_safe, include_blank: "Select" %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :service %>
+			</td>
+			<td class="Info">
+				<%= f.select :service, dropdown_options("Service", @bug.service).html_safe, include_blank: "Select" %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :name %>
+			</td>
+			<td class="Info">
+				<%= f.text_field :name %>
+			</td>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :issue %>
+			</td>
+			<td class="Info" colspan="3" rowspan="2">
+				<%= f.text_area :issue, placeholder: "A summary of the issue" %>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :workaround %>
+			</td>
+			<td class="Info" colspan="3" rowspan="2">
+				<%= f.text_area :workaround, placeholder: "A temporary workaround to get the device running" %>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="Break" colspan="4"></td>
+		</tr>
+		<tr>
+			<td class="Leftside">
+				<%= f.label :solution %>
+			</td>
+			<td class="Info" colspan="3" rowspan="2">
+				<%= f.text_area :solution, placeholder: "A permanent Solution, such as updating software to a newer version" %>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+		</tr>
+		<tr>
+			<td colspan="3"></td>
+			<td class="Leftside">
+				<%= f.submit "Save" %>
+			</td>
+		</tr>
+	</table>
+	</div>
+<% end %>

@@ -1,0 +1,6 @@
+<li>
+<input id="<%= "#{setname}#{num}" %>" type="radio" <%= "#{'checked' if default}" %> name="<%= setname %>">
+<label class="<%= "#{default ? 'Default ' : ''} #{active ? 'Active ' : 'Inactive '}#{css_class}" %>" for="<%= "#{setname}#{num}" %>">
+	<%= label %>
+</label>
+<div id="<%= "#{setname}-content#{num}" %>" class="tab-content animated fadeIn">

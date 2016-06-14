@@ -1,0 +1,75 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  device_id: 
+  build_text: MyText
+  robotic_id: 
+  printer_id: 
+  controller_id: 
+  category_id: 
+  dispatch_id: 
+  priority: false
+  contact_id: 
+  ship_address_id: 
+  tracking_outbound: MyString
+  tracking_inbound: MyString
+  outbound_carrier_id: 
+  inbound_carrier_id: 
+  assigned_to_id: 
+  decision_one: MyString
+  backup_by_id: 
+  backup_at: 2016-03-28 14:27:52
+  built_by_id: 
+  built_at: 2016-03-28 14:27:52
+  labeled_by_id: 
+  labeled_at: 2016-03-28 14:27:52
+  verified_by_id: 
+  verified_at: 2016-03-28 14:27:52
+  shipped_by_id: 
+  shipped_at: 2016-03-28 14:27:52
+  return_by_id: 
+  return_at: 2016-03-28 14:27:52
+  completed_by_id: 
+  completed_at: 2016-03-28 14:27:52
+  backup_method_id: 
+  software_ver_id: 
+  ship_method_id: 
+  created_by_id: 
+  updated_by_id: 
+
+two:
+  device_id: 
+  build_text: MyText
+  robotic_id: 
+  printer_id: 
+  controller_id: 
+  category_id: 
+  dispatch_id: 
+  priority: false
+  contact_id: 
+  ship_address_id: 
+  tracking_outbound: MyString
+  tracking_inbound: MyString
+  outbound_carrier_id: 
+  inbound_carrier_id: 
+  assigned_to_id: 
+  decision_one: MyString
+  backup_by_id: 
+  backup_at: 2016-03-28 14:27:52
+  built_by_id: 
+  built_at: 2016-03-28 14:27:52
+  labeled_by_id: 
+  labeled_at: 2016-03-28 14:27:52
+  verified_by_id: 
+  verified_at: 2016-03-28 14:27:52
+  shipped_by_id: 
+  shipped_at: 2016-03-28 14:27:52
+  return_by_id: 
+  return_at: 2016-03-28 14:27:52
+  completed_by_id: 
+  completed_at: 2016-03-28 14:27:52
+  backup_method_id: 
+  software_ver_id: 
+  ship_method_id: 
+  created_by_id: 
+  updated_by_id: 
